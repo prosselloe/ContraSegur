@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Contrasenyes segures</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/contrasegur.js" type="text/javascript"></script>
+        
+        <!-- Dropbox.Tech: zxcvbn | realistic password strength estimation
+            https://dropbox.tech/security/zxcvbn-realistic-password-strength-estimation     
+        -->
+        <script src="js/zxcvbn-async.js" type="text/javascript"></script>    
+        
+        <!-- JavaScript MD5
+            https://css-tricks.com/snippets/javascript/javascript-md5/
+        -->
+        <script src="js/md5.min.js"></script>
+
+        <!-- CryptoJS rollups 
+            https://github.com/jkiss/crypto-js
+            https://code.google.com/archive/p/crypto-js/downloads
+        -->
+          <!-- The Hasher Algorithms -->
+            <script src="rollups/md5.js"></script>
+            <script src="rollups/sha1.js"></script>
+            <script src="rollups/sha256.js"></script>
+            <!--
+            <script src="rollups/sha512.js"></script>
+            <script src="rollups/sha3.js"></script>
+            <script src="rollups/ripemd160.js"></script>
+            -->
+          <!-- HMAC(Keyed-Hash Message Authentication Codes) -->
+            <!--
+            <script src="rollups/hmac-md5.js"></script>
+            <script src="rollups/hmac-sha1.js"></script>
+            <script src="rollups/hmac-sha256.js"></script>
+            <script src="rollups/hmac-sha512.js"></script>
+            <script src="rollups/pbkdf2.js"></script>
+            -->
+          <!-- The Cipher Algorithms -->
+            <script src="rollups/aes.js"></script>
+            <!--
+            <script src="rollups/tripledes.js"></script>
+            <script src="rollups/rabbit.js"></script>
+            <script src="rollups/rc4.js"></script>
+            -->
+        <!-- CryptoJS components
+            https://github.com/jkiss/crypto-js
+            https://code.google.com/archive/p/crypto-js/downloads
+        -->
+            <!--
+            <script src="components/enc-base64-min.js"></script>
+            <script src="components/mode-cfb-min.js"></script>
+            <script src="components/pad-ansix923-min.js"></script>
+            <script src="components/core-min.js"></script>
+            <script src="components/enc-utf16-min.js"></script>
+            -->
+    </head>
+    <body>
+        <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;"/><br>
+        Usuari o correu: <input type="text" id="user" value="Z999999"><br>
+        Contrasenya: <input type="password" id="password" onchange="Comprovar()"><br>
+        <br>
+        <input type="checkbox" id="minim"> Mínim 8 caràcters,<br>
+        <input type="checkbox" id="majuscula"> almenys una lletra majúscula,<br>
+        <input type="checkbox" id="minuscula"> almenys una lletra minúscula,<br>
+        <input type="checkbox" id="numero"> almenys un número,<br>
+        <input type="checkbox" id="carespecial"> almenys un carácter especial.<br>
+        <br>
+        Dèbil - Regular - Bona - Forta<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<progress id="nivell" value="0" max="100"></progress><br>
+        Weak - So-so - Great! - Strong<br>
+        <br>
+        <button type="button" id="inisesio" onclick="Iniciar();" disabled>Iniciar sessió</button><br>
+        <br>
+        Diccionari: <input type="file" id="diccionari" /><br>
+        Patrons: <input type="file" id="patrons" /><br>
+        <script type="text/javascript">
+            document.getElementById('diccionari').addEventListener('change', readSingleFile, false);
+            document.getElementById('patrons').addEventListener('change', readSingleFile, false);
+        </script>
+    </body>
+</html>
