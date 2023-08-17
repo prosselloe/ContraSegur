@@ -67,9 +67,9 @@ function Comprovar()
     
     Base = 0;
     if (document.getElementById("numero").checked) {Base = Base + 10;} // Dígits 
-    if (document.getElementById("minuscula").checked) {Base = Base + 52;} // Lletres minúscules mes vocals amb diacrítics  
-    if (document.getElementById("majuscula").checked) {Base = Base + 52;} // Lletres majúscules mes vocals amb diacrítics 
-    if (document.getElementById("carespecial").checked) {Base = Base + 37;} // Caràctes especials teclat espanyol/català    
+    if (document.getElementById("minuscula").checked) {Base = Base + 40;} // Lletres minúscules mes vocals amb diacrítics  
+    if (document.getElementById("majuscula").checked) {Base = Base + 40;} // Lletres majúscules mes vocals amb diacrítics 
+    if (document.getElementById("carespecial").checked) {Base = Base + 41;} // Caràctes especials teclat espanyol/català    
     Exponent = document.getElementById("password").value.length;
     Nivell = Base * Exponent / 24;
     document.getElementById("nivell").value = Nivell.toString();
@@ -85,13 +85,13 @@ function Iniciar()
     CostComputacional = Math.pow(Base , Exponent) / 1e10; // Per una màquina a 10k MIPS 
     
     // Too guessable: risky password. (guesses < 1e3)
-    if (CostComputacional < 1e6)        Robustesa = 0; 
+    if (CostComputacional < 1e3)        Robustesa = 0; 
     // Very guessable: protection from throttled online attacks. (guesses < 1e6)
-    else if (CostComputacional < 1e9)   Robustesa = 1; 
+    else if (CostComputacional < 1e6)   Robustesa = 1; 
     // Somewhat guessable: protection from unthrottled online attacks. (guesses < 1e8)
-    else if (CostComputacional < 1e12)  Robustesa = 2;
+    else if (CostComputacional < 1e8)  Robustesa = 2;
     // Safely unguessable: moderate protection from offline slow-hash scenario. (guesses < 1e10)
-    else if (CostComputacional < 1e15)  Robustesa = 3; 
+    else if (CostComputacional < 1e10)  Robustesa = 3; 
     // Very unguessable: strong protection from offline slow-hash scenario. (guesses >= 1e10)
     else                                Robustesa = 4; 
     
@@ -149,6 +149,11 @@ function Iniciar()
             " anys de processament, es a dir, " + DiesProcessament.toExponential() +  " dies.\n\
             - Tendria un Nivell de Robustesa de: " + Robustesa + "/4, i un zxcvbn Score de: " + result.score + "/4.");   
 
+}
+
+function Mostrar()
+{
+    document.getElementById("taulaASCII").hidden = !document.getElementById("taulaASCII").hidden;  
 }
 
 /**
