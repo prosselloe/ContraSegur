@@ -71,7 +71,7 @@ function Comprovar()
     if (document.getElementById("majuscula").checked) {Base = Base + 40;} // Lletres majúscules mes vocals amb diacrítics 
     if (document.getElementById("carespecial").checked) {Base = Base + 41;} // Caràctes especials teclat espanyol/català    
     Exponent = document.getElementById("password").value.length;
-    Nivell = Base * Exponent / 24;
+    Nivell = Base * Exponent / 16;
     document.getElementById("nivell").value = Nivell.toString();
 }
 
@@ -82,7 +82,7 @@ function Iniciar()
      * En funció de les dades d’entrada, calcular el nombre d’intents són necessaris per trobar una contrasenya similar:
      * Per exemple, si només són dígits: 10X on x és el nombre de dígits de la contrasenya
     **/
-    CostComputacional = Math.pow(Base , Exponent) / 1e10; // Per una màquina a 10k MIPS 
+    CostComputacional = Math.pow(Base , Exponent) / 1e6; // Per una màquina a 1 MIPS 
     
     // Too guessable: risky password. (guesses < 1e3)
     if (CostComputacional < 1e3)        Robustesa = 0; 
@@ -145,7 +145,7 @@ function Iniciar()
     window.alert("Password: "                + document.getElementById("password").value + "\n\
             - " + comprovaRobustesaContrasenya(document.getElementById("password").value) + "\n\
             - Tendria un Cost Coputaccional per Força Bruta de: " + CostComputacional.toExponential() + 
-            " pel que una màquina a 10k MIPS podria arribar a necessitar " + AnysProcessament.toExponential() + 
+            " pel que una màquina a 1 MIPS podria arribar a necessitar " + AnysProcessament.toExponential() + 
             " anys de processament, es a dir, " + DiesProcessament.toExponential() +  " dies.\n\
             - Tendria un Nivell de Robustesa de: " + Robustesa + "/4, i un zxcvbn Score de: " + result.score + "/4.");   
 
@@ -153,7 +153,11 @@ function Iniciar()
 
 function Mostrar()
 {
-    document.getElementById("taulaASCII").hidden = !document.getElementById("taulaASCII").hidden;  
+    document.getElementById("taulaASCII").hidden = !document.getElementById("taulaASCII").hidden; 
+    if (document.getElementById("taulaASCII").hidden)
+        document.getElementById("mostrartaula").innerText = "Mostrar taula ASCII-HTML";
+    else
+        document.getElementById("mostrartaula").innerText = "Amagar taula ASCII-HTML";
 }
 
 /**
