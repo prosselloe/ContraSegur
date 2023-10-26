@@ -18,7 +18,7 @@ function Comprovar()
 {
     var password = document.getElementById("password").value;
     // window.alert(password);
-    document.getElementById("minim").checked = false;
+    document.getElementById("minimcar").checked = false;
     document.getElementById("majuscula").checked = false;
     document.getElementById("minuscula").checked = false;
     document.getElementById("numero").checked = false;
@@ -31,25 +31,29 @@ function Comprovar()
 
         // Comprovam la mida mímina
         if (password.length >= 8) {
-            document.getElementById("minim").checked = true;
+            document.getElementById("minimcar").checked = true;
         } 
         
         // Comprovam que hi hagi un número
         if (!isNaN(lletra)) {
             document.getElementById("numero").checked = true;
+            
         // Comprovam que hi hagi una lletra
-        } else if (((lletra.toLowerCase() >= "a") && (lletra.toLowerCase() <= "z")) || 
-                    (lletra.toLowerCase() == "ñ") || (lletra.toLowerCase() == "ç")) {             
+        // if (((lletra.toLowerCase() >= "a") && (lletra.toLowerCase() <= "z")) || 
+        //             (lletra.toLowerCase() == "ñ") || (lletra.toLowerCase() == "ç")) {             
+
+            
+        // Si no és un número ni una lletra, aleshores serà un caràcter especial
+        } else if (lletra === lletra.toUpperCase() && lletra === lletra.toLowerCase()) {
+            document.getElementById("carespecial").checked = true;
             // Comprovam que hi hagi una lletra majúscula    
-            if (lletra === lletra.toUpperCase()) {
+            } else {if (lletra === lletra.toUpperCase()) {
                 document.getElementById("majuscula").checked = true;
             // Comprovam que hi hagi una lletra minúscula    
             } else if (lletra === lletra.toLowerCase()) {
                 document.getElementById("minuscula").checked = true;
             }
-        // Si no és un número ni una lletra, aleshores serà un caràcter especial
-        } else {
-            document.getElementById("carespecial").checked = true;
+
         }
 
         // Si es compleixen totes les condicions, activam el botó d'Iniciar Sessió
@@ -57,11 +61,11 @@ function Comprovar()
             document.getElementById("minuscula").checked &&
             document.getElementById("numero").checked &&
             document.getElementById("carespecial").checked &&
-            document.getElementById("minim").checked) 
+            document.getElementById("minimcar").checked) 
         {
-            document.getElementById("inisesio").disabled = false;
+            document.getElementById("inisessio").disabled = false;
         } else {
-            document.getElementById("inisesio").disabled = false //true;
+            document.getElementById("inisessio").disabled = false //true;
         }
     }
     
@@ -82,17 +86,17 @@ function Iniciar()
      * En funció de les dades d’entrada, calcular el nombre d’intents són necessaris per trobar una contrasenya similar:
      * Per exemple, si només són dígits: 10X on x és el nombre de dígits de la contrasenya
     **/
-    CostComputacional = Math.pow(Base , Exponent) / 1e6; // Per una màquina a 1 MIPS 
+    CostComputacional = Math.pow(Base , Exponent) / 10e6; // Per una màquina a 1 MIPS 
     
-    // Too guessable: risky password. (guesses < 1e3)
-    if (CostComputacional < 1e3)        Robustesa = 0; 
-    // Very guessable: protection from throttled online attacks. (guesses < 1e6)
-    else if (CostComputacional < 1e6)   Robustesa = 1; 
-    // Somewhat guessable: protection from unthrottled online attacks. (guesses < 1e8)
-    else if (CostComputacional < 1e8)  Robustesa = 2;
-    // Safely unguessable: moderate protection from offline slow-hash scenario. (guesses < 1e10)
-    else if (CostComputacional < 1e10)  Robustesa = 3; 
-    // Very unguessable: strong protection from offline slow-hash scenario. (guesses >= 1e10)
+    // Too guessable: risky password. (guesses < 10e3)
+    if (CostComputacional < 10e3)        Robustesa = 0; 
+    // Very guessable: protection from throttled online attacks. (guesses < 10e6)
+    else if (CostComputacional < 10e6)   Robustesa = 1; 
+    // Somewhat guessable: protection from unthrottled online attacks. (guesses < 10e8)
+    else if (CostComputacional < 10e8)  Robustesa = 2;
+    // Safely unguessable: moderate protection from offline slow-hash scenario. (guesses < 10e10)
+    else if (CostComputacional < 10e10)  Robustesa = 3; 
+    // Very unguessable: strong protection from offline slow-hash scenario. (guesses >= 10e10)
     else                                Robustesa = 4; 
     
     AnysProcessament = CostComputacional / (365*24*60*60); 
@@ -116,7 +120,7 @@ function Iniciar()
      *                           # in milliseconds. usually only a few ms.
     **/
     result = zxcvbn(document.getElementById("password").value);
-    /** 
+    
     window.alert("Password: "  + document.getElementById("password").value + "\n" + 
         "Entropy: "            + result.entropy + "\n" +
         "Crack Time: "         + result.crack_time + "\n" + 
@@ -125,7 +129,7 @@ function Iniciar()
         "Match Sequence: "     + result.match_sequence + "\n" + 
         "Calculation Time: "   + result.calculation_time 
     ); 
-    **/
+    
     
     /**
     window.alert("Password: "  + document.getElementById("password").value + "\n\
