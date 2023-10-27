@@ -10,6 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+            #taulaASCII { position:absolute; top: 570px; left:0px; }
             #Idioma { position:relative; top:-520px; left:150px; }
             #Teclat { position:relative; top:-500px; left:150px; }
         </style>
@@ -66,7 +67,8 @@ and open the template in the editor.
             -->
     </head>
     <body>
-        <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;"/><br>
+        <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;" 
+             title="IES Guillem Sagrera"/><br>
         Usuari o correu: <input type="text" id="user" value="Z999999"><br>
         Contrasenya: <input type="password" id="password" onchange="Comprovar()">
             <button id="teclat" onclick="document.getElementById('Teclat').hidden = 
@@ -92,6 +94,89 @@ and open the template in the editor.
             document.getElementById('patrons').addEventListener('change', readSingleFile, false);
         </script>
         <br><button type="button" id="mostrartaula" onclick="Mostrar();">Mostrar taula ASCII-HTML</button><br>
+        <div id="Idioma" translate="no">
+            <a href="https://contrasegur.netlify.app/index.html" 
+               id="ca"> <img src="img/ca.png" alt="tra_ca" title="en Català"></a>
+            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=auto&_x_tr_tl=es&_x_tr_hl=es" 
+               id="es"> <img src="img/es.png" alt="tra_es" title="en Español"></a>
+            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en" 
+               id="en"> <img id="gb" src="img/gb.png" alt="tra_en" title="in English"></a>
+            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=auto&_x_tr_tl=fr&_x_tr_hl=fr" 
+               id="es"> <img src="img/fr.png" alt="tra_fr" title="en Français"></a>
+            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=auto&_x_tr_tl=de&_x_tr_hl=de" 
+               id="es"> <img src="img/de.png" alt="tra_de" title="auf Deutsch"></a>
+            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=auto&_x_tr_tl=it&_x_tr_hl=it" 
+               id="es"> <img src="img/it.png" alt="tra_iu" title="in Italiano"></a>
+        </div>
+        <div id="Teclat" translate="no" hidden>
+            <table><strong>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="q" onclick="document.getElementById('password').value = 'q';">q</button>
+                    <button id="w" onclick="document.getElementById('password').value = 'w';">w</button>
+                    <button id="e" onclick="document.getElementById('password').value = 'e';">e</button>
+                    <button id="r" onclick="document.getElementById('password').value = 'r';">r</button>
+                    <button id="t" onclick="document.getElementById('password').value = 't';">t</button>
+                    <button id="y" onclick="document.getElementById('password').value = 'y';">y</button>
+                    <button id="u" onclick="document.getElementById('password').value = 'u';">u</button>
+                    <button id="i" onclick="document.getElementById('password').value = 'i';">i</button>
+                    <button id="o" onclick="document.getElementById('password').value = 'o';">o</button>
+                    <button id="p" onclick="document.getElementById('password').value = 'p';">p</button>
+                    <!--
+                    <button id="agut" onclick="alert('Sense vocals accentuades!');" 
+                            style="color:red" title="Accent Agut">´</button>
+                    -->
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;
+                    <button id="a" onclick="document.getElementById('password').value = 'a';">a</button>
+                    <button id="s" onclick="document.getElementById('password').value = 's';">s</button>
+                    <button id="d" onclick="document.getElementById('password').value = 'd';">d</button>
+                    <button id="f" onclick="document.getElementById('password').value = 'f';">f</button>
+                    <button id="g" onclick="document.getElementById('password').value = 'g';">g</button>
+                    <button id="h" onclick="document.getElementById('password').value = 'h';">h</button>
+                    <button id="j" onclick="document.getElementById('password').value = 'j';">j</button>
+                    <button id="k" onclick="document.getElementById('password').value = 'k';">k</button>
+                    <button id="l" onclick="document.getElementById('password').value = 'l';">l</button>
+                    <button id="ñ" onclick="document.getElementById('password').value = 'ñ';" 
+                            style="color:blue">ñ</button>
+                    <!--
+                    <button id="dieresi" onclick="alert('Sense vocals amb dièrsi!');" 
+                            style="color:red" title="Dièresi">¨</button>
+                    -->
+                    <button id="intro" onclick="Comprovar();" title="ENTER">┘</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    <!--
+                    <button id="shift" onclick="alert('Només lletres minúscules!');" 
+                            style="color:red" title="SHIFT">↑</button>
+                    -->
+                    <button id="z" onclick="document.getElementById('password').value = 'z';">z</button>
+                    <button id="x" onclick="document.getElementById('password').value = 'x';">x</button>
+                    <button id="c" onclick="document.getElementById('password').value = 'c';">c</button>
+                    <button id="v" onclick="document.getElementById('password').value = 'v';">v</button>
+                    <button id="b" onclick="document.getElementById('password').value = 'b';">b</button>
+                    <button id="n" onclick="document.getElementById('password').value = 'n';">n</button>
+                    <button id="m" onclick="document.getElementById('password').value = 'm';">m</button>
+                    <button id="ç" onclick="document.getElementById('password').value = 'ç';" 
+                            style="color:blue">ç</button>
+                    <button id="volat" onclick="document.getElementById('password').value = '·';" 
+                            style="color:blue" title="Punt Volat">·</button>
+                    <button id="guio" onclick="document.getElementById('password').value = '-';" 
+                            style="color:blue" title="Guionet">-</button>
+                    <!--
+                    <button id="greu" onclick="alert('Sense vocals accentuades!');" 
+                            style="color:red" title="Accent Greu">`</button>
+                    -->
+                  </td>          
+                </tr>
+            </strong></table>
+        </div>
         <div id="taulaASCII" translate="no" hidden>
             <table>
                 <tr>
@@ -694,89 +779,6 @@ and open the template in the editor.
                     <td>255;</td><td>&#255;</td>
                 </tr>
             </table>
-        </div>
-        <div id="Idioma" translate="no">
-            <a href="https://contrasegur.netlify.app/index.html" 
-               id="ca"> <img src="img/ca.png" alt="tra_ca" title="en Català"></a>
-            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=auto&_x_tr_tl=es&_x_tr_hl=es" 
-               id="es"> <img src="img/es.png" alt="tra_es" title="en Español"></a>
-            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en" 
-               id="en"> <img id="gb" src="img/gb.png" alt="tra_en" title="in English"></a>
-            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=auto&_x_tr_tl=fr&_x_tr_hl=fr" 
-               id="es"> <img src="img/fr.png" alt="tra_fr" title="on Francois"></a>
-            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=auto&_x_tr_tl=de&_x_tr_hl=de" 
-               id="es"> <img src="img/de.png" alt="tra_de" title="auf Deutsch"></a>
-            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=auto&_x_tr_tl=it&_x_tr_hl=it" 
-               id="es"> <img src="img/it.png" alt="tra_iu" title="in Italiano"></a>
-        </div>
-        <div id="Teclat" translate="no" hidden>
-            <table><strong>
-                <tr>
-                  <td>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <button id="q" onclick="document.getElementById('password').value = 'q';">q</button>
-                    <button id="w" onclick="document.getElementById('password').value = 'w';">w</button>
-                    <button id="e" onclick="document.getElementById('password').value = 'e';">e</button>
-                    <button id="r" onclick="document.getElementById('password').value = 'r';">r</button>
-                    <button id="t" onclick="document.getElementById('password').value = 't';">t</button>
-                    <button id="y" onclick="document.getElementById('password').value = 'y';">y</button>
-                    <button id="u" onclick="document.getElementById('password').value = 'u';">u</button>
-                    <button id="i" onclick="document.getElementById('password').value = 'i';">i</button>
-                    <button id="o" onclick="document.getElementById('password').value = 'o';">o</button>
-                    <button id="p" onclick="document.getElementById('password').value = 'p';">p</button>
-                    <!--
-                    <button id="agut" onclick="alert('Sense vocals accentuades!');" 
-                            style="color:red" title="Accent Agut">´</button>
-                    -->
-                  </td>          
-                </tr>
-                <tr>
-                  <td>
-                    &nbsp;&nbsp;
-                    <button id="a" onclick="document.getElementById('password').value = 'a';">a</button>
-                    <button id="s" onclick="document.getElementById('password').value = 's';">s</button>
-                    <button id="d" onclick="document.getElementById('password').value = 'd';">d</button>
-                    <button id="f" onclick="document.getElementById('password').value = 'f';">f</button>
-                    <button id="g" onclick="document.getElementById('password').value = 'g';">g</button>
-                    <button id="h" onclick="document.getElementById('password').value = 'h';">h</button>
-                    <button id="j" onclick="document.getElementById('password').value = 'j';">j</button>
-                    <button id="k" onclick="document.getElementById('password').value = 'k';">k</button>
-                    <button id="l" onclick="document.getElementById('password').value = 'l';">l</button>
-                    <button id="ñ" onclick="document.getElementById('password').value = 'ñ';" 
-                            style="color:blue">ñ</button>
-                    <!--
-                    <button id="dieresi" onclick="alert('Sense vocals amb dièrsi!');" 
-                            style="color:red" title="Dièresi">¨</button>
-                    -->
-                    <button id="intro" onclick="Comprovar();" title="ENTER">┘</button>
-                  </td>          
-                </tr>
-                <tr>
-                  <td>
-                    <!--
-                    <button id="shift" onclick="alert('Només lletres minúscules!');" 
-                            style="color:red" title="SHIFT">↑</button>
-                    -->
-                    <button id="z" onclick="document.getElementById('password').value = 'z';">z</button>
-                    <button id="x" onclick="document.getElementById('password').value = 'x';">x</button>
-                    <button id="c" onclick="document.getElementById('password').value = 'c';">c</button>
-                    <button id="v" onclick="document.getElementById('password').value = 'v';">v</button>
-                    <button id="b" onclick="document.getElementById('password').value = 'b';">b</button>
-                    <button id="n" onclick="document.getElementById('password').value = 'n';">n</button>
-                    <button id="m" onclick="document.getElementById('password').value = 'm';">m</button>
-                    <button id="ç" onclick="document.getElementById('password').value = 'ç';" 
-                            style="color:blue">ç</button>
-                    <button id="volat" onclick="document.getElementById('password').value = '·';" 
-                            style="color:blue" title="Punt Volat">·</button>
-                    <button id="guio" onclick="document.getElementById('password').value = '-';" 
-                            style="color:blue" title="Guionet">-</button>
-                    <!--
-                    <button id="greu" onclick="alert('Sense vocals accentuades!');" 
-                            style="color:red" title="Accent Greu">`</button>
-                    -->
-                  </td>          
-                </tr>
-            </strong></table>
         </div>
     </body>
 </html>
