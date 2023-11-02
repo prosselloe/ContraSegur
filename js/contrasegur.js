@@ -121,6 +121,7 @@ function Iniciar()
     **/
     result = zxcvbn(document.getElementById("password").value);
     
+    /**
     window.alert("Password: "  + document.getElementById("password").value + "\n" + 
         "Entropy: "            + result.entropy + "\n" +
         "Crack Time: "         + result.crack_time + "\n" + 
@@ -129,6 +130,7 @@ function Iniciar()
         "Match Sequence: "     + result.match_sequence + "\n" + 
         "Calculation Time: "   + result.calculation_time 
     ); 
+    **/
     
     
     /**
