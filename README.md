@@ -1,4 +1,4 @@
-<h2><a href="https://prosselloe.wordpress.com/about">Contrasenyes Segures</a></h2>
+<h1><a href="https://prosselloe.wordpress.com/about">Contrasenyes Segures</a></h1>
 <ul>
     <li>Versió Pre-alfa o Prototip HTML/JavaScript: <a href='https://contrasegur.netlify.app/prototip'>https://contrasegur.netlify.app/prototip.html</a></li>
     <li>Versió α: Versió amb Nivell de Robustesa: <a href='https://contrasegur.netlify.app/robustesa'>https://contrasegur.netlify.app/robustesa.html</a></li>
@@ -15,8 +15,7 @@
     <li>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/deed.en" rel="license">
         Creative Commons Attribution 4.0 International License</a>.</li>
 <ul>
-
-<h2>JavaScript implementations of standard and secure cryptographic algorithms</h2>
+<h1><a href="https://code.google.com/archive/p/crypto-js/">JavaScript implementations of standard and secure cryptographic algorithms</h1>
 CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.
 
 If you have a problem with CryptoJS, if you want to discuss new features, or if you want to contribute to the project, you can visit the CryptoJS discussion group.[http://groups.google.com/group/crypto-js/topics](http://groups.google.com/group/crypto-js/topics)
