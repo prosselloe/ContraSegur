@@ -1,3 +1,21 @@
+<h2><a href="https://prosselloe.wordpress.com/about">Contrasenyes Segures</a></h2>
+<ul>
+    <li>Versió Pre-alfa o Prototip HTML/JavaScript: <a href='https://contrasegur.netlify.app/prototip'>https://contrasegur.netlify.app/prototip.html</a></li>
+    <li>Versió α: Versió amb Nivell de Robustesa: <a href='https://contrasegur.netlify.app/robustesa'>https://contrasegur.netlify.app/robustesa.html</a></li>
+    <li>Versió β: Versió amb Diccionari i Patrons: <a href='https://contrasegur.netlify.app/diccionaris'>https://contrasegur.netlify.app/diccionaris.html</a></li>
+    <li>Versió γ: Versió amb Base de Dades: <a href='https://contrasegur.netlify.app/basedades'>https://contrasegur.netlify.app/basedades.html<a/></li>
+</ul>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license">
+<img style="border-width: 0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Llicència de Creative Commons"></a>
+<ul>
+    <li>Aquesta obra està subjecta a una <a href="https://creativecommons.org/licenses/by/4.0/deed.ca" rel="license">
+        llicència de Reconeixement 4.0 Internacional de CC</a>.</li>
+    <li>Esta obra está bajo una <a href="https://creativecommons.org/licenses/by/4.0/deed.es" rel="license">
+        licencia de Creative Commons Reconocimiento 4.0 Internacional</a>.</li>
+    <li>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/deed.en" rel="license">
+        Creative Commons Attribution 4.0 International License</a>.</li>
+<ul>
+
 CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.
 
 If you have a problem with CryptoJS, if you want to discuss new features, or if you want to contribute to the project, you can visit the CryptoJS discussion group.[http://groups.google.com/group/crypto-js/topics](http://groups.google.com/group/crypto-js/topics)
