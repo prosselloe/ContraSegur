@@ -16,6 +16,7 @@
         Creative Commons Attribution 4.0 International License</a>.</li>
 <ul>
 
+<h2>JavaScript implementations of standard and secure cryptographic algorithms</h2>
 CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.
 
 If you have a problem with CryptoJS, if you want to discuss new features, or if you want to contribute to the project, you can visit the CryptoJS discussion group.[http://groups.google.com/group/crypto-js/topics](http://groups.google.com/group/crypto-js/topics)
