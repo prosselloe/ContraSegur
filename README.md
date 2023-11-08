@@ -1,4 +1,4 @@
-<h1><a href="https://prosselloe.wordpress.com/about">Contrasenyes Segures</a></h1>
+<h1><a href="https://prosselloe.wordpress.com//?s=Contrasenyes+Segures&search=Go">Contrasenyes Segures</a></h1>
 <h2><a href="https://contrasegur.netlify.app">Índex</a></h2>
 <ul>
     <li>Versió Pre-alfa o Prototip HTML/JavaScript: <a href='https://contrasegur.netlify.app/prototip'>https://contrasegur.netlify.app/prototip.html</a></li>
@@ -6,16 +6,21 @@
     <li>Versió β: Versió amb Diccionari i Patrons: <a href='https://contrasegur.netlify.app/diccionaris'>https://contrasegur.netlify.app/diccionaris.html</a></li>
     <li>Versió γ: Versió amb Base de Dades: <a href='https://contrasegur.netlify.app/basedades'>https://contrasegur.netlify.app/basedades.html<a/></li>
 </ul>
-<a href="http://creativecommons.org/licenses/by/4.0/" rel="license">
-<img style="border-width: 0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Llicència de Creative Commons"></a>
-<ul>
-    <li>Aquesta obra està subjecta a una <a href="https://creativecommons.org/licenses/by/4.0/deed.ca" rel="license">
-        llicència de Reconeixement 4.0 Internacional de CC</a>.</li>
-    <li>Esta obra está bajo una <a href="https://creativecommons.org/licenses/by/4.0/deed.es" rel="license">
-        licencia de Creative Commons Reconocimiento 4.0 Internacional</a>.</li>
-    <li>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/deed.en" rel="license">
-        Creative Commons Attribution 4.0 International License</a>.</li>
-</ul>
+    <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;" 
+         title="IES Guillem Sagrera"/><br>
+    Usuari o correu: <input type="text" id="user" value="Z999999"><br>
+    Contrasenya: <input type="password" id="password" onchange="Comprovar()"><br>
+    <input type="checkbox" id="minimcar"    disabled> Mínim 8 caràcters,<br>
+    <input type="checkbox" id="majuscula"   disabled> almenys una lletra majúscula,<br>
+    <input type="checkbox" id="minuscula"   disabled> almenys una lletra minúscula,<br>
+    <input type="checkbox" id="numero"      disabled> almenys un número,<br>
+    <input type="checkbox" id="carespecial" disabled> almenys un carácter especial.<br>
+    <br>
+    Dèbil - Regular - Bona - Forta<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<progress id="nivell" value="0" max="100"></progress><br>
+    Weak - So-so - Great! - Strong<br>
+    <br>
+    <button type="button" id="inisessio" onclick="Iniciar();" disabled>Iniciar sessió</button><br>
 <h1><a href="https://code.google.com/archive/p/crypto-js/">JavaScript implementations of standard and secure cryptographic algorithms</a></h1>
 CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.
 
