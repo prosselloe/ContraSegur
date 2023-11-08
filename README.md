@@ -1,4 +1,5 @@
 <h1><a href="https://prosselloe.wordpress.com//?s=Contrasenyes+Segures&search=Go">Contrasenyes Segures</a></h1>
+Contrasenyes Segures - Contraseñas Seguras - Secure Passwords
 <h2><a href="https://contrasegur.netlify.app">Índex</a></h2>
 <ul>
     <li>Versió Pre-alfa o Prototip HTML/JavaScript: <a href='https://contrasegur.netlify.app/prototip'>https://contrasegur.netlify.app/prototip.html</a></li>
