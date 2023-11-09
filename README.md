@@ -23,9 +23,9 @@ Contrasenyes Segures - Contraseñas Seguras - Secure Passwords
     <br>
     <button type="button" id="inisessio" onclick="Iniciar();" disabled>Iniciar sessió</button><br>
 <h1><a href="https://cryptojs.gitbook.io/docs/">CryptoJS:</a> <a href="https://code.google.com/archive/p/crypto-js/">JavaScript implementations of standard and secure cryptographic algorithms</a></h1>
-CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.
-If you have a problem with CryptoJS, if you want to discuss new features, or if you want to contribute to the project, you can visit the CryptoJS discussion group.
-[http://groups.google.com/group/crypto-js/topics](http://groups.google.com/group/crypto-js/topics)
+<p>CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.</p>
+<p>If you have a problem with CryptoJS, if you want to discuss new features, or if you want to contribute to the project, you can visit the CryptoJS discussion group.</p>
+<a href="http://groups.google.com/group/crypto-js/topics">http://groups.google.com/group/crypto-js/topics</a>
 
 # Inactivity
 CryptoJS is a project that I enjoy and work on in my spare time, but unfortunately my 9-to-5 hasn't left me with as much free time as it used to. I'd still like to continue improving it in the future, but I can't say when that will be. If you find that CryptoJS doesn't meet your needs, then I'd recommend you try [Forge](https://github.com/digitalbazaar/forge).
