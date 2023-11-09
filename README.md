@@ -7,7 +7,6 @@ Contrasenyes Segures - Contraseñas Seguras - Secure Passwords
     <li>Versió β: Versió amb Diccionari i Patrons: <a href='https://contrasegur.netlify.app/diccionaris'>https://contrasegur.netlify.app/diccionaris.html</a></li>
     <li>Versió γ: Versió amb Base de Dades: <a href='https://contrasegur.netlify.app/basedades'>https://contrasegur.netlify.app/basedades.html<a/></li>
 </ul>
-
     <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;" 
          title="IES Guillem Sagrera"/><br>
     Usuari o correu: <input type="text" id="user" value="Z999999"><br>
@@ -23,7 +22,6 @@ Contrasenyes Segures - Contraseñas Seguras - Secure Passwords
     Weak - So-so - Great! - Strong<br>
     <br>
     <button type="button" id="inisessio" onclick="Iniciar();" disabled>Iniciar sessió</button><br>
-
 <h1><a href="https://cryptojs.gitbook.io/docs/">CryptoJS:</a> <a href="https://code.google.com/archive/p/crypto-js/">JavaScript implementations of standard and secure cryptographic algorithms</a></h1>
 <p>CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.</p>
 <p>If you have a problem with CryptoJS, if you want to discuss new features, or if you want to contribute to the project, you can visit the CryptoJS discussion group.</p>
