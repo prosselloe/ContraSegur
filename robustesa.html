@@ -38,11 +38,16 @@ and open the template in the editor.
         </script>      
         <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;" 
              title="IES Guillem Sagrera"/><br>
-        Usuari o correu: <input type="text" id="user" value="Z999999"><br>
-        Contrasenya: <input type="password" id="password" onchange="Comprovar()">
+        Usuari o correu: <input type="text" id="user" value="Z999999">
             <button id="teclat" onclick="document.getElementById('Teclat').hidden = 
                                         !document.getElementById('Teclat').hidden;" title="Mostra o Amaga">
                 <img src="img/keyboard.png" alt="teclat"></button><br>
+        Contrasenya: <input type="password" id="password" onchange="Comprovar()">
+            <input type="checkbox" id="mostrar" onchange="
+                if (document.getElementById('password').type == 'password') 
+                    document.getElementById('password').type = 'text'
+                else
+                    document.getElementById('password').type = 'password'"> Mostrar<br>
         <br>
         <input type="checkbox" id="minimcar"    disabled> Mínim 8 caràcters,<br>
         <input type="checkbox" id="majuscula"   disabled> almenys una lletra majúscula,<br>
