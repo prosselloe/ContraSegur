@@ -87,12 +87,12 @@ and open the template in the editor.
             <button id="teclat" onclick="document.getElementById('Teclat').hidden = 
                                         !document.getElementById('Teclat').hidden;" title="Mostra o Amaga">
                 <img src="img/keyboard.png" alt="teclat"></button><br>
-        Contrasenya: <input type="password" id="password" onchange="Comprovar()">
+        Contrasenya: <input type="password" id="password" onchange="Comprovar();">
             <input type="checkbox" id="mostrar" onchange="
                 if (document.getElementById('password').type == 'password') 
                     document.getElementById('password').type = 'text'
                 else
-                    document.getElementById('password').type = 'password'"> Mostrar<br>
+                    document.getElementById('password').type = 'password';"> Mostrar<br>
         <br>
         <input type="checkbox" id="minimcar"    disabled> Mínim 8 caràcters,<br>
         <input type="checkbox" id="majuscula"   disabled> almenys una lletra majúscula,<br>
@@ -112,7 +112,7 @@ and open the template in the editor.
             document.getElementById('diccionari').addEventListener('change', readSingleFile, false);
             document.getElementById('patrons').addEventListener('change', readSingleFile, false);
         </script>
-        <div translate="no"><br><button type="button" id="mostrartaula" onclick="Mostrar();">ASCII-HTML</button><br></div>
+        <br><button type="button" id="mostrartaula" onclick="Mostrar();">Mostrar taula ASCII-HTML</button><br>
         <div id="Idioma" translate="no">
             <a href="https://contrasegur.netlify.app/index.html" 
                id="ca"> <img src="img/ca.png" alt="tra_ca" title="en Català"></a>
