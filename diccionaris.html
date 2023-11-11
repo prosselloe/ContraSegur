@@ -102,7 +102,7 @@ and open the template in the editor.
         <br>
         Dèbil - Regular - Bona - Forta<br>
         &nbsp;&nbsp;&nbsp;&nbsp;<progress id="nivell" value="0" max="100"></progress><br>
-        Weak - So-so - Great! - Strong<br>
+        <div translate="no">Weak - Fair - Good - Strong<br></div>
         <br>
         <button type="button" id="inisessio" onclick="Iniciar();" disabled>Iniciar sessió</button><br>
         <br>
@@ -112,7 +112,7 @@ and open the template in the editor.
             document.getElementById('diccionari').addEventListener('change', readSingleFile, false);
             document.getElementById('patrons').addEventListener('change', readSingleFile, false);
         </script>
-        <br><button type="button" id="mostrartaula" onclick="Mostrar();">Mostrar taula ASCII-HTML</button><br>
+        <div translate="no"><br><button type="button" id="mostrartaula" onclick="Mostrar();">ASCII-HTML</button><br></div>
         <div id="Idioma" translate="no">
             <a href="https://contrasegur.netlify.app/index.html" 
                id="ca"> <img src="img/ca.png" alt="tra_ca" title="en Català"></a>
