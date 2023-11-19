@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang = "ca">
+    <head>
+        <title>Desar l'inici de sessió</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function Desar()
+            {
+                // document.cookie = document.getElementById('username').value + "=" + 
+                //     document.getElementById('password').value; 
+                let cname = document.getElementById('username').value;
+                let cvalue = document.getElementById('password').value;
+                checkCookie(cname);
+                setCookie(cname, cvalue, 365);
+            }
+            function Esborrar()
+            {
+                document.cookie = document.getElementById('username').value + 
+                        "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
+            function Desats()
+            {
+                const myWindow = window.open("", "_blank", "width=350, height=350, left=0, top=250,\n\
+                    location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
+                myWindow.document.open();
+                myWindow.document.write("<table border='1' style='border-collapse: collapse'>\n\
+                    <tr><th>Inici de sessió</th><th>Contrasenya</th></tr>");
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for(let i = 0; i < ca.length; i++) {
+                    myWindow.document.write("<tr><td>" + ca[i].split('=')[0] + 
+                        "</td><td>" + ca[i].split('=')[1] + "</tr>");
+                }     
+                myWindow.document.write("</table>");
+                myWindow.document.close();            
+            }
+
+            /*
+             * W3Schools JavaScript Cookies: https://www.w3schools.com/js/js_cookies.asp
+             */
+            // A Function to Set a Cookie
+            function setCookie(cname, cvalue, exdays) {
+                const d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                let expires = "expires="+ d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+            // A Function to Get a Cookie
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                  let c = ca[i];
+                  while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                  }
+                  if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                  }
+                }
+                return "";
+            }
+            // A Function to Check a Cookie
+            function checkCookie(cname) {
+                let cvalue = getCookie(cname);
+                if (cvalue != "") {
+                  alert("Benvingut de nou " + cname);
+                  if (cvalue != document.getElementById('password').value) {
+                     if (confirm("Vol canviar la contrasenya?")) {
+                        setCookie(cname, document.getElementById('password').value, 365);
+                     }
+                  }
+                } else {
+                  cvalue = document.getElementById('password').value;
+                  if (cvalue != "" && cvalue != null) {
+                    setCookie(cname, cvalue, 365);
+                  }
+                }
+            }
+        </script>
+    </head>
+    <body>    
+        Vols desà l'inici de sessió a contrasegur.netlify.app?<br>
+        <br>
+        Inici de sessió: <input type="text" id="username" value="z9999999">&nbsp;
+        <button type="button" id="esborrar" onclick="Esborrar();">
+            <img src="img/trash-can.png" alt="paperera" width=24 height=24></button><br>
+        Contrasenya: <input type="password" id="password" value="12345678">
+            <input type="checkbox" id="mostrar" onchange="
+                if (document.getElementById('password').type == 'password') 
+                    document.getElementById('password').type = 'text'
+                else
+                    document.getElementById('password').type = 'password';"> Mostrar<br>
+        <br>
+        <button type="button" id="desats" accesskey="M" onclick="Desats();">Mostra els inicis de sessió desats</button>&nbsp;
+        <button type="button" id="desa" accesskey="D" onclick="Desar();">Desa</button>&nbsp;
+        <button type="button" id="nodesis" accesskey="N" onclick="window.close();">No desis</button>
+    </body>
+</html>
