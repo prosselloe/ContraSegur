@@ -153,8 +153,15 @@ function Iniciar()
             - Tendria un Cost Coputaccional per Força Bruta de: " + CostComputacional.toExponential() + 
             " pel que una màquina a 1 MIPS podria arribar a necessitar " + AnysProcessament.toExponential() + 
             " anys de processament, es a dir, " + DiesProcessament.toExponential() +  " dies.\n\
-            - Tendria un Nivell de Robustesa de: " + Robustesa + "/4, i un zxcvbn Score de: " + result.score + "/4.");   
-
+            - Tendria un Nivell de Robustesa de: " + Robustesa + "/4, i un zxcvbn Score de: " + result.score + "/4."); 
+    
+    // Demanam a l'usuari si vol desar l'inici de sessió
+    if (confirm("Vol desar l'inici de sessió?") == true) {
+        localStorage.setItem("username", document.getElementById("username").value);
+        localStorage.setItem("password", document.getElementById("password").value);
+        const myWindow = window.open("desar.html", "_blank", "width=460, height=600, left=0, top=0, \n\
+            location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
+    }
 }
 
 function Mostrar()
@@ -214,6 +221,11 @@ const diccionari = fs.readFileSync('diccionari.txt', 'utf8').split('\n');
 **/
 
 function esContrasenyaComuna(contrasenya) {
+    /**
+    for (i = 1; i < diccionari.length; i++)
+        if (diccionari[i] == contrasenya)
+            return true;
+    **/
     return diccionari.includes(contrasenya);
 }
 
