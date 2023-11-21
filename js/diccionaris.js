@@ -186,7 +186,7 @@ function readSingleFile(evt) {
     var r = new FileReader();
     r.onload = function(e) { 
       var contents = e.target.result;
-      /** alert( "Got the file.\n" 
+      /** alert("Got the file.\n" 
            + "name: " + f.name + "\n"
            + "type: " + f.type + "\n"
            + "size: " + f.size + " bytes\n"
