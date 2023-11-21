@@ -10,6 +10,12 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
+            function Inici()
+            {   
+                // window.alert(localStorage.getItem('username') + "=" + localStorage.getItem('password'));
+                document.getElementById('username').value = localStorage.getItem('username');
+                document.getElementById('password').value = localStorage.getItem('password');                
+            }         
             function Desar()
             {
                 // document.cookie = document.getElementById('username').value + "=" + 
@@ -26,7 +32,7 @@ and open the template in the editor.
             }
             function Desats()
             {
-                const myWindow = window.open("", "_blank", "width=350, height=350, left=0, top=250,\n\
+                const myWindow = window.open("", "_blank", "width=350, height=350, left=15, top=235,\n\
                     location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
                 myWindow.document.open();
                 myWindow.document.write("<table border='1' style='border-collapse: collapse'>\n\
@@ -73,7 +79,7 @@ and open the template in the editor.
                 if (cvalue != "") {
                   alert("Benvingut de nou " + cname);
                   if (cvalue != document.getElementById('password').value) {
-                     if (confirm("Vol canviar la contrasenya?")) {
+                     if (confirm("Vol canviar la contrasenya?") == true) {
                         setCookie(cname, document.getElementById('password').value, 365);
                      }
                   }
@@ -86,13 +92,13 @@ and open the template in the editor.
             }
         </script>
     </head>
-    <body>    
+    <body onload="Inici();">    
         Vols desà l'inici de sessió a contrasegur.netlify.app?<br>
         <br>
-        Inici de sessió: <input type="text" id="username" value="z9999999">&nbsp;
+        Inici de sessió: <input type="text" id="username">&nbsp;
         <button type="button" id="esborrar" onclick="Esborrar();">
             <img src="img/trash-can.png" alt="paperera" width=24 height=24></button><br>
-        Contrasenya: <input type="password" id="password" value="12345678">
+        Contrasenya: <input type="password" id="password">
             <input type="checkbox" id="mostrar" onchange="
                 if (document.getElementById('password').type == 'password') 
                     document.getElementById('password').type = 'text'
