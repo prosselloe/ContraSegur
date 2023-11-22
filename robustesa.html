@@ -38,16 +38,11 @@ and open the template in the editor.
         </script>      
         <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;" 
              title="IES Guillem Sagrera"/><br>
-        Usuari o correu: <input type="text" id="user" value="Z999999">
+        Usuari o correu: <input type="text" id="user" value="Z999999"><br>
+        Contrasenya: <input type="password" id="password" onchange="Comprovar()">
             <button id="teclat" onclick="document.getElementById('Teclat').hidden = 
                                         !document.getElementById('Teclat').hidden;" title="Mostra o Amaga">
                 <img src="img/keyboard.png" alt="teclat"></button><br>
-        Contrasenya: <input type="password" id="password" onchange="Comprovar();">
-            <input type="checkbox" id="mostrar" onchange="
-                if (document.getElementById('password').type == 'password') 
-                    document.getElementById('password').type = 'text'
-                else
-                    document.getElementById('password').type = 'password';"> Mostrar<br>
         <br>
         <input type="checkbox" id="minimcar"    disabled> Mínim 8 caràcters,<br>
         <input type="checkbox" id="majuscula"   disabled> almenys una lletra majúscula,<br>
@@ -57,7 +52,7 @@ and open the template in the editor.
         <br>
         Dèbil - Regular - Bona - Forta<br>
         &nbsp;&nbsp;&nbsp;&nbsp;<progress id="nivell" value="0" max="100"></progress><br>
-        <div translate="no">Weak - Fair - Good - Strong<br></div>
+        <div translate="no">&nbsp;Weak - Fair - Good - Strong</div>
         <br>
         <button type="button" id="inisessio" onclick="Iniciar();" disabled>Iniciar sessió</button><br>
         <script type="text/javascript">
