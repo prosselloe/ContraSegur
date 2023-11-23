@@ -10,6 +10,7 @@
  * https://es.statista.com/grafico/23636/contrasenas-mas-usadas-en-el-mundo/
 **/
 var diccionari = ["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"];
+// var patrons = ["/123/", "/abc/", "/qwerty/"];
 var patrons = [/123/, /abc/, /qwerty/];
 var Base = 0;
 var Exponent = 0;
@@ -193,7 +194,13 @@ function readSingleFile(evt) {
            + "starts with: " + contents.substr(0, contents.indexOf("\n"))
       ); **/
       if (contents.substr(0, 1) == "/") {
-        patrons = contents.replaceAll("\r\n", ",");
+        // patrons = contents.replaceAll("\r\n", ",");
+        stream1 = contents.replaceAll("\r\n", ",");
+        stream2 = stream1.replaceAll("/", "");
+        stream3 = stream2.split(",");
+        for (i = 0; i < stream3.length; i++) {
+            patrons[i] = new RegExp(stream3[i]);
+        }        
         // alert("Patrons:" + patrons); 
       } else {
         diccionari = contents.replaceAll("\r\n", ",");
@@ -236,7 +243,16 @@ function teRepeticionsMultiplesCaracters(contrasenya) {
 
 function tePatrons(contrasenya) {
     // cosnt patrons = [/123/, /abc/, /qwerty/]; // Afegir altres patrons si cal
-    return patrons.some(pat => pat.test(contrasenya));
+    for (i = 0; i < patrons.length; i++) {
+        // alert(patrons[i]);
+        if (patrons[i].test(contrasenya)) { return true; }
+    }
+    return false;
+    // return patrons.some(pat => pat.test(contrasenya));
+    /*
+    return patrons.some(checkPat);
+        checkPat(pat) { return pat.test(contrasenya); }
+    */
 }
 
 function comprovaRobustesaContrasenya(contrasenya) {
