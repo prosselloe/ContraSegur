@@ -3,192 +3,212 @@
 https://chat.openai.com/share/e649aba8-4f6d-4ded-82ab-b6453a5a63ea
 -->
 <html lang="ca">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comprovació de Robustesa de Contrasenya</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        textarea {
-            width: 100%;
-            height: 100px;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-  <h1>Comprovació de Robustesa de Contrasenya</h1>
-  
-  <label for="contrasenya">Introdueix la teva contrasenya:</label>
-  <input type="password" id="contrasenya" name="contrasenya">
-  <button onclick="comprovarRobustesa()">Comprova Robustesa</button>
-
-      <textarea id="resultat" readonly></textarea>
-  <div id="recomanacions"></div>
-  <div id="robustesa"></div>
-  <div id="temps"></div>
-
-  <script>
-        const diccionariContrasenyesComunes = ['123456', 'password', 'qwerty', 'admin', 'letmein', 'welcome'];
-        
-        // Diccionari de patrons de contrasenya
-        const diccionariPatrons = [
-            /(.)\1+/  // Repetició de caràcters consecutius
-        ];
-        
-    // Funció per comprovar la robustesa de la contrasenya
-    function comprovarRobustesa() {
-      // Obtenir la contrasenya de l'usuari
-            const contrasenya = document.getElementById('contrasenya').value;
-            
-            const esContrasenyaComuna = diccionariContrasenyesComunes.includes(contrasenya.toLowerCase());
-
-            const robustesa = comprovarRobustesaContrasenya(contrasenya);
-            const costComputacional = calcularCostComputacional(contrasenya);
-            const tempsEstimat = estimarTempsNecessari(costComputacional);
-
-            const compleixPatrons = diccionariPatrons.some(pat => pat.test(contrasenya));
-
-            const resultatElement = document.getElementById('resultat');
-            
-            if (esContrasenyaComuna) {
-                resultatElement.value = 'Aquesta contrasenya és comuna. Si us plau, tria una altra.';
-            } else if (compleixPatrons) {
-                resultatElement.value = 'La contrasenya conté repeticions de caràcters consecutius. Si us plau, tria una altra.';
-            } else {
-                resultatElement.value = `Robustesa de la contrasenya: ${robustesa}\nCost Computacional Estimat: ${costComputacional}\nTemps Estimat per Rompre: ${tempsEstimat}`;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Comprovació de Robustesa de Contrasenya</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
             }
 
-      // Generar recomanacions
-      const recomanacions = generarRecomanacions(contrasenya);
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
 
-      // Mostrar les recomanacions
-      const recomanacionsDiv = document.getElementById("recomanacions");
-      recomanacionsDiv.innerHTML = "<h2>Recomanacions:</h2>";
+            input {
+                width: 25%;
+                padding: 8px;
+                margin-bottom: 10px;
+            }
 
-      if (recomanacions.length === 0) {
-        recomanacionsDiv.innerHTML += "<p>La contrasenya compleix amb les recomanacions.</p>";
-      } else {
-        recomanacions.forEach(recomanacio => recomanacionsDiv.innerHTML += `<p>${recomanacio}</p>`);
-      }
+            button {
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
 
-      // Calcular el nivell de robustesa
-      const robustesa = calcularRobustesa(contrasenya);
-      const robustesaDiv = document.getElementById("robustesa");
-      robustesaDiv.innerHTML = `<h2>Nivell de Robustesa:</h2><p>${robustesa}</p>`;
+            textarea {
+                width: 100%;
+                height: 100px;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Comprovació de Robustesa de Contrasenya</h1>
 
-      // Calcular l'estimació de temps
-      const tempsEstimat = estimarTemps(contrasenya);
-      const tempsDiv = document.getElementById("temps");
-      tempsDiv.innerHTML = `<h2>Estimació de Temps per Rompre:</h2><p>${tempsEstimat}</p>`;
-    }
+        <label for="contrasenya">Introdueix la teva contrasenya:</label>
+        <input type="password" id="contrasenya" name="contrasenya">
+        <button onclick="comprovarRobustesa()">Comprova Robustesa</button>
 
-    // Funció per calcular el nivell de robustesa
-    function calcularRobustesa(contrasenya) {
-            const contrasenya = document.getElementById('contrasenya').value;
-            const robustesa = comprovarRobustesaContrasenya(contrasenya);
-            const costComputacional = calcularCostComputacional(contrasenya.length);
+        <textarea id="resultat" readonly></textarea>
+        <div id="recomanacions"></div>
+        <div id="robustesa"></div>
+        <div id="temps"></div>
 
-            const resultatElement = document.getElementById('resultat');
+        <script>
+            const diccionariContrasenyesComunes = ['123456', 'password', 'qwerty', 'admin', 'letmein', 'welcome'];
+
+            // Diccionari de patrons de contrasenya
+            const diccionariPatrons = [
+                /(.)\1+/  // Repetició de caràcters consecutius
+            ];
+
+            // Potència de computació de l'atacant en MIPS
+            const potenciaComputacioAtacant = 1;
+
+            // Funció per comprovar la robustesa de la contrasenya
+            function comprovarRobustesa() {
+                // Obtenir la contrasenya de l'usuari
+                const contrasenya = document.getElementById('contrasenya').value;
+                
+                const esContrasenyaComuna = diccionariContrasenyesComunes.includes(contrasenya.toLowerCase());
+                const compleixPatrons = diccionariPatrons.some(pat => pat.test(contrasenya));
+                
+                // Funcions per calcular el nivell de robustesa i el seu cost computacional
+                const robustesa = comprovarRobustesaContrasenya(contrasenya);
+                const costComputacional = calcularCostComputacional(contrasenya);
+
+                const resultatElement = document.getElementById('resultat');
+
+                if (esContrasenyaComuna) {
+                    resultatElement.value = 'Aquesta contrasenya és comuna. Si us plau, tria una altra.';
+                } else if (compleixPatrons) {
+                    resultatElement.value = 'La contrasenya conté repeticions de caràcters consecutius. Si us plau, tria una altra.';
+                } else {
+                    resultatElement.value = `Robustesa de la contrasenya: ${robustesa}\nCost Computacional Estimat: ${costComputacional}\nTemps Estimat per Rompre: ${tempsEstimat}`;
+                }
+
+                window.alert(contrasenya);
+
+                // Generar recomanacions
+                const recomanacions = generarRecomanacions(contrasenya);
+
+                // Mostrar les recomanacions
+                const recomanacionsDiv = document.getElementById("recomanacions");
+                recomanacionsDiv.innerHTML = "<h2>Recomanacions:</h2>";
+
+                if (recomanacions.length === 0) {
+                    recomanacionsDiv.innerHTML += "<p>La contrasenya compleix amb les recomanacions.</p>";
+                } else {
+                    recomanacions.forEach(recomanacio => recomanacionsDiv.innerHTML += `<p>${recomanacio}</p>`);
+                }
+
+                // Calcular l'estimació de temps
+                const tempsEstimat = estimarTempsNecessari(costComputacional);
+                const tempsDiv = document.getElementById("temps");
+                tempsDiv.innerHTML = `<h2>Estimació de Temps per Rompre:</h2><p>${tempsEstimat}</p>`;
+            }
             
-            resultatElement.value = `Robustesa de la contrasenya: ${robustesa}\nCost Computacional Estimat: ${costComputacional}`;
-        }
+            // Funció per generar recomanacions basades en la contrasenya
+            function generarRecomanacions(contrasenya) {
+                const recomanacions = [];
 
-       function calcularCostComputacional(contrasenya) {
-            // Una fòrmula senzilla per a l'estimació del cost computacional
-            // Podeu ajustar aquesta fòrmula segons els vostres requisits
-            const longitud = contrasenya.length;
-            const minuscules = contrasenya.match(/[a-z]/) ? 1 : 0;
-            const majuscules = contrasenya.match(/[A-Z]/) ? 1 : 0;
-            const numeros = contrasenya.match(/[0-9]/) ? 1 : 0;
-            const simbols = contrasenya.match(/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/) ? 1 : 0;
+                // Comprovar longitud mínima
+                if (contrasenya.length < 8) {
+                    recomanacions.push("Augmenta la longitud de la contrasenya (mínim 8 caràcters).");
+                }
 
-            const factors = {
-                longitud: 2,
-                minuscules: 1,
-                majuscules: 2,
-                numeros: 2,
-                simbols: 3
-            };
+                // Comprovar majúscules i minúscules
+                if (!/[A-Z]/.test(contrasenya) || !/[a-z]/.test(contrasenya)) {
+                    recomanacions.push("Inclou majúscules i minúscules per augmentar la complexitat.");
+                }
 
-            const costComputacional = longitud * factors.longitud +
-                                      minuscules * factors.minuscules +
-                                      majuscules * factors.majuscules +
-                                      numeros * factors.numeros +
-                                      simbols * factors.simbols;
+                // Comprovar números
+                if (!/\d/.test(contrasenya)) {
+                    recomanacions.push("Inclou números per fer la contrasenya més variada.");
+                }
 
-            return costComputacional;
-        }
+                // Comprovar caràcters especials o símbols
+                if (!/[!@#$%^&*(),.?":{}|<>]/.test(contrasenya)) {
+                    recomanacions.push("Afegix caràcters especials o símbols per augmentar la complexitat.");
+                }
 
-    // Funció per estimar el temps per rompre la contrasenya
-    function estimarTemps(contrasenya) {
-      // Lògica per estimar el temps
-      // (Ajusta a les teves pròpies mètriques o paràmetres)
-      const tempsEstimat = contrasenya.length * 2; // Exemple simplificat
-      return `${tempsEstimat} dies`;
-    }
+                // Comprovar paraules comunes
+                if (diccionariContrasenyesComunes.includes(contrasenya.toLowerCase())) {
+                    recomanacions.push("Evita utilitzar paraules comunes o seqüències previsibles.");
+                }
 
-    // Funció per generar recomanacions basades en la contrasenya
-    function generarRecomanacions(contrasenya) {
-      const recomanacions = [];
+                // Comprovar informació personal
+                // (En aquest exemple, suposem que el nom de l'usuari és "z9999999")
+                if (contrasenya.toLowerCase().includes("z")) {
+                    recomanacions.push("No utilitzis informació personal com a contrasenya.");
+                }
 
-      // Comprovar longitud mínima
-      if (contrasenya.length < 8) {
-        recomanacions.push("Augmenta la longitud de la contrasenya (mínim 8 caràcters).");
-      }
+                return recomanacions;
+            }
 
-      // Comprovar majúscules i minúscules
-      if (!/[A-Z]/.test(contrasenya) || !/[a-z]/.test(contrasenya)) {
-        recomanacions.push("Inclou majúscules i minúscules per augmentar la complexitat.");
-      }
+            // Funció per comprovar la robustesa d'una contrasenya
+            function comprovarRobustesaContrasenya(contrasenya) {
+                // Comprovar longitud mínima
+                const longitudMinima = 8;
+                const longitudCorrecta = contrasenya.length >= longitudMinima;
 
-      // Comprovar números
-      if (!/\d/.test(contrasenya)) {
-        recomanacions.push("Inclou números per fer la contrasenya més variada.");
-      }
+                // Comprovar presència de lletres majúscules
+                const teLletresMajuscules = /[A-Z]/.test(contrasenya);
 
-      // Comprovar caràcters especials o símbols
-      if (!/[!@#$%^&*(),.?":{}|<>]/.test(contrasenya)) {
-        recomanacions.push("Afegix caràcters especials o símbols per augmentar la complexitat.");
-      }
+                // Comprovar presència de lletres minúscules
+                const teLletresMinuscules = /[a-z]/.test(contrasenya);
 
-      // Comprovar paraules comunes
-      const paraulesComunes = ["123456", "password", "qwerty", "admin", "letmein"];
-      if (paraulesComunes.includes(contrasenya.toLowerCase())) {
-        recomanacions.push("Evita utilitzar paraules comunes o seqüències previsibles.");
-      }
+                // Comprovar presència de números
+                const teNumeros = /\d/.test(contrasenya);
 
-      // Comprovar informació personal
-      // (En aquest exemple, suposem que el nom de l'usuari és "Milu")
-      if (contrasenya.toLowerCase().includes("milu")) {
-        recomanacions.push("No utilitzis informació personal com a contrasenya.");
-      }
+                // Comprovar presència de caràcters especials
+                const teCaractersEspecials = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(contrasenya);
 
-      return recomanacions;
-    }
-  </script>
-</body>
+                // Càlcul de la robustesa basat en criteris anteriors (es pot ajustar)
+                let robustesa = 0;
+                if (longitudCorrecta)
+                    robustesa += 2;
+                if (teLletresMajuscules)
+                    robustesa += 2;
+                if (teLletresMinuscules)
+                    robustesa += 2;
+                if (teNumeros)
+                    robustesa += 2;
+                if (teCaractersEspecials)
+                    robustesa += 2;
+
+                return robustesa;
+            }
+
+            function calcularCostComputacional(contrasenya) {
+                // Una fòrmula senzilla per a l'estimació del cost computacional
+                // Podeu ajustar aquesta fòrmula segons els vostres requisits
+                const longitud = contrasenya.length;
+                const minuscules = contrasenya.match(/[a-z]/) ? 1 : 0;
+                const majuscules = contrasenya.match(/[A-Z]/) ? 1 : 0;
+                const numeros = contrasenya.match(/[0-9]/) ? 1 : 0;
+                const simbols = contrasenya.match(/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/) ? 1 : 0;
+
+                const factors = {
+                    longitud: 2,
+                    minuscules: 1,
+                    majuscules: 2,
+                    numeros: 2,
+                    simbols: 3
+                };
+
+                const costComputacional = longitud * factors.longitud +
+                        minuscules * factors.minuscules +
+                        majuscules * factors.majuscules +
+                        numeros * factors.numeros +
+                        simbols * factors.simbols;
+
+                return costComputacional;
+            }
+
+            // Funció per estimar el temps per rompre la contrasenya
+            function estimarTempsNecessari(costComputacional) {
+                // Estimació del temps amb la potència de computació de l'atacant
+                const tempsEstimat = costComputacional / potenciaComputacioAtacant;
+                return `${tempsEstimat.toFixed(2)} segons`;
+            }
+        </script>
+    </body>
 </html>
