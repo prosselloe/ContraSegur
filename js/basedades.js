@@ -1,6 +1,5 @@
 /* 
- * Versió β: Versió amb Diccionari i Patrons Contrasenyes Segures: diccionaris.html i diccionaris.js
- * Versió γ: Versió amb Estructures de Dades Contrasenyes Segures: diccionaris.html, desar.html i diccionaris.js
+ * Versió δ: Versió amb Base de Dades Contrasenyes Segures: basedades.html, desar.html i basedades.js
  */
 
 /**
@@ -17,6 +16,17 @@ var diccionari = new Set(["password", "123456", "123456789", "guest", "qwerty", 
 var patrons = [/123/, /abc/, /qwerty/];
 var Base = 0;
 var Exponent = 0;
+
+// Diferents idiomes per la GUI
+var Idiomes_dft = [
+    {
+        "IdIdioma": "ca",
+        "Titol": "Versió amb Base de Dades Contrasenyes Segures",
+        "Versio": "Versió δ Contrasenyes Segures"
+    }
+];
+var Idiomes = Idiomes_dft;
+var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
  
 function Comprovar()
 {
@@ -306,6 +316,73 @@ const contrasenya = "Exxempl3!";
 const resultat = comprovaRobustesaContrasenya(contrasenya);
 console.log(resultat);
 **/
+
+// Canviam els diferents literals de la GUI segons l'idioma
+function CanviarIdioma(IdIdioma) {
+    if ((IdIdioma != "ca") && (IdIdioma != "es")) {
+        document.getElementById("Idiomes").value = IdIdioma;
+    }
+    AlaWeb_SQLite(IdIdioma);
+    Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
+}
+
+// Funció per carregar la base de dades penjat.db
+function AlaWeb_SQLite(IdIdioma) {
+    // window.alert("AlaWeb_SQLite IdIdioma = '" + IdIdioma + "'");
+    config = {
+        locateFile: file => `https://sql.js.org/dist/${file}`
+        // locateFile: filename => `https://unpkg.com/sql.js@1.6.2/dist/${filename}`
+    };
+    // The `initSqlJs` function is globally provided by all of the main dist files if loaded in the browser.
+    // We must specify this locateFile function if we are loading a wasm file from anywhere other than the 
+    // current html page's folder.
+
+    // Recuperam de la base de dades els TextosGUI per tots els Idiomes
+    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
+            SELECT * FROM TblTextosGUI;',
+    //    [], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
+        [], function(idiomes) {Idiomes = idiomes.pop();}
+    );
+    // window.alert(Idiomes[0].Versio);
+    if (Idiomes.length == 0) {Idiomes = Idiomes_dft;};
+    if (Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma) == undefined) {
+        window.alert("GUI: Idioma no trobat / Idioma no encontrado / Language not found!");
+    };
+
+    // Recuperam de la base de dades les paraules del IdIdioma
+    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
+            SELECT Paraula, Pista \n\
+            FROM TblParaules INNER JOIN TblPistes \n\
+              ON TblParaules.IdPista = TblPistes.IdPista \n\
+            WHERE TblParaules.IdIdioma = "' + IdIdioma + '";',
+    //    [], function(taula) {Print_Data(Taula = taula.pop());}
+        [], function(taula) {Taula = taula.pop();}
+    );
+    // window.alert(Taula[0].Pista);
+    if (Taula.length == 0) {
+        window.alert("Idioma sense paraules / Idioma sin palabras / Language without words!");
+        Taula = Taula_dft;
+        IdIdioma = "ca";
+        IdIdioma_ant = "ca";
+    } else {
+        // window.alert("Paraules en idioma / Palabras en idioma / Language words = '" + IdIdioma + "'");
+    };
+}
+
+// Print data   
+function Print_Data(res) {
+    for (var i in res) 
+    {
+       // console.log("row " + i);
+       // document.getElementById("res").innerHTML += "<br>";
+       for (var j in res[i]) 
+         {
+          // console.log(" " + res[i][j]);
+          // document.getElementById("res").innerHTML += res[i][j] + ", ";
+          window.alert("res[" + i + "][" +j + "] = " + res[i][j]);
+         }
+    }
+}
 
 // HTML includes are done by JavaScript
 function includeHTML() {
