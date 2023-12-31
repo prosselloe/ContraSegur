@@ -1,15 +1,159 @@
 <!DOCTYPE html>
 <!--
-Versió δ: Versió en Construcció Contrasenyes Segures: encotrucio.html
+Versió δ: Versió amb Base de Dades Contrasenyes Segures: basedades.html, desar.html i basedades.js
 -->
-<html>
+<html lang = "ca">
     <head>
-        <title>Versió en Construcció Contrasenyes Segures</title>
+        <title>Contrasenyes segures</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #taulaASCII { position:absolute; top: 570px; left:0px; }
+            #Idioma { position:relative; top:-520px; left:150px; }
+            #Teclat { position:relative; top:-520px; left:150px; }
+        </style>
+        <script src="js/basedades.js" type="text/javascript"></script>
+        
+        <!-- Dropbox.Tech: zxcvbn | realistic password strength estimation
+            https://dropbox.tech/security/zxcvbn-realistic-password-strength-estimation     
+        -->
+        <script src="js/zxcvbn-async.js" type="text/javascript"></script>    
+        
+        <!-- JavaScript MD5
+            https://css-tricks.com/snippets/javascript/javascript-md5/
+        -->
+        <script src="js/md5.min.js"></script>
+
+        <!-- CryptoJS rollups 
+            https://github.com/jkiss/crypto-js
+            https://code.google.com/archive/p/crypto-js/downloads
+        -->
+          <!-- The Hasher Algorithms -->
+            <script src="rollups/md5.js"></script>
+            <script src="rollups/sha1.js"></script>
+            <script src="rollups/sha256.js"></script>
+            <!--
+            <script src="rollups/sha512.js"></script>
+            <script src="rollups/sha3.js"></script>
+            <script src="rollups/ripemd160.js"></script>
+            -->
+          <!-- HMAC(Keyed-Hash Message Authentication Codes) -->
+            <!--
+            <script src="rollups/hmac-md5.js"></script>
+            <script src="rollups/hmac-sha1.js"></script>
+            <script src="rollups/hmac-sha256.js"></script>
+            <script src="rollups/hmac-sha512.js"></script>
+            <script src="rollups/pbkdf2.js"></script>
+            -->
+          <!-- The Cipher Algorithms -->
+            <script src="rollups/aes.js"></script>
+            <!--
+            <script src="rollups/tripledes.js"></script>
+            <script src="rollups/rabbit.js"></script>
+            <script src="rollups/rc4.js"></script>
+            -->
+        <!-- CryptoJS components
+            https://github.com/jkiss/crypto-js
+            https://code.google.com/archive/p/crypto-js/downloads
+        -->
+            <!--
+            <script src="components/enc-base64-min.js"></script>
+            <script src="components/mode-cfb-min.js"></script>
+            <script src="components/pad-ansix923-min.js"></script>
+            <script src="components/core-min.js"></script>
+            <script src="components/enc-utf16-min.js"></script>
+            -->
+            
+        <!--
+        Llibreries per a la càrrega de la bases de dades
+        -->
+        <script src="js/alasql.js"></script>
+        <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+        <script src='js/sql-wasm.js'></script>
     </head>
-    <body>
-        <h1>&nbsp;Versió δ Contrasenyes Segures</h1>
-        <div><img src="img/en-construccio.jpg" alt="En construcció" style="width:640px;height:420px;"/></div>     
+    <body style="background-image: url('img/password.png'); 
+          background-repeat: no-repeat;">
+        <script>
+            // Dificultam la visualització del codi font.
+            document.oncontextmenu = function() { return false; }
+            function KeyPress(e) {
+                var evObject = window.event? event : e;
+                if (evObject.keyCode != 13 && evObject.ctrlKey) { return false; }
+            }
+            document.onkeydown = KeyPress;
+            
+            // Captura de la tecla ENTER del teclat.
+            window.onkeypress = function(evObject) {
+                if (evObject.keyCode == 13) { Comprovar(); }
+            }
+            
+            // Carregam la base de dades penjat.db per l'idioma català
+            AlaWeb_SQLite('ca');            
+        </script>      
+        <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;" 
+             title="IES Guillem Sagrera"/><br>
+        Usuari o correu: <input type="text" id="username" value="z9999999">
+            <button id="teclat" onclick="document.getElementById('Teclat').hidden = 
+                                        !document.getElementById('Teclat').hidden;" title="Mostra o Amaga">
+                <img src="img/keyboard.png" alt="teclat"></button><br>
+        Contrasenya: <input type="password" id="password" onchange="Comprovar()">
+            <input type="checkbox" id="mostrar" onchange="
+                if (document.getElementById('password').type == 'password') 
+                    document.getElementById('password').type = 'text'
+                else
+                    document.getElementById('password').type = 'password'"> Mostrar<br>
+        <br>
+        <input type="checkbox" id="minimcar"    disabled> Mínim 8 caràcters,<br>
+        <input type="checkbox" id="majuscula"   disabled> almenys una lletra majúscula,<br>
+        <input type="checkbox" id="minuscula"   disabled> almenys una lletra minúscula,<br>
+        <input type="checkbox" id="numero"      disabled> almenys un número,<br>
+        <input type="checkbox" id="carespecial" disabled> almenys un carácter especial.<br>
+        <br>
+        Dèbil - Regular - Bona - Forta<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<progress id="nivell" value="0" max="100"></progress><br>
+        <div translate="no">&nbsp;Weak - Fair - Good - Strong</div>
+        <br>
+        <button type="button" id="inisessio" onclick="Iniciar();" disabled>Iniciar sessió</button><br>
+        <br>
+        Diccionari: <input type="file" id="diccionari" /><br>
+        Patrons: <input type="file" id="patrons" /><br>
+        <script type="text/javascript">
+            document.getElementById('diccionari').addEventListener('change', readSingleFile, false);
+            document.getElementById('patrons').addEventListener('change', readSingleFile, false);
+        </script>
+        <br><button type="button" id="mostrartaula" onclick="Mostrar();">Mostrar taula ASCII-HTML</button><br>
+        <div id="Idioma" translate="no">
+            <a href="https://contrasegur.netlify.app/index.html" 
+               id="ca"> <img src="img/ca.png" alt="tra_ca" title="en Català"></a>
+            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=ca&_x_tr_tl=es&_x_tr_hl=es" 
+               id="es"> <img src="img/es.png" alt="tra_es" title="en Español"></a>
+            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=ca&_x_tr_tl=en&_x_tr_hl=en" 
+               id="en"> <img id="gb" src="img/gb.png" alt="tra_en" title="in English"></a>
+            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=ca&_x_tr_tl=fr&_x_tr_hl=fr" 
+               id="es"> <img src="img/fr.png" alt="tra_fr" title="en Français"></a>
+            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=ca&_x_tr_tl=de&_x_tr_hl=de" 
+               id="es"> <img src="img/de.png" alt="tra_de" title="auf Deutsch"></a>
+            <a href="https://contrasegur-netlify-app.translate.goog/index.html?_x_tr_sl=ca&_x_tr_tl=it&_x_tr_hl=it" 
+               id="es"> <img src="img/it.png" alt="tra_iu" title="in Italiano"></a>
+            <select name="Idiomes" id="Idiomes" onchange="CanviarIdioma(this.value)" title="Select">
+                <option value="ca">ca</option>
+                <option value="es">es</option>
+                <option value="en">en</option>
+                <option value="de">de</option>
+                <option value="fr">fr</option>
+                <option value="it">it</option>
+            </select>
+        </div>
+        <!--
+        Including HTML is done by using a w3-include-html attribute
+        -->
+        <div w3-include-html="teclat.html"></div> 
+        <div w3-include-html="taulaASCII.html"></div> 
+        <!--
+        Call includeHTML() at the bottom of the page
+        -->
+        <script>
+            includeHTML();
+        </script> 
     </body>
 </html>

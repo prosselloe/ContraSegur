@@ -14,22 +14,33 @@ and open the template in the editor.
             {   
                 // window.alert(localStorage.getItem('username') + "=" + localStorage.getItem('password'));
                 document.getElementById('username').value = localStorage.getItem('username');
-                document.getElementById('password').value = localStorage.getItem('password');                
+                document.getElementById('password').value = localStorage.getItem('password'); 
+                
+                // Simulam les cookies amb una estructura de dades Map()
+                cookiesMap = new Map();
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    cookiesMap.set(ca[i].split('=')[0], ca[i].split('=')[1]);  
+                }         
             }         
             function Desar()
             {
                 // document.cookie = document.getElementById('username').value + "=" + 
                 //     document.getElementById('password').value; 
                 let cname = document.getElementById('username').value;
-                let cvalue = document.getElementById('password').value;
                 checkCookie(cname);
+                // let cvalue = document.getElementById('password').value;
                 // setCookie(cname, cvalue, 365);
             }
             function Esborrar()
             {
-                document.cookie = document.getElementById('username').value + 
-                        "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                cname = document.getElementById('username').value;
+                document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 window.alert("Inici de sessió esborrat!");
+                
+                // Simulam les cookies amb una estructura de dades Map()
+                cookiesMap.delete(cname);
             }
             function Desats()
             {
@@ -38,12 +49,20 @@ and open the template in the editor.
                 myWindow.document.open();
                 myWindow.document.write("<html><body><table border='1' style='border-collapse: collapse'>\n\
                     <tr><th>Inici de sessió</th><th>Contrasenya</th></tr>");
+        
+                // Simulam les cookies amb una estructura de dades Map()
+                /** 
                 let decodedCookie = decodeURIComponent(document.cookie);
                 let ca = decodedCookie.split(';');
-                for(let i = 0; i < ca.length; i++) {
+                for (let i = 0; i < ca.length; i++) {
                     myWindow.document.write("<tr><td>" + ca[i].split('=')[0] + 
                         "</td><td>" + ca[i].split('=')[1] + "</tr>");
-                }     
+                }  
+                **/
+                cookiesMap.forEach(function(cvalue, cname) {
+                    myWindow.document.write("<tr><td>" + cname + "</td><td>" + cvalue + "</tr>");
+                })  
+                
                 myWindow.document.write("</table></body></html>");
                 myWindow.document.close();            
             }
@@ -57,9 +76,13 @@ and open the template in the editor.
                 d.setTime(d.getTime() + (exdays*24*60*60*1000));
                 let expires = "expires="+ d.toUTCString();
                 document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                
+                // Simulam les cookies amb una estructura de dades Map()
+                cookiesMap.set(cname, cvalue);
             }
             // A Function to Get a Cookie
             function getCookie(cname) {
+                /**
                 let name = cname + "=";
                 let decodedCookie = decodeURIComponent(document.cookie);
                 let ca = decodedCookie.split(';');
@@ -73,20 +96,27 @@ and open the template in the editor.
                   }
                 }
                 return "";
+                **/  
+               
+                // Canviam les cookies per una estructura de dades Map()
+                cvalue = cookiesMap.get(cname);
+                if (cvalue === undefined) {cvalue = ""}
+                return cvalue;
             }
             // A Function to Check a Cookie
             function checkCookie(cname) {
                 let cvalue = getCookie(cname);
-                if (cvalue != "") {
+                // window.alert("cvalue: " + cvalue);
+                if (cvalue !== "") {
                   alert("Benvingut de nou " + cname);
-                  if (cvalue != document.getElementById('password').value) {
-                     if (confirm("Vol canviar la contrasenya?") == true) {
+                  if (cvalue !== document.getElementById('password').value) {
+                     if (confirm("Vol canviar la contrasenya?") === true) {
                         setCookie(cname, document.getElementById('password').value, 365);
                      }
                   }
                 } else {
                   cvalue = document.getElementById('password').value;
-                  if (cvalue != "" && cvalue != null) {
+                  if (cvalue !== "" && cvalue !== null) {
                     setCookie(cname, cvalue, 365);
                   }
                 }
@@ -101,7 +131,7 @@ and open the template in the editor.
             <img src="img/trash-can.png" alt="paperera" width=24 height=24></button><br>
         Contrasenya: <input type="password" id="password">
             <input type="checkbox" id="mostrar" onchange="
-                if (document.getElementById('password').type == 'password') 
+                if (document.getElementById('password').type === 'password') 
                     document.getElementById('password').type = 'text'
                 else
                     document.getElementById('password').type = 'password';"> Mostrar<br>
