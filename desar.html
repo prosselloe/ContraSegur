@@ -99,8 +99,10 @@ and open the template in the editor.
                 **/  
                
                 // Canviam les cookies per una estructura de dades Map()
+                alert("cookiesMap.has(" + cname + "): " + cookiesMap.has(cname));
                 cvalue = cookiesMap.get(cname);
-                if (cvalue === undefined) {cvalue = ""}
+                if (cvalue === undefined) { cvalue = "" }
+                alert("cookiesMap.get(" + cname + "): " + cvalue);
                 return cvalue;
             }
             // A Function to Check a Cookie
