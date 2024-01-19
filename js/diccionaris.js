@@ -209,8 +209,7 @@ function readSingleFile(evt) {
         // Canviam estructura de dades Array() per Set()
         // diccionari = contents.replaceAll("\r\n", ",");
         // alert("Diccionari:" + diccionari); 
-        stream1 = contents.replaceAll("\r\n", ",");
-        stream3 = stream1.split(",");
+        stream3 = contents.split("\r\n");
         for (i = 0; i < stream3.length; i++) {
             diccionari.add(stream3[i]);
         }        
