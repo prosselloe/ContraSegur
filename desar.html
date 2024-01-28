@@ -47,7 +47,9 @@ and open the template in the editor.
                 const myWindow = window.open("", "_blank", "width=350, height=350, left=15, top=235,\n\
                     location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
                 myWindow.document.open();
-                myWindow.document.write("<html><body><table border='1' style='border-collapse: collapse'>\n\
+                myWindow.document.write("<html><body style='background-size: 320px 302px; " + 
+                    'background-image: url("img/password.png"); background-repeat: no-repeat;' +
+                    "'><table border='1' style='border-collapse: collapse'>\n\
                     <tr><th>Inici de sessió</th><th>Contrasenya</th></tr>");
         
                 // Simulam les cookies amb una estructura de dades Map()
@@ -99,10 +101,8 @@ and open the template in the editor.
                 **/  
                
                 // Canviam les cookies per una estructura de dades Map()
-                alert("cookiesMap.has(" + cname + "): " + cookiesMap.has(cname));
                 cvalue = cookiesMap.get(cname);
-                if (cvalue === undefined) { cvalue = "" }
-                alert("cookiesMap.get(" + cname + "): " + cvalue);
+                if (cvalue === undefined) {cvalue = ""}
                 return cvalue;
             }
             // A Function to Check a Cookie
@@ -125,7 +125,8 @@ and open the template in the editor.
             }
         </script>
     </head>
-    <body onload="Inici();">    
+    <body onload="Inici();" style="background-image: url('img/passwordCL.png'); 
+          background-size: 427px 403px; background-repeat: no-repeat;">    
         Vols desà l'inici de sessió a contrasegur.netlify.app?<br>
         <br>
         Inici de sessió: <input type="text" id="username">&nbsp;
