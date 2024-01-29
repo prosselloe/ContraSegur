@@ -154,7 +154,7 @@ function Iniciar()
    
     window.alert("Password: "                + document.getElementById("password").value + "\n\
             - " + comprovaRobustesaContrasenya(document.getElementById("password").value) + "\n\
-            - Tendria un Cost Coputaccional per Força Bruta de: " + CostComputacional.toExponential() + 
+            - Tendria un Cost Computacional per Força Bruta de: " + CostComputacional.toExponential() + 
             " pel que una màquina a 1 MIPS podria arribar a necessitar " + AnysProcessament.toExponential() + 
             " anys de processament, es a dir, " + DiesProcessament.toExponential() +  " dies.\n\
             - Tendria un Nivell de Robustesa de: " + Robustesa + "/4, i un zxcvbn Score de: " + result.score + "/4."); 
@@ -209,7 +209,8 @@ function readSingleFile(evt) {
         // Canviam estructura de dades Array() per Set()
         // diccionari = contents.replaceAll("\r\n", ",");
         // alert("Diccionari:" + diccionari); 
-        stream3 = contents.split("\r\n");
+        stream1 = contents.replaceAll("\r\n", ",");
+        stream3 = stream1.split(",");
         for (i = 0; i < stream3.length; i++) {
             diccionari.add(stream3[i]);
         }        

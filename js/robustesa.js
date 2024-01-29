@@ -130,7 +130,7 @@ function Iniciar()
     
     window.alert("Password: "                + document.getElementById("password").value + "\n\
             - " + comprovaRobustesaContrasenya(document.getElementById("password").value) + "\n\
-            - Tendria un Cost Coputaccional per Força Bruta de: " + CostComputacional.toExponential() + 
+            - Tendria un Cost Computacional per Força Bruta de: " + CostComputacional.toExponential() + 
             " pel que una màquina a 1 MIPS podria arribar a necessitar " + AnysProcessament.toExponential() + 
             " anys de processament, es a dir, " + DiesProcessament.toExponential() +  " dies.\n\
             - Tendria un Nivell de Robustesa de: " + Robustesa + "/4, i un zxcvbn Score de: " + result.score + "/4.");   

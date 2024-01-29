@@ -8,6 +8,103 @@
  * https://es.statista.com/grafico/23636/contrasenas-mas-usadas-en-el-mundo/
 **/
 
+// Diferents idiomes per la GUI
+const Idiomes_dft = [
+    {
+        "IdIdioma": "ca",
+        "Titol": "Versió amb Base de Dades Contrasenyes Segures",
+        "Username": "Usuari o correu: ",
+        "Password": "Contrasenya: ",
+        "Mostrar": " Mostrar",
+        "Minimcar": " Mínim 8 caràcters,",        
+        "Majuscula": " almenys una lletra majúscula,",
+        "Minuscula": " almenys una lletra minúscula,",
+        "Numero": " almenys un número,",
+        "Carespecial": " almenys un carácter especial.",
+        "Robustesa": "Dèbil - Regular - Bona - Forta",
+        "Inisessio": "Iniciar sessió",
+        "Massacomu": "La contrasenya és massa comuna. Si us plau, tria una contrasenya més forta.",
+        "Nopatrons": "La contrasenya no pot contenir patrons previsibles.",
+        "Norepmult": "La contrasenya no pot contenir repeticions múltiples de caràcters.",
+        "Majminnum": "La contrasenya ha de contenir almenys una lletra majúscula, una minúscula i un número.",
+        "Almcaresp": "La contrasenya ha de contenir almenys un caràcter especial.",
+        "Almmincar": "La contrasenya és massa curta. Ha de tenir almenys 8 caràcters.",
+        "Contrarob": "Contrasenya robusta!",        
+        "Computacional": "\n\     - Tendria un Cost Computacional per Força Bruta de: ",
+        "Maquina": " pel que una màquina a 1 MIPS podria arribar a necessitar ",
+        "Processament": " anys de processament, es a dir, ",
+        "Nivell": " dies.\n\     - Tendria un Nivell de Robustesa de: ",
+        "Score": "/4, i un zxcvbn Score de: ",
+        "Voldesar": "Vol desar l'inici de sessió?",
+        "Diccionari": "Diccionari: ",
+        "Patrons": "Patrons: ",
+        "Mostrartaula": "Mostrar taula ASCII-HTML"
+    },
+    {
+        "IdIdioma": "es",
+        "Titol": "Versión con Base de Datos Contraseñas Seguras",
+        "Username": "Usuario o correo: ",
+        "Password": "Contraseña: ",
+        "Mostrar": " Mostrar",
+        "Minimcar": " Mínimo 8 carácteres,",        
+        "Majuscula": " almenos una letra mayúscula,",
+        "Minuscula": " almenos una letra minúscula,",
+        "Numero": " almenos un número,",
+        "Carespecial": " almenos un carácter especial.",
+        "Robustesa": "Débil - Regular - Buena - Fuerte",
+        "Inisessio": "Iniciar sesión",
+        "Massacomu": "La contraseña es demasiado común. Por favor, elige una contraseña más fuerte.",
+        "Nopatrons": "La contraseña no puede contener patrones previsibles.",
+        "Norepmult": "La contraseña no puede contener múltiples repeticiones de caracteres.",
+        "Majminnum": "La contraseña debe contener al menos una letra mayúscula, una minúscula y un número.",
+        "Almcaresp": "La contraseña debe contener al menos un carácter especial.",
+        "Almmincar": "La contraseña es demasiado corta. Debe tener al menos 8 caracteres.",
+        "Contrarob": "¡Contraseña robusta!",        
+        "Computacional": "\n\     - Tendría un Coste Computacional por Fuerza Bruta de: ",
+        "Maquina": " por lo que una máquina a 1 MIPS podría llegar a necesitar ",
+        "Processament": " años de procesamiento, es decir, ",
+        "Nivell": " días.\n\     - Tendría un Nivel de Robustez de: ",
+        "Score": "/4, y un zxcvbn Score de: ",
+        "Voldesar": "¿Quiere guardar el inicio de sesión?",
+        "Diccionari": "Diccionario: ",
+        "Patrons": "Patrones: ",
+        "Mostrartaula": "Mostrar tabla ASCII-HTML"
+    },
+    {
+        "IdIdioma": "en",
+        "Titol": "Secure Passwords Database Version",
+        "Username": "User o email: ",
+        "Password": "Password: ",
+        "Mostrar": " Show",
+        "Minimcar": " Minimum 8 characters,",        
+        "Majuscula": " at least one capital letter,",
+        "Minuscula": " at least one lowercase letter,",
+        "Numero": " at least one number,",
+        "Carespecial": " at least one special character.",
+        "Robustesa": "Weak - Fair - Good - Strong",
+        "Inisessio": "Log in",
+        "Massacomu": "The password is too common. Please choose a stronger password.",
+        "Nopatrons": "Password cannot contain predictable patterns.",
+        "Norepmult": "The password cannot contain multiple repetitions of characters.",
+        "Majminnum": "Password must contain at least one uppercase letter, one lowercase letter, and one number.",
+        "Almcaresp": "Password must contain at least one special character.",
+        "Almmincar": "The password is too short. It must be at least 8 characters long.",
+        "Contrarob": "Strong password!",        
+        "Computacional": "\n\     - It would have a Brute Force Computational Cost of: ",
+        "Maquina": " for what a 1 MIPS machine might need ",
+        "Processament": "years of processing, that is, ",
+        "Nivell": " days.\n\     - It would have a Robustness Level of: ",
+        "Score": "/4, and a zxcvbn Score of: ",
+        "Voldesar": "Do you want to save your login?",
+        "Diccionari": "Dictionary: ",
+        "Patrons": "Patterns: ",
+        "Mostrartaula": "Show ASCII-HTML table"
+    }
+]
+var Idiomes = Idiomes_dft;
+var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
+
+// Variables Globals.   
 // Canviam estructura de dades Array() per Set()
 // var diccionari = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
 var diccionari = new Set(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
@@ -16,17 +113,6 @@ var diccionari = new Set(["password", "123456", "123456789", "guest", "qwerty", 
 var patrons = [/123/, /abc/, /qwerty/];
 var Base = 0;
 var Exponent = 0;
-
-// Diferents idiomes per la GUI
-var Idiomes_dft = [
-    {
-        "IdIdioma": "ca",
-        "Titol": "Versió amb Base de Dades Contrasenyes Segures",
-        "Versio": "Versió δ Contrasenyes Segures"
-    }
-];
-var Idiomes = Idiomes_dft;
-var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
  
 function Comprovar()
 {
@@ -67,7 +153,6 @@ function Comprovar()
             } else if (lletra == lletra.toLowerCase()) {
                 document.getElementById("minuscula").checked = true;
             }
-
         }
 
         // Si es compleixen totes les condicions, activam el botó d'Iniciar Sessió
@@ -112,7 +197,24 @@ function Iniciar()
     else if (CostComputacional < 10e10)  Robustesa = 3; 
     // Very unguessable: strong protection from offline slow-hash scenario. (guesses >= 10e10)
     else                                Robustesa = 4; 
-    
+      
+    // Reproduim els sons en funció del nivell de Robustesa
+    // if (document.getElementById('off').hidden) {
+        switch (Robustesa) {
+            case 0:
+            case 1:
+                document.getElementById("boom_cloud").play();
+                break;
+            case 2:            
+            case 3:
+                document.getElementById("clock_ticking").play();
+                break;
+            default:
+                document.getElementById("cheer").play();
+                break;
+        }
+     // }
+     
     AnysProcessament = CostComputacional / (365*24*60*60); 
     DiesProcessament = CostComputacional /     (24*60*60); 
 
@@ -161,16 +263,17 @@ function Iniciar()
                                                      document.getElementById("password").value) + "\n\
                    <br>SHA256: "   + CryptoJS.SHA256(document.getElementById("password").value));
     **/ 
-   
-    window.alert("Password: "                + document.getElementById("password").value + "\n\
-            - " + comprovaRobustesaContrasenya(document.getElementById("password").value) + "\n\
-            - Tendria un Cost Coputaccional per Força Bruta de: " + CostComputacional.toExponential() + 
-            " pel que una màquina a 1 MIPS podria arribar a necessitar " + AnysProcessament.toExponential() + 
-            " anys de processament, es a dir, " + DiesProcessament.toExponential() +  " dies.\n\
-            - Tendria un Nivell de Robustesa de: " + Robustesa + "/4, i un zxcvbn Score de: " + result.score + "/4."); 
+
+    window.alert("Password: "                + document.getElementById("password").value + 
+            "\n\     - " + comprovaRobustesaContrasenya(document.getElementById("password").value) + 
+            Idioma.Computacional + CostComputacional.toExponential() + 
+            Idioma.Maquina + AnysProcessament.toExponential() + 
+            Idioma.Processament + DiesProcessament.toExponential() +  
+            Idioma.Nivell + Robustesa + 
+            Idioma.Score + result.score + "/4."); 
     
     // Demanam a l'usuari si vol desar l'inici de sessió
-    if (confirm("Vol desar l'inici de sessió?") == true) {
+    if (confirm(Idioma.Voldesar) == true) {
         localStorage.setItem("username", document.getElementById("username").value);
         localStorage.setItem("password", document.getElementById("password").value);
         const myWindow = window.open("desar.html", "_blank", "width=460, height=600, left=0, top=0, \n\
@@ -285,31 +388,31 @@ function comprovaRobustesaContrasenya(contrasenya) {
     const numeros = /[0-9]/;
 
     if (esContrasenyaComuna(contrasenya)) {
-        return "La contrasenya és massa comuna. Si us plau, tria una contrasenya més forta.";
+        return Idioma.Massacomu;
     }
 
     if (tePatrons(contrasenya)) {
-        return "La contrasenya no pot contenir patrons previsibles.";
+        return Idioma.Nopatrons;
     }
 
     if (teRepeticionsMultiplesCaracters(contrasenya)) {
-        return "La contrasenya no pot contenir repeticions múltiples de caràcters.";
+        return Idioma.Norepmult;
     }
 
     if (!majuscules.test(contrasenya) || !minuscules.test(contrasenya) || !numeros.test(contrasenya)) {
-        return "La contrasenya ha de contenir almenys una lletra majúscula, una minúscula i un número.";
+        return Idioma.Majminnum;
     }
 
     if (!caractersEspecials.test(contrasenya)) {
-        return "La contrasenya ha de contenir almenys un caràcter especial.";
+        return Idioma.Almcaresp;
     }
 
     if (contrasenya.length < longitudMinima) {
-        return "La contrasenya és massa curta. Ha de tenir almenys 8 caràcters.";
+        return Idioma.Almmincar;
     }
 
     // La contrasenya sembla ser prou robusta
-    return "Contrasenya robusta!";
+    return Idioma.Contrarob;
 }
 /**
 const contrasenya = "Exxempl3!";
@@ -322,8 +425,24 @@ function CanviarIdioma(IdIdioma) {
     if ((IdIdioma != "ca") && (IdIdioma != "es")) {
         document.getElementById("Idiomes").value = IdIdioma;
     }
-    AlaWeb_SQLite(IdIdioma);
+    // AlaWeb_SQLite(IdIdioma);
     Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
+    // alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Mostrartaula);
+    
+    document.title = Idioma.Titol;
+    document.getElementById("Username").innerHTML = Idioma.Username;
+    document.getElementById("Password").innerHTML = Idioma.Password;
+    document.getElementById("Mostrar").innerHTML = Idioma.Mostrar;
+    document.getElementById("Minimcar").innerHTML = Idioma.Minimcar;
+    document.getElementById("Majuscula").innerHTML = Idioma.Majuscula;
+    document.getElementById("Minuscula").innerHTML = Idioma.Minuscula;
+    document.getElementById("Numero").innerHTML = Idioma.Numero;
+    document.getElementById("Carespecial").innerHTML = Idioma.Carespecial;
+    document.getElementById("Robustesa").innerHTML = Idioma.Robustesa;
+    document.getElementById("inisessio").innerHTML = Idioma.Inisessio;
+    document.getElementById("Diccionari").innerHTML = Idioma.Diccionari;
+    document.getElementById("Patrons").innerHTML = Idioma.Patrons;
+    document.getElementById("Mostrartaula").innerHTML = Idioma.Mostrartaula;    
 }
 
 // Funció per carregar la base de dades penjat.db
