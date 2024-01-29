@@ -15,7 +15,7 @@ const Idiomes_dft = [
         "Titol": "Versió amb Base de Dades Contrasenyes Segures",
         "Username": "Usuari o correu: ",
         "Password": "Contrasenya: ",
-        "Mostrar": " Mostrar",
+        "Mostrar": "Mostrar: ",
         "Minimcar": " Mínim 8 caràcters,",        
         "Majuscula": " almenys una lletra majúscula,",
         "Minuscula": " almenys una lletra minúscula,",
@@ -38,14 +38,15 @@ const Idiomes_dft = [
         "Voldesar": "Vol desar l'inici de sessió?",
         "Diccionari": "Diccionari: ",
         "Patrons": "Patrons: ",
-        "Mostrartaula": "Mostrar taula ASCII-HTML"
+        "Mostrartaula": "Mostrar taula ASCII-HTML",
+        "Amagartaula": "Amagar taula ASCII-HTML"
     },
     {
         "IdIdioma": "es",
         "Titol": "Versión con Base de Datos Contraseñas Seguras",
         "Username": "Usuario o correo: ",
         "Password": "Contraseña: ",
-        "Mostrar": " Mostrar",
+        "Mostrar": "Mostrar: ",
         "Minimcar": " Mínimo 8 carácteres,",        
         "Majuscula": " almenos una letra mayúscula,",
         "Minuscula": " almenos una letra minúscula,",
@@ -68,14 +69,15 @@ const Idiomes_dft = [
         "Voldesar": "¿Quiere guardar el inicio de sesión?",
         "Diccionari": "Diccionario: ",
         "Patrons": "Patrones: ",
-        "Mostrartaula": "Mostrar tabla ASCII-HTML"
+        "Mostrartaula": "Mostrar tabla ASCII-HTML",
+        "Amagartaula": "Esconder tabla ASCII-HTML"
     },
     {
         "IdIdioma": "en",
         "Titol": "Secure Passwords Database Version",
-        "Username": "User o email: ",
+        "Username": "User or email: ",
         "Password": "Password: ",
-        "Mostrar": " Show",
+        "Mostrar": "Show: ",
         "Minimcar": " Minimum 8 characters,",        
         "Majuscula": " at least one capital letter,",
         "Minuscula": " at least one lowercase letter,",
@@ -92,13 +94,14 @@ const Idiomes_dft = [
         "Contrarob": "Strong password!",        
         "Computacional": "\n\     - It would have a Brute Force Computational Cost of: ",
         "Maquina": " for what a 1 MIPS machine might need ",
-        "Processament": "years of processing, that is, ",
+        "Processament": " years of processing, that is, ",
         "Nivell": " days.\n\     - It would have a Robustness Level of: ",
         "Score": "/4, and a zxcvbn Score of: ",
         "Voldesar": "Do you want to save your login?",
         "Diccionari": "Dictionary: ",
         "Patrons": "Patterns: ",
-        "Mostrartaula": "Show ASCII-HTML table"
+        "Mostrartaula": "Show ASCII-HTML table",
+        "Amagartaula": "Hide ASCII-HTML table"
     }
 ]
 var Idiomes = Idiomes_dft;
@@ -276,6 +279,7 @@ function Iniciar()
     if (confirm(Idioma.Voldesar) == true) {
         localStorage.setItem("username", document.getElementById("username").value);
         localStorage.setItem("password", document.getElementById("password").value);
+        localStorage.setItem("IdIdioma", Idioma.IdIdioma);
         const myWindow = window.open("desar.html", "_blank", "width=460, height=600, left=0, top=0, \n\
             location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
     }
@@ -285,9 +289,9 @@ function Mostrar()
 {
     document.getElementById("taulaASCII").hidden = !document.getElementById("taulaASCII").hidden; 
     if (document.getElementById("taulaASCII").hidden)
-        document.getElementById("mostrartaula").innerText = "Mostrar taula ASCII-HTML";
+        document.getElementById("Mostrartaula").innerHTML = Idioma.Mostrartaula;
     else
-        document.getElementById("mostrartaula").innerText = "Amagar taula ASCII-HTML";
+        document.getElementById("Mostrartaula").innerHTML = Idioma.Amagartaula;
 }
 
 /**
@@ -303,7 +307,7 @@ function readSingleFile(evt) {
     var r = new FileReader();
     r.onload = function(e) { 
       var contents = e.target.result;
-      /** alert("Got the file.\n" 
+      /** window.alert("Got the file.\n" 
            + "name: " + f.name + "\n"
            + "type: " + f.type + "\n"
            + "size: " + f.size + " bytes\n"
@@ -317,11 +321,11 @@ function readSingleFile(evt) {
         for (i = 0; i < stream3.length; i++) {
             patrons[i] = new RegExp(stream3[i]);
         }        
-        // alert("Patrons:" + patrons); 
+        // window.alert("Patrons:" + patrons); 
       } else {
         // Canviam estructura de dades Array() per Set()
         // diccionari = contents.replaceAll("\r\n", ",");
-        // alert("Diccionari:" + diccionari); 
+        // window.alert("Diccionari:" + diccionari); 
         stream1 = contents.replaceAll("\r\n", ",");
         stream3 = stream1.split(",");
         for (i = 0; i < stream3.length; i++) {
@@ -331,7 +335,7 @@ function readSingleFile(evt) {
     }
     r.readAsText(f);
   } else { 
-    alert("Failed to load file");
+    window.alert("Failed to load file");
   }
 }
 
@@ -369,7 +373,7 @@ function teRepeticionsMultiplesCaracters(contrasenya) {
 function tePatrons(contrasenya) {
     // cosnt patrons = [/123/, /abc/, /qwerty/]; // Afegir altres patrons si cal
     for (i = 0; i < patrons.length; i++) {
-        // alert(patrons[i]);
+        // window.alert(patrons[i]);
         if (patrons[i].test(contrasenya)) { return true; }
     }
     return false;
@@ -427,7 +431,7 @@ function CanviarIdioma(IdIdioma) {
     }
     // AlaWeb_SQLite(IdIdioma);
     Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
-    // alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Mostrartaula);
+    // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Mostrartaula);
     
     document.title = Idioma.Titol;
     document.getElementById("Username").innerHTML = Idioma.Username;
