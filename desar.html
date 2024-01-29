@@ -10,11 +10,57 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
+            // Diferents idiomes per la GUI
+            const Idiomes_dft = [
+                {
+                    "IdIdioma": "ca",
+                    "Titol": "Vols desar l'inici de sessió a ContraSegur?",
+                    "Username": "Usuari o correu: ",
+                    "Password": "Contrasenya: ",
+                    "Mostrar": "Mostrar: ",
+                    "Benvingut": "Benvingut de nou ",
+                    "Canviar": "Vol canviar la contrasenya?",
+                    "Esborrat": "Inici de sessió esborrat!",
+                    "Inicis": "Mostrar els inicis de sessió desats",
+                    "Desar": "Desar",
+                    "Nodesar": "No desar"
+                },
+                {
+                    "IdIdioma": "es",
+                    "Titol": "¿Quieres guardar el inicio de sesión en ContraSegur?",
+                    "Username": "Usuario o correo: ",
+                    "Password": "Contraseña: ",
+                    "Mostrar": "Mostrar: ",
+                    "Benvingut": "Bienvenido de nuevo ",
+                    "Canviar": "¿Quiere cambiar la contraseña?",
+                    "Esborrat": "¡Inicio de sesión borrado!",
+                    "Inicis": "Mostrar los inicios de sesión guardados",
+                    "Desar": "Guardar",
+                    "Nodesar": "No guardar"
+                },
+                {
+                    "IdIdioma": "en",
+                    "Titol": "Do you want to save your login at ContraSegur?",
+                    "Username": "User or email: ",
+                    "Password": "Password: ",
+                    "Mostrar": "Show: ",
+                    "Benvingut": "Welcome back ",
+                    "Canviar": "Do you want to change your password?",
+                    "Esborrat": "Login deleted!",
+                    "Inicis": "Show saved logins",
+                    "Desar": "Save",
+                    "Nodesar": "Don't save"
+                }
+            ]
+            var Idiomes = Idiomes_dft;
+            var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
+            
             function Inici()
             {   
                 // window.alert(localStorage.getItem('username') + "=" + localStorage.getItem('password'));
                 document.getElementById('username').value = localStorage.getItem('username');
                 document.getElementById('password').value = localStorage.getItem('password'); 
+                CanviarIdioma(localStorage.getItem('IdIdioma'));
                 
                 // Simulam les cookies amb una estructura de dades Map()
                 cookiesMap = new Map();
@@ -37,7 +83,7 @@ and open the template in the editor.
             {
                 cname = document.getElementById('username').value;
                 document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                window.alert("Inici de sessió esborrat!");
+                window.alert(Idioma.Esborrat);
                 
                 // Simulam les cookies amb una estructura de dades Map()
                 cookiesMap.delete(cname);
@@ -50,7 +96,7 @@ and open the template in the editor.
                 myWindow.document.write("<html><body style='background-size: 320px 302px; " + 
                     'background-image: url("img/password.png"); background-repeat: no-repeat;' +
                     "'><table border='1' style='border-collapse: collapse'>\n\
-                    <tr><th>Inici de sessió</th><th>Contrasenya</th></tr>");
+                    <tr><th>" + Idioma.Username + "</th><th>" + Idioma.Password + "</th></tr>");
         
                 // Simulam les cookies amb una estructura de dades Map()
                 /** 
@@ -110,9 +156,9 @@ and open the template in the editor.
                 let cvalue = getCookie(cname);
                 // window.alert("cvalue: " + cvalue);
                 if (cvalue !== "") {
-                  alert("Benvingut de nou " + cname);
+                  window.alert(Idioma.Benvingut + cname);
                   if (cvalue !== document.getElementById('password').value) {
-                     if (confirm("Vol canviar la contrasenya?") === true) {
+                     if (confirm(Idioma.Canviar) === true) {
                         setCookie(cname, document.getElementById('password').value, 365);
                      }
                   }
@@ -123,23 +169,62 @@ and open the template in the editor.
                   }
                 }
             }
+            
+            // Canviam els diferents literals de la GUI segons l'idioma
+            function CanviarIdioma(IdIdioma) {
+                // AlaWeb_SQLite(IdIdioma);
+                Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
+                // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Inicis);
+
+                document.getElementById("Titol").innerHTML = Idioma.Titol;
+                document.getElementById("Username").innerHTML = Idioma.Username;
+                document.getElementById("Password").innerHTML = Idioma.Password;
+                document.getElementById("Mostrar").innerHTML = Idioma.Mostrar;
+                document.getElementById("Inicis").innerHTML = Idioma.Inicis;
+                document.getElementById("Desar").innerHTML = Idioma.Desar;
+                document.getElementById("Nodesar").innerHTML = Idioma.Nodesar;
+            }
         </script>
     </head>
     <body onload="Inici();" style="background-image: url('img/passwordCL.png'); 
           background-size: 427px 403px; background-repeat: no-repeat;">    
-        <h3>Vols desà l'inici de sessió a contrasegur.netlify.app?</h3>
-        Inici de sessió: <input type="text" id="username">&nbsp;
-        <button type="button" id="esborrar" onclick="Esborrar();">
-            <img src="img/trash-can.png" alt="paperera" width=15 height=15></button><br>
-        Contrasenya: <input type="password" id="password">
-            <input type="checkbox" id="mostrar" onchange="
-                if (document.getElementById('password').type === 'password') 
-                    document.getElementById('password').type = 'text'
-                else
-                    document.getElementById('password').type = 'password';"> Mostrar<br>
-        <br>
-        <button type="button" id="desats" accesskey="M" onclick="Desats();">Mostra els inicis de sessió desats</button>&nbsp;
-        <button type="button" id="desa" accesskey="D" onclick="Desar();">Desa</button>&nbsp;
-        <button type="button" id="nodesis" accesskey="N" onclick="window.close();">No desis</button>
+        <h3 id="Titol">Vols desar l'inici de sessió a ContraSegur?</h3>
+        <table>
+        <tbody>
+        <tr>
+            <td style="background-color: Gainsboro; text-align: right">        
+                <div id="Username">Usuari o correu: </div>
+            </td>
+            <td>
+                <input type="text" id="username">&nbsp;
+                <button type="button" id="esborrar" onclick="Esborrar();">
+                    <img src="img/trash-can.png" alt="paperera" width=15 height=15></button><br>
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color: Gainsboro; text-align: right">        
+                <div id="Password">Contrasenya: </div>
+            </td>
+            <td>
+                <input type="password" id="password">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color: Gainsboro; text-align: right">        
+                <div id="Mostrar">Mostrar: </div>
+            </td>
+            <td>
+                <input type="checkbox" id="mostrar" onchange="
+                    if (document.getElementById('password').type === 'password') 
+                        document.getElementById('password').type = 'text'
+                    else
+                        document.getElementById('password').type = 'password';">
+            </td>
+        </tr>
+        </tbody>
+        </table>
+        <button type="button" id="Inicis" accesskey="M" onclick="Desats();">Mostrar els inicis de sessió desats</button>&nbsp;
+        <button type="button" id="Desar" accesskey="D" onclick="Desar();">Desar</button>&nbsp;
+        <button type="button" id="Nodesar" accesskey="N" onclick="window.close();">No desar</button>
     </body>
 </html>
