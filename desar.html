@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html lang = "ca">
     <head>
-        <title>Desar l'inici de sessió</title>
+        <title>Vols desar l'inici de sessió a ContraSegur?</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
@@ -179,7 +179,8 @@ and open the template in the editor.
                 // AlaWeb_SQLite(IdIdioma);
                 Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
                 // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Inicis);
-
+                
+                document.title = Idioma.Titol;
                 document.getElementById("Titol").innerHTML = Idioma.Titol;
                 document.getElementById("Username").innerHTML = Idioma.Username;
                 document.getElementById("Password").innerHTML = Idioma.Password;
@@ -192,11 +193,11 @@ and open the template in the editor.
     </head>
     <body onload="Inici();" style="background-image: url('img/passwordCL.png'); 
           background-size: 427px 403px; background-repeat: no-repeat;">    
-        <h3 id="Titol">Vols desar l'inici de sessió a ContraSegur?</h3>
+        <div id="Titol"><font size="+2">Vols desar l'inici de sessió a ContraSegur?</font></div>
         <table>
         <tbody>
         <tr>
-            <td style="background-color: Gainsboro; text-align: right">        
+            <td style="text-align: right">        
                 <div id="Username">Usuari o correu: </div>
             </td>
             <td>
@@ -206,7 +207,7 @@ and open the template in the editor.
             </td>
         </tr>
         <tr>
-            <td style="background-color: Gainsboro; text-align: right">        
+            <td style="text-align: right">        
                 <div id="Password">Contrasenya: </div>
             </td>
             <td>
@@ -214,7 +215,7 @@ and open the template in the editor.
             </td>
         </tr>
         <tr>
-            <td style="background-color: Gainsboro; text-align: right">        
+            <td style="text-align: right">        
                 <div id="Mostrar">Mostrar: </div>
             </td>
             <td>
