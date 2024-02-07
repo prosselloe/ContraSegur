@@ -14,7 +14,7 @@ and open the template in the editor.
             const Idiomes_dft = [
                 {
                     "IdIdioma": "ca",
-                    "Titol": "Vols desar l'inici de sessió a ContraSegur?",
+                    "Titol2": "Vols desar l'inici de sessió a ContraSegur?",
                     "Username": "Usuari o correu: ",
                     "Password": "Contrasenya: ",
                     "Mostrar": "Mostrar: ",
@@ -28,7 +28,7 @@ and open the template in the editor.
                 },
                 {
                     "IdIdioma": "es",
-                    "Titol": "¿Quieres guardar el inicio de sesión en ContraSegur?",
+                    "Titol2": "¿Quieres guardar el inicio de sesión en ContraSegur?",
                     "Username": "Usuario o correo: ",
                     "Password": "Contraseña: ",
                     "Mostrar": "Mostrar: ",
@@ -42,7 +42,7 @@ and open the template in the editor.
                 },
                 {
                     "IdIdioma": "en",
-                    "Titol": "Do you want to save your login at ContraSegur?",
+                    "Titol2": "Do you want to save your login at ContraSegur?",
                     "Username": "User or email: ",
                     "Password": "Password: ",
                     "Mostrar": "Show: ",
@@ -180,8 +180,8 @@ and open the template in the editor.
                 Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
                 // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Inicis);
                 
-                document.title = Idioma.Titol;
-                document.getElementById("Titol").innerHTML = Idioma.Titol;
+                document.title = Idioma.Titol2;
+                document.getElementById("Titol").innerHTML = Idioma.Titol2;
                 document.getElementById("Username").innerHTML = Idioma.Username;
                 document.getElementById("Password").innerHTML = Idioma.Password;
                 document.getElementById("Mostrar").innerHTML = Idioma.Mostrar;
@@ -193,8 +193,7 @@ and open the template in the editor.
     </head>
     <body onload="Inici();" style="background-image: url('img/passwordCL.png'); 
           background-size: 427px 403px; background-repeat: no-repeat;">    
-        <div id="Titol" style="background-color: Gainsboro; text-align: center; font-size: 20px">
-            Vols desar l'inici de sessió a ContraSegur?</div>
+        <div id="Titol"><font size="+2">Vols desar l'inici de sessió a ContraSegur?</font></div>
         <table>
         <tbody>
         <tr>
