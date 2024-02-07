@@ -12,7 +12,7 @@
 const Idiomes_dft = [
     {
         "IdIdioma": "ca",
-        "Titol": "Versió amb Base de Dades Contrasenyes Segures",
+        "Titol": "- Versió amb Base de Dades Contrasenyes Segures",
         "Username": "Usuari o correu: ",
         "Password": "Contrasenya: ",
         "Mostrar": "Mostrar: ",
@@ -43,7 +43,7 @@ const Idiomes_dft = [
     },
     {
         "IdIdioma": "es",
-        "Titol": "Versión con Base de Datos Contraseñas Seguras",
+        "Titol": "- Versión con Base de Datos Contraseñas Seguras",
         "Username": "Usuario o correo: ",
         "Password": "Contraseña: ",
         "Mostrar": "Mostrar: ",
@@ -74,7 +74,7 @@ const Idiomes_dft = [
     },
     {
         "IdIdioma": "en",
-        "Titol": "Secure Passwords Database Version",
+        "Titol": "- Secure Passwords Database Version",
         "Username": "User or email: ",
         "Password": "Password: ",
         "Mostrar": "Show: ",
@@ -110,7 +110,8 @@ var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
 // Variables Globals.   
 // Canviam estructura de dades Array() per Set()
 // var diccionari = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
-var diccionari = new Set(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
+var Diccionari_dft = new Set(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
+var Diccionari = Diccionari_dft;
 
 // var patrons = ["/123/", "/abc/", "/qwerty/"];
 var patrons = [/123/, /abc/, /qwerty/];
@@ -324,12 +325,12 @@ function readSingleFile(evt) {
         // window.alert("Patrons:" + patrons); 
       } else {
         // Canviam estructura de dades Array() per Set()
-        // diccionari = contents.replaceAll("\r\n", ",");
-        // window.alert("Diccionari:" + diccionari); 
+        // Diccionari = contents.replaceAll("\r\n", ",");
+        // window.alert("Diccionari:" + Diccionari); 
         stream1 = contents.replaceAll("\r\n", ",");
         stream3 = stream1.split(",");
         for (i = 0; i < stream3.length; i++) {
-            diccionari.add(stream3[i]);
+            Diccionari.add(stream3[i]);
         }        
       }
     }
@@ -350,19 +351,19 @@ function readSingleFile(evt) {
 const fs = require('fs');
 
 // Càrrega del diccionari de dades
-const diccionari = fs.readFileSync('diccionari.txt', 'utf8').split('\n');
+const Diccionari = fs.readFileSync('diccionari.txt', 'utf8').split('\n');
 **/
 
 function esContrasenyaComuna(contrasenya) {
     /**
-    for (i = 1; i < diccionari.length; i++)
-        if (diccionari[i] == contrasenya)
+    for (i = 1; i < Diccionari.length; i++)
+        if (Diccionari[i] == contrasenya)
             return true;
     **/
    
     // Canviam estructura de dades Array() per Set()
-    // return diccionari.includes(contrasenya);
-    return diccionari.has(contrasenya);
+    // return Diccionari.includes(contrasenya);
+    return Diccionari.has(contrasenya);
 }
 
 function teRepeticionsMultiplesCaracters(contrasenya) {
@@ -429,7 +430,7 @@ function CanviarIdioma(IdIdioma) {
     if ((IdIdioma != "ca") && (IdIdioma != "es")) {
         document.getElementById("Idiomes").value = IdIdioma;
     }
-    // AlaWeb_SQLite(IdIdioma);
+    AlaWeb_SQLite(IdIdioma);
     Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
     // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Mostrartaula);
     
@@ -449,9 +450,9 @@ function CanviarIdioma(IdIdioma) {
     document.getElementById("Mostrartaula").innerHTML = Idioma.Mostrartaula;    
 }
 
-// Funció per carregar la base de dades penjat.db
+// Funció per carregar la base de dades ContraSegur.db
 function AlaWeb_SQLite(IdIdioma) {
-    // window.alert("AlaWeb_SQLite IdIdioma = '" + IdIdioma + "'");
+    window.alert("AlaWeb_SQLite IdIdioma = '" + IdIdioma + "'");
     config = {
         locateFile: file => `https://sql.js.org/dist/${file}`
         // locateFile: filename => `https://unpkg.com/sql.js@1.6.2/dist/${filename}`
@@ -461,30 +462,28 @@ function AlaWeb_SQLite(IdIdioma) {
     // current html page's folder.
 
     // Recuperam de la base de dades els TextosGUI per tots els Idiomes
-    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
+    alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
             SELECT * FROM TblTextosGUI;',
     //    [], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
         [], function(idiomes) {Idiomes = idiomes.pop();}
     );
-    // window.alert(Idiomes[0].Versio);
+    window.alert(Idiomes[0].Titol);
     if (Idiomes.length == 0) {Idiomes = Idiomes_dft;};
     if (Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma) == undefined) {
         window.alert("GUI: Idioma no trobat / Idioma no encontrado / Language not found!");
     };
 
-    // Recuperam de la base de dades les paraules del IdIdioma
-    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
-            SELECT Paraula, Pista \n\
-            FROM TblParaules INNER JOIN TblPistes \n\
-              ON TblParaules.IdPista = TblPistes.IdPista \n\
-            WHERE TblParaules.IdIdioma = "' + IdIdioma + '";',
-    //    [], function(taula) {Print_Data(Taula = taula.pop());}
-        [], function(taula) {Taula = taula.pop();}
+    // Recuperam de la base de dades el Diccionari del IdIdioma
+    alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
+            SELECT Password FROM TblDiccionari \n\
+            WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "' + IdIdioma + '";',
+    //    [], function(diccionari) {Print_Data(Diccionari = diccionari.pop());}
+        [], function(diccionari) {Diccionari = diccionari.pop();}
     );
-    // window.alert(Taula[0].Pista);
-    if (Taula.length == 0) {
-        window.alert("Idioma sense paraules / Idioma sin palabras / Language without words!");
-        Taula = Taula_dft;
+    window.alert(Diccionari[0].Password);
+    if (Diccionari.length == 0) {
+        window.alert("Idioma sense contrasenyes / Idioma sin contraseñas / Language without passwords!");
+        Diccionari = Diccionari_dft;
         IdIdioma = "ca";
         IdIdioma_ant = "ca";
     } else {
