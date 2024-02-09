@@ -12,7 +12,7 @@
 const Idiomes_dft = [
     {
         "IdIdioma": "ca",
-        "Titol": "- Versió amb Base de Dades Contrasenyes Segures",
+        "Titol": "Versió amb Base de Dades Contrasenyes Segures",
         "Username": "Usuari o correu: ",
         "Password": "Contrasenya: ",
         "Mostrar": "Mostrar: ",
@@ -43,7 +43,7 @@ const Idiomes_dft = [
     },
     {
         "IdIdioma": "es",
-        "Titol": "- Versión con Base de Datos Contraseñas Seguras",
+        "Titol": "Versión con Base de Datos Contraseñas Seguras",
         "Username": "Usuario o correo: ",
         "Password": "Contraseña: ",
         "Mostrar": "Mostrar: ",
@@ -74,7 +74,7 @@ const Idiomes_dft = [
     },
     {
         "IdIdioma": "en",
-        "Titol": "- Secure Passwords Database Version",
+        "Titol": "Secure Passwords Database Version",
         "Username": "User or email: ",
         "Password": "Password: ",
         "Mostrar": "Show: ",
@@ -452,9 +452,10 @@ function CanviarIdioma(IdIdioma) {
 
 // Funció per carregar la base de dades ContraSegur.db
 function AlaWeb_SQLite(IdIdioma) {
-    window.alert("AlaWeb_SQLite IdIdioma = '" + IdIdioma + "'");
+    // window.alert("AlaWeb_SQLite IdIdioma = '" + IdIdioma + "'");
     config = {
-        locateFile: file => `https://sql.js.org/dist/${file}`
+        locateFile: filename => `/dist/${filename}`
+        // locateFile: file => `https://sql.js.org/dist/${file}`
         // locateFile: filename => `https://unpkg.com/sql.js@1.6.2/dist/${filename}`
     };
     // The `initSqlJs` function is globally provided by all of the main dist files if loaded in the browser.
@@ -467,7 +468,7 @@ function AlaWeb_SQLite(IdIdioma) {
     //    [], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
         [], function(idiomes) {Idiomes = idiomes.pop();}
     );
-    window.alert(Idiomes[0].Titol);
+    // window.alert(Idiomes[0].Titol);
     if (Idiomes.length == 0) {Idiomes = Idiomes_dft;};
     if (Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma) == undefined) {
         window.alert("GUI: Idioma no trobat / Idioma no encontrado / Language not found!");
@@ -480,7 +481,7 @@ function AlaWeb_SQLite(IdIdioma) {
     //    [], function(diccionari) {Print_Data(Diccionari = diccionari.pop());}
         [], function(diccionari) {Diccionari = diccionari.pop();}
     );
-    window.alert(Diccionari[0].Password);
+    // window.alert(Diccionari[0].Password);
     if (Diccionari.length == 0) {
         window.alert("Idioma sense contrasenyes / Idioma sin contraseñas / Language without passwords!");
         Diccionari = Diccionari_dft;
