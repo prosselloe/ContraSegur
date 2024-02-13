@@ -103,13 +103,13 @@ const Idiomes_dft = [
         "Mostrartaula": "Show ASCII-HTML table",
         "Amagartaula": "Hide ASCII-HTML table"
     }
-]
+];
 var Idiomes = Idiomes_dft;
 var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
 
 // Variables Globals.   
 // Canviam estructura de dades Array() per Set()
-// var diccionari = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
+// var Diccionari_dft = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
 var Diccionari_dft = new Set(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
 var Diccionari = Diccionari_dft;
 
@@ -463,33 +463,52 @@ function AlaWeb_SQLite(IdIdioma) {
     // current html page's folder.
 
     // Recuperam de la base de dades els TextosGUI per tots els Idiomes
+    // SELECT * FROM TblTextosGUI;
     alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
             SELECT * FROM TblTextosGUI;',
-    //    [], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
-        [], function(idiomes) {Idiomes = idiomes.pop();}
+    //    [], function(idiomes) {Print_Data(TblTextosGUI = idiomes.pop());}
+        [], function(idiomes) {SQL_TextosGUI(IdIdioma, TblTextosGUI = idiomes.pop());}
     );
-    // window.alert(Idiomes[0].Titol);
-    if (Idiomes.length == 0) {Idiomes = Idiomes_dft;};
-    if (Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma) == undefined) {
-        window.alert("GUI: Idioma no trobat / Idioma no encontrado / Language not found!");
-    };
 
     // Recuperam de la base de dades el Diccionari del IdIdioma
+    // SELECT Password FROM TblDiccionari WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "ca";
     alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
             SELECT Password FROM TblDiccionari \n\
             WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "' + IdIdioma + '";',
-    //    [], function(diccionari) {Print_Data(Diccionari = diccionari.pop());}
-        [], function(diccionari) {Diccionari = diccionari.pop();}
-    );
-    // window.alert(Diccionari[0].Password);
-    if (Diccionari.length == 0) {
+    //    [], function(diccionari) {Print_Data(TblDiccionari = diccionari.pop());}
+        [], function(diccionari) {SQL_Diccionari(IdIdioma, TblDiccionari = diccionari.pop());}
+    );           
+}
+
+function SQL_TextosGUI(IdIdioma, TblTextosGUI) {
+    // window.alert("SQL_TextosGUI IdIdioma = '" + IdIdioma + "'");
+    Idiomes = TblTextosGUI;
+    if (Idiomes.length == 0) {Idiomes = Idiomes_dft;};
+    if (Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma) == undefined) {
+        window.alert("GUI: Idioma no trobat / Idioma no encontrado / Language not found!");
+        Idiomes = Idiomes_dft;
+    };  
+    // window.alert(Idiomes[0].Titol);
+}
+
+function SQL_Diccionari(IdIdioma, TblDiccionari) {
+    // window.alert("SQL_Diccionari IdIdioma = '" + IdIdioma + "'");    
+    Diccionari.clear();
+    for (var i in TblDiccionari) {
+        // console.log("TblDiccionari[" + i + "].Password: " + TblDiccionari[i].Password); 
+        Diccionari.add(TblDiccionari[i].Password);
+    } 
+    // window.alert(Diccionari.size);  
+    // if (Diccionari.length == 0) {
+    if (Diccionari.size == 0) {
         window.alert("Idioma sense contrasenyes / Idioma sin contraseñas / Language without passwords!");
         Diccionari = Diccionari_dft;
         IdIdioma = "ca";
         IdIdioma_ant = "ca";
     } else {
-        // window.alert("Paraules en idioma / Palabras en idioma / Language words = '" + IdIdioma + "'");
-    };
+        // window.alert("Contrasenyes en idioma / Contraseñas en idioma / Language passwords = '" + IdIdioma + "'");
+    }; 
+    // window.alert(TblDiccionari[0].Password);
 }
 
 // Print data   
