@@ -1,163 +1,4 @@
-CREATE TABLE TblTextosGUI  (
-   IdIdioma VARCHAR(2),
-   Titol VARCHAR(45),
-   Username VARCHAR(18),
-   Password VARCHAR(12),
-   Mostrar VARCHAR(9),
-   Minimcar VARCHAR(21),
-   Majuscula VARCHAR(29),
-   Minuscula VARCHAR(30),
-   Numero VARCHAR(20),
-   Carespecial VARCHAR(31),
-   Robustesa VARCHAR(32),
-   Inisessio VARCHAR(14),
-   Massacomu VARCHAR(77),
-   Nopatrons VARCHAR(53),
-   Norepmult VARCHAR(69),
-   Majminnum VARCHAR(90),
-   Almcaresp VARCHAR(59),
-   Almmincar VARCHAR(67),
-   Contrarob VARCHAR(22),
-   Computacional VARCHAR(62),
-   Maquina VARCHAR(58),
-   Processament VARCHAR(33),
-   Nivell VARCHAR(52),
-   Score VARCHAR(27),
-   Voldesar VARCHAR(36),
-   Diccionari VARCHAR(13),
-   Patrons VARCHAR(10),
-   Mostrartaula VARCHAR(24),
-   Amagartaula VARCHAR(25),
-   Titol2 VARCHAR(53),
-   Guardat VARCHAR(28),
-   Benvingut VARCHAR(21),
-   Canviar VARCHAR(37),
-   Esborrat VARCHAR(27),
-   Inicis VARCHAR(40),
-   Desar VARCHAR(8),
-   Nodesar VARCHAR(10)
-);
-
-INSERT INTO TblTextosGUI VALUES (
-   "ca",
-   "Versió amb Base de Dades Contrasenyes Segures",
-   "Usuari o correu:",
-   "Contrasenya:",
-   "Mostrar:",
-   "Mínim 8 caràcters,",
-   "almenys una lletra majúscula,",
-   "almenys una lletra minúscula,",
-   "almenys un número,",
-   "almenys un carácter especial.",
-   "Dèbil - Regular - Bona - Forta",
-   "Iniciar sessió",
-   "La contrasenya és massa comuna. Si us plau, tria una contrasenya més forta.",
-   "La contrasenya no pot contenir patrons previsibles.",
-   "La contrasenya no pot contenir repeticions múltiples de caràcters.",
-   "La contrasenya ha de contenir almenys una lletra majúscula, una minúscula i un número.",
-   "La contrasenya ha de contenir almenys un caràcter especial.",
-   "La contrasenya és massa curta. Ha de tenir almenys 8 caràcters.",
-   "Contrasenya robusta!  ",
-   "\n\     - Tendria un Cost Computacional per Força Bruta de:",
-   "pel que una màquina a 1 MIPS podria arribar a necessitar",
-   "anys de processament, es a dir,",
-   "dies.\n\     - Tendria un Nivell de Robustesa de:",
-   "/4, i un zxcvbn Score de:",
-   "Vol desar l'inici de sessió?",
-   "Diccionari:",
-   "Patrons:",
-   "Mostrar taula ASCII-HTML",
-   "Amagar taula ASCII-HTML",
-   "Vols desar l'inici de sessió a ContraSegur?",
-   "Inici de sessió guardat!",
-   "Benvingut de nou  ",
-   "Vol canviar la contrasenya?",
-   "Inici de sessió esborrat!",
-   "Mostrar els inicis de sessió desats",
-   "Desar",
-   "No desar"
-);
-
-INSERT INTO TblTextosGUI VALUES (
-   "es",
-   "Versión con Base de Datos Contraseñas Seguras",
-   "Usuario o correo: ",
-   "Contraseña: ",
-   "Mostrar: ",
-   "Mínimo 8 carácteres,",
-   "almenos una letra mayúscula,",
-   "almenos una letra minúscula,",
-   "almenos un número,",
-   "almenos un carácter especial.",
-   "Débil - Regular - Buena - Fuerte",
-   "Iniciar sesión",
-   "La contraseña es demasiado común. Por favor, elige una contraseña más fuerte.",
-   "La contraseña no puede contener patrones previsibles.",
-   "La contraseña no puede contener múltiples repeticiones de caracteres.",
-   "La contraseña debe contener al menos una letra mayúscula, una minúscula y un número.",
-   "La contraseña debe contener al menos un carácter especial.",
-   "La contraseña es demasiado corta. Debe tener al menos 8 caracteres.",
-   "¡Contraseña robusta!",
-   "\n\     - Tendría un Coste Computacional por Fuerza Bruta de: ",
-   "por lo que una máquina a 1 MIPS podría llegar a necesitar ",
-   "años de procesamiento, es decir, ",
-   "días.\n\     - Tendría un Nivel de Robustez de: ",
-   "/4, y un zxcvbn Score de: ",
-   "¿Quiere guardar el inicio de sesión?",
-   "Diccionario: ",
-   "Patrones: ",
-   "Mostrar tabla ASCII-HTML",
-   "Esconder tabla ASCII-HTML",
-   "¿Quieres guardar el inicio de sesión en ContraSegur? ",
-   "¡Inicio de sesión guardado! ",
-   "Bienvenido de nuevo  ",
-   "¿Quiere cambiar la contraseña? ",
-   "¡Inicio de sesión borrado! ",
-   "Mostrar los inicios de sesión guardados ",
-   "Guardar ",
-   "No guardar"
-);
-
-INSERT INTO TblTextosGUI VALUES (
-   "en",
-   "Secure Passwords Database Version",
-   "User or email: ",
-   "Password: ",
-   "Show: ",
-   "Minimum 8 characters,",
-   "at least one capital letter,",
-   "at least one lowercase letter,",
-   "at least one number,",
-   "at least one special character.",
-   "Weak - Fair - Good - Strong",
-   "Log in",
-   "The password is too common. Please choose a stronger password.",
-   "Password cannot contain predictable patterns.",
-   "The password cannot contain multiple repetitions of characters.",
-   "Password must contain at least one uppercase letter, one lowercase letter, and one number.",
-   "Password must contain at least one special character.",
-   "The password is too short. It must be at least 8 characters long.",
-   "Strong password!",
-   "\n\     - It would have a Brute Force Computational Cost of: ",
-   "for what a 1 MIPS machine might need ",
-   "years of processing, that is, ",
-   "days.\n\     - It would have a Robustness Level of: ",
-   "/4, and a zxcvbn Score of: ",
-   "Do you want to save your login?",
-   "Dictionary: ",
-   "Patterns: ",
-   "Show ASCII-HTML table",
-   "Hide ASCII-HTML table",
-   "Do you want to save your login at ContraSegur? ",
-   "Login saved! ",
-   "Welcome back  ",
-   "Do you want to change your password? ",
-   "Login deleted! ",
-   "Show saved logins ",
-   "Save ",
-   "Don't save"
-);
-
+DROP TABLE TblIdiomes;
 CREATE TABLE TblIdiomes (
    IdIdioma VARCHAR(2),
    Idioma VARCHAR(40),
@@ -349,6 +190,7 @@ INSERT INTO TblIdiomes VALUES ("za", "chuan (o chuang, o zhuang)");
 INSERT INTO TblIdiomes VALUES ("zh", "chino");
 INSERT INTO TblIdiomes VALUES ("zu", "zulú");
 
+DROP TABLE TblPaisos;
 CREATE TABLE TblPaisos (
    IdPais2T VARCHAR(2),
    NomOficial VARCHAR(55),
@@ -608,10 +450,13 @@ INSERT INTO TblPaisos VALUES ("ZA", "Sudáfrica", "ZAF", "710", "Códigos obteni
 INSERT INTO TblPaisos VALUES ("ZM", "Zambia", "ZMB", "894", "");
 INSERT INTO TblPaisos VALUES ("ZW", "Zimbabue", "ZWE", "716", "");
 
+DROP TABLE TblIdiomesPaisos;
 CREATE TABLE TblIdiomesPaisos (
    IdIdioma VARCHAR(2),
    IdPais2T VARCHAR(2),
-PRIMARY KEY (IdIdioma, IdPais2T)
+PRIMARY KEY (IdIdioma, IdPais2T),
+FOREIGN KEY (IdIdioma) REFERENCES TblIdiomes(IdIdioma),
+FOREIGN KEY (IdPais2T) REFERENCES TblPaisos(IdPais2T)
 );
 
 INSERT INTO TblIdiomesPaisos VALUES ("an", "ES");
@@ -627,13 +472,15 @@ INSERT INTO TblIdiomesPaisos VALUES ("es", "ES");
 INSERT INTO TblIdiomesPaisos VALUES ("eu", "ES");
 INSERT INTO TblIdiomesPaisos VALUES ("gl", "ES");
 
+DROP TABLE TblDiccionari;
 CREATE TABLE TblDiccionari (
    Password VARCHAR(128),
    IdIdioma VARCHAR(2),
    MD5 VARCHAR(32),
    SHA1 VARCHAR(40),
    AES VARCHAR(64),
-PRIMARY KEY (Password)
+PRIMARY KEY (Password),
+FOREIGN KEY (IdIdioma) REFERENCES TblIdiomes(IdIdioma)
 );
 
 INSERT INTO TblDiccionari VALUES ("111111", "", "", "", "");
@@ -645,15 +492,185 @@ INSERT INTO TblDiccionari VALUES ("guest", "en", "084e0343a0486ff05530df6c705c8b
 INSERT INTO TblDiccionari VALUES ("password", "en", "5f4dcc3b5aa765d61d8327deb882cf99", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", "U2FsdGVkX1+ZLcwue9yU4Ul60DiyvboP9WHeIQvVG+s=");
 INSERT INTO TblDiccionari VALUES ("qwerty", "", "d8578edf8458ce06fbc5bb76a58c5ca4", "b1b3773a05c0ed0176787a4f1574ff0075f7521e", "U2FsdGVkX1+0SV/Q0z7x4Neq8dknjOvTw+ksMJIDky0=");
 
+DROP TABLE TblPatrons;
 CREATE TABLE TblPatrons (
    Pattern VARCHAR(128),
    IdIdioma VARCHAR(2),
-PRIMARY KEY (Pattern)
+PRIMARY KEY (Pattern),
+FOREIGN KEY (IdIdioma) REFERENCES TblIdiomes(IdIdioma)
 );
 
 INSERT INTO TblPatrons VALUES ("/123/", "");
 INSERT INTO TblPatrons VALUES ("/abc/", "");
 INSERT INTO TblPatrons VALUES ("/qwerty/", "");
+
+DROP TABLE TblTextosGUI;
+CREATE TABLE TblTextosGUI  (
+   IdIdioma VARCHAR(2),
+   Titol VARCHAR(45),
+   Username VARCHAR(18),
+   Password VARCHAR(12),
+   Mostrar VARCHAR(9),
+   Minimcar VARCHAR(21),
+   Majuscula VARCHAR(29),
+   Minuscula VARCHAR(30),
+   Numero VARCHAR(20),
+   Carespecial VARCHAR(31),
+   Robustesa VARCHAR(32),
+   Inisessio VARCHAR(14),
+   Massacomu VARCHAR(77),
+   Nopatrons VARCHAR(53),
+   Norepmult VARCHAR(69),
+   Majminnum VARCHAR(90),
+   Almcaresp VARCHAR(59),
+   Almmincar VARCHAR(67),
+   Contrarob VARCHAR(22),
+   Computacional VARCHAR(62),
+   Maquina VARCHAR(58),
+   Processament VARCHAR(33),
+   Nivell VARCHAR(52),
+   Score VARCHAR(27),
+   Voldesar VARCHAR(36),
+   Diccionari VARCHAR(13),
+   Patrons VARCHAR(10),
+   Mostrartaula VARCHAR(24),
+   Amagartaula VARCHAR(25),
+   Titol2 VARCHAR(53),
+   Guardat VARCHAR(28),
+   Benvingut VARCHAR(21),
+   Canviar VARCHAR(37),
+   Esborrat VARCHAR(27),
+   Inicis VARCHAR(40),
+   Desar VARCHAR(8),
+   Nodesar VARCHAR(10),
+FOREIGN KEY (IdIdioma) REFERENCES TblIdiomes(IdIdioma)
+);
+
+INSERT INTO TblTextosGUI VALUES (
+   "ca",
+   "Versió amb Base de Dades Contrasenyes Segures",
+   "Usuari o correu:",
+   "Contrasenya:",
+   "Mostrar:",
+   " Mínim 8 caràcters,",
+   " almenys una lletra majúscula,",
+   " almenys una lletra minúscula,",
+   " almenys un número,",
+   " almenys un carácter especial.",
+   "Dèbil - Regular - Bona - Forta",
+   "Iniciar sessió",
+   "La contrasenya és massa comuna. Si us plau, tria una contrasenya més forta.",
+   "La contrasenya no pot contenir patrons previsibles.",
+   "La contrasenya no pot contenir repeticions múltiples de caràcters.",
+   "La contrasenya ha de contenir almenys una lletra majúscula, una minúscula i un número.",
+   "La contrasenya ha de contenir almenys un caràcter especial.",
+   "La contrasenya és massa curta. Ha de tenir almenys 8 caràcters.",
+   "Contrasenya robusta!  ",
+   "
+     - Tendria un Cost Computacional per Força Bruta de: ",
+   " pel que una màquina a 1 MIPS podria arribar a necessitar ",
+   " anys de processament, es a dir, ",
+   " dies.
+     - Tendria un Nivell de Robustesa de: ",
+   "/4, i un zxcvbn Score de: ",
+   "Vol desar l'inici de sessió?",
+   "Diccionari:",
+   "Patrons:",
+   "Mostrar taula ASCII-HTML",
+   "Amagar taula ASCII-HTML",
+   "Vols desar l'inici de sessió a ContraSegur?",
+   "Inici de sessió guardat!",
+   "Benvingut de nou  ",
+   "Vol canviar la contrasenya?",
+   "Inici de sessió esborrat!",
+   "Mostrar els inicis de sessió desats",
+   "Desar",
+   "No desar"
+);
+
+INSERT INTO TblTextosGUI VALUES (
+   "es",
+   "Versión con Base de Datos Contraseñas Seguras",
+   "Usuario o correo: ",
+   "Contraseña: ",
+   "Mostrar: ",
+   " Mínimo 8 carácteres,",
+   " almenos una letra mayúscula,",
+   " almenos una letra minúscula,",
+   " almenos un número,",
+   " almenos un carácter especial.",
+   "Débil - Regular - Buena - Fuerte",
+   "Iniciar sesión",
+   "La contraseña es demasiado común. Por favor, elige una contraseña más fuerte.",
+   "La contraseña no puede contener patrones previsibles.",
+   "La contraseña no puede contener múltiples repeticiones de caracteres.",
+   "La contraseña debe contener al menos una letra mayúscula, una minúscula y un número.",
+   "La contraseña debe contener al menos un carácter especial.",
+   "La contraseña es demasiado corta. Debe tener al menos 8 caracteres.",
+   "¡Contraseña robusta!",
+   "
+     - Tendría un Coste Computacional por Fuerza Bruta de: ",
+   " por lo que una máquina a 1 MIPS podría llegar a necesitar ",
+   " años de procesamiento, es decir, ",
+   " días.
+     - Tendría un Nivel de Robustez de: ",
+   "/4, y un zxcvbn Score de: ",
+   "¿Quiere guardar el inicio de sesión?",
+   "Diccionario: ",
+   "Patrones: ",
+   "Mostrar tabla ASCII-HTML",
+   "Esconder tabla ASCII-HTML",
+   "¿Quieres guardar el inicio de sesión en ContraSegur? ",
+   "¡Inicio de sesión guardado! ",
+   "Bienvenido de nuevo  ",
+   "¿Quiere cambiar la contraseña? ",
+   "¡Inicio de sesión borrado! ",
+   "Mostrar los inicios de sesión guardados ",
+   "Guardar ",
+   "No guardar"
+);
+
+INSERT INTO TblTextosGUI VALUES (
+   "en",
+   "Secure Passwords Database Version",
+   "User or email: ",
+   "Password: ",
+   "Show: ",
+   " Minimum 8 characters,",
+   " at least one capital letter,",
+   " at least one lowercase letter,",
+   " at least one number,",
+   " at least one special character.",
+   "Weak - Fair - Good - Strong",
+   "Log in",
+   "The password is too common. Please choose a stronger password.",
+   "Password cannot contain predictable patterns.",
+   "The password cannot contain multiple repetitions of characters.",
+   "Password must contain at least one uppercase letter, one lowercase letter, and one number.",
+   "Password must contain at least one special character.",
+   "The password is too short. It must be at least 8 characters long.",
+   "Strong password!",
+   "
+     - It would have a Brute Force Computational Cost of: ",
+   " for what a 1 MIPS machine might need ",
+   " years of processing, that is, ",
+   " days.
+     - It would have a Robustness Level of: ",
+   "/4, and a zxcvbn Score of: ",
+   "Do you want to save your login?",
+   "Dictionary: ",
+   "Patterns: ",
+   "Show ASCII-HTML table",
+   "Hide ASCII-HTML table",
+   "Do you want to save your login at ContraSegur? ",
+   "Login saved! ",
+   "Welcome back  ",
+   "Do you want to change your password? ",
+   "Login deleted! ",
+   "Show saved logins ",
+   "Save ",
+   "Don't save"
+);
 
 SELECT * FROM TblTextosGUI;
 SELECT Password FROM TblDiccionari 
