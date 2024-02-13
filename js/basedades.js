@@ -467,7 +467,7 @@ function AlaWeb_SQLite(IdIdioma) {
     alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
             SELECT * FROM TblTextosGUI;',
     //    [], function(idiomes) {Print_Data(TblTextosGUI = idiomes.pop());}
-        [], function(idiomes) {SQL_TextosGUI(IdIdioma, TblTextosGUI = idiomes.pop());}
+        [], function(idiomes) {SQL_TextosGUI(IdIdioma, idiomes.pop());}
     );
 
     // Recuperam de la base de dades el Diccionari del IdIdioma
@@ -476,7 +476,7 @@ function AlaWeb_SQLite(IdIdioma) {
             SELECT Password FROM TblDiccionari \n\
             WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "' + IdIdioma + '";',
     //    [], function(diccionari) {Print_Data(TblDiccionari = diccionari.pop());}
-        [], function(diccionari) {SQL_Diccionari(IdIdioma, TblDiccionari = diccionari.pop());}
+        [], function(diccionari) {SQL_Diccionari(IdIdioma, diccionari.pop());}
     );           
 }
 
