@@ -10,14 +10,17 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body onload="document.getElementById('mystery').play();"
+          style="background-image: url('img/password.png'); 
+          background-size: 427px 403px; background-repeat: no-repeat;">
         <h2><a href="https://prosselloe.wordpress.com/about">Contrasenyes Segures</a></h2>
         <ul>
-            <li>Versió Pre-alfa o Prototip HTML/JavaScript: <a href="https://contrasegur.netlify.app/prototip.html">https://contrasegur.netlify.app/prototip.html</a></li>
-            <li>Versió α: Versió amb Nivell de Robustesa: <a href="https://contrasegur.netlify.app/robustesa.html">https://contrasegur.netlify.app/robustesa.html</a></li>
-            <li>Versió β: Versió amb Diccionari i Patrons: <a href="https://contrasegur.netlify.app/diccionaris.html">https://contrasegur.netlify.app/diccionaris.html</a></li>
-            <li>Versió γ: Versió amb Base de Dades: <a href="https://contrasegur.netlify.app/basedades.html">https://contrasegur.netlify.app/basedades.html<a/></li>
+            <li>Versió Pre-alfa o Prototip HTML/JavaScript: <a href="prototip.html">prototip.html</a></li>
+            <li>Versió α: Versió amb Nivell de Robustesa: <a href="robustesa.html">robustesa.html</a></li>
+            <li>Versió β: Versió amb Diccionari i Patrons: <a href="diccionaris.html">diccionaris.html</a></li>
+            <li>Versió γ: Versió amb Base de Dades: <a href="basedades.html">basedades.html<a/></li>
         </ul>
+        <br>
         <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">
         <img style="border-width: 0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Llicència de Creative Commons"></a>
         <ul>
@@ -28,4 +31,7 @@ and open the template in the editor.
             <li>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/deed.en" rel="license">
                 Creative Commons Attribution 4.0 International License</a>.</li>
         </ul>
+        <div id="Audios">
+            <audio id="mystery"><source src="aud/mystery.mp3" type="audio/mpeg"></audio>
+        </div>        
 </html>
