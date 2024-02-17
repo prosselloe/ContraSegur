@@ -96,7 +96,8 @@ and open the template in the editor.
                 const myWindow = window.open("", "_blank", "width=350, height=350, left=15, top=235,\n\
                     location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
                 myWindow.document.open();
-                myWindow.document.write("<html><body style='background-size: 320px 302px; " + 
+                myWindow.document.write("<html><head><title>" + Idioma.Inicis +
+                    "</title></head><body style='background-size: 320px 302px; " + 
                     'background-image: url("img/password.png"); background-repeat: no-repeat;' +
                     "'><table border='1' style='border-collapse: collapse'>\n\
                     <tr><th>" + Idioma.Username + "</th><th>" + Idioma.Password + "</th></tr>");
