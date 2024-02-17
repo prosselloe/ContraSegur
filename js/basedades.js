@@ -477,7 +477,7 @@ function AlaWeb_SQLite(IdIdioma) {
             WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "' + IdIdioma + '";',
     //    [], function(diccionari) {Print_Data(TblDiccionari = diccionari.pop());}
         [], function(diccionari) {SQL_Diccionari(IdIdioma, diccionari.pop());}
-    );           
+    );     
 }
 
 function SQL_TextosGUI(IdIdioma, TblTextosGUI) {
@@ -496,7 +496,7 @@ function SQL_Diccionari(IdIdioma, TblDiccionari) {
     Diccionari.clear();
     for (var i in TblDiccionari) {
         // console.log("TblDiccionari[" + i + "].Password: " + TblDiccionari[i].Password); 
-        Diccionari.add(TblDiccionari[i].Password);
+        Diccionari.add(TblDiccionari[i].Password);  
     } 
     // window.alert(Diccionari.size);  
     // if (Diccionari.length == 0) {
@@ -511,6 +511,38 @@ function SQL_Diccionari(IdIdioma, TblDiccionari) {
     // window.alert(TblDiccionari[0].Password);
 }
 
+function UPDATE_Diccionari(IdIdioma) {
+    // Recuperam de la base de dades el Diccionari del IdIdioma
+    // SELECT Password FROM TblDiccionari WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "ca";
+    alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
+            SELECT Password FROM TblDiccionari \n\
+            WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "' + IdIdioma + '";',
+    //    [], function(diccionari) {Print_Data(TblDiccionari = diccionari.pop());}
+        [], function(diccionari) {Print_Diccionari(IdIdioma, diccionari.pop());}
+    ); 
+}   
+
+function Print_Diccionari(IdIdioma, TblDiccionari) {
+    const myWindow = window.open("", "_blank", "width=640, height=640, left=15, top=235,\n\
+        location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
+    myWindow.document.open();
+    myWindow.document.write("<html><head><title>SQL UPDATE TblDiccionari for SQLite Sudio</title></head>" + 
+        "<body style='background-size: 640px 604px; " + 
+        'background-image: url("img/passwordCL.png"); background-repeat: no-repeat;' +
+        "'><p><a href='https://sqlitesudio.netlify.app/' target='_blank'>\n\
+        <font size='+2'>SQL UPDATE TblDiccionari for SQLite Sudio IdIdioma='" + IdIdioma + "'</font></a></p>");
+    for (var i in TblDiccionari) {
+        // window.alert("Print_Diccionari: " + MD5(TblDiccionari[i].Password) + " = " + TblDiccionari[i].Password); 
+        myWindow.document.write("<p>UPDATE TblDiccionari SET <br>&nbsp;&nbsp;&nbsp;\n\
+                MD5 = '" + MD5(TblDiccionari[i].Password) + "', <br>&nbsp;&nbsp;&nbsp;\n\
+                SHA1 = '" + SHA1(TblDiccionari[i].Password) + "', <br>&nbsp;&nbsp;&nbsp;\n\
+                AES = '" + CryptoJS.AES.encrypt(TblDiccionari[i].Password, TblDiccionari[i].Password) + 
+                "'<br>WHERE TblDiccionari.Password = '" + TblDiccionari[i].Password + "';</p>");
+    }   
+    myWindow.document.write("</body></html>");
+    myWindow.document.close();            
+}
+    
 // Print data   
 function Print_Data(res) {
     for (var i in res) 
