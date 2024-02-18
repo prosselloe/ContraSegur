@@ -106,12 +106,14 @@ const Idiomes_dft = [
 ];
 var Idiomes = Idiomes_dft;
 var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
+var SqlTextosGUI = [];
 
 // Variables Globals.   
 // Canviam estructura de dades Array() per Set()
 // var Diccionari_dft = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
 var Diccionari_dft = new Set(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
 var Diccionari = Diccionari_dft;
+var SqlDiccionari = [];
 
 // var patrons = ["/123/", "/abc/", "/qwerty/"];
 var patrons = [/123/, /abc/, /qwerty/];
@@ -480,7 +482,7 @@ function AlaWeb_SQLite(IdIdioma) {
             WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "' + IdIdioma + '";',
     //    [], function(diccionari) {Print_Data(TblDiccionari = diccionari.pop());}
         [], function(diccionari) {SQL_Diccionari(IdIdioma, diccionari.pop());}
-    );     
+    );  
 }
 
 function SQL_TextosGUI(IdIdioma, TblTextosGUI) {
@@ -492,6 +494,7 @@ function SQL_TextosGUI(IdIdioma, TblTextosGUI) {
         Idiomes = Idiomes_dft;
     };  
     // window.alert(Idiomes[0].Titol);
+    SqlTextosGUI = TblTextosGUI;
 }
 
 function SQL_Diccionari(IdIdioma, TblDiccionari) {
@@ -512,6 +515,7 @@ function SQL_Diccionari(IdIdioma, TblDiccionari) {
         // window.alert("Contrasenyes en idioma / Contraseñas en idioma / Language passwords = '" + IdIdioma + "'");
     }; 
     // window.alert(TblDiccionari[0].Password);
+    SqlDiccionari = TblDiccionari; 
 }
 
 function UPDATE_Diccionari(IdIdioma) {
@@ -523,12 +527,15 @@ function UPDATE_Diccionari(IdIdioma) {
         'background-image: url("img/passwordCL.png"); background-repeat: no-repeat;' +
         "'><p><a href='https://sqlitesudio.netlify.app/' target='_blank'> \n\
         <font size='+2'>SQL UPDATE TblDiccionari for SQLite Sudio IdIdioma='" + IdIdioma + "'</font></a></p>");
+    // window.alert(SqlDiccionari);
     Diccionari.forEach (function(Password) {
-        myWindow.document.write("<p>UPDATE TblDiccionari SET <br>&nbsp;&nbsp;&nbsp; \n\
-            MD5 = '" + MD5(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
-            SHA1 = '" + SHA1(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
-            AES = '" + CryptoJS.AES.encrypt(Password, Password) + 
-            "'<br> WHERE TblDiccionari.Password = '" + Password + "';</p>");
+        // if (SqlDiccionari.includes(Password)) {
+            myWindow.document.write("<p>UPDATE TblDiccionari SET <br>&nbsp;&nbsp;&nbsp; \n\
+                MD5 = '" + MD5(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
+                SHA1 = '" + SHA1(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
+                AES = '" + CryptoJS.AES.encrypt(Password, Password) + 
+                "'<br> WHERE TblDiccionari.Password = '" + Password + "';</p>");
+        // }
     })
     myWindow.document.write("</body></html>");
     myWindow.document.close();            
@@ -541,15 +548,19 @@ function INSERT_Diccionari(IdIdioma) {
     myWindow.document.write("<html><head><title>SQL INSERT TblDiccionari for SQLite Sudio</title></head>" + 
         "<body style='background-size: 640px 604px; " + 
         'background-image: url("img/passwordCL.png"); background-repeat: no-repeat;' +
-        "'><p><a href='https://sqlitesudio.netlify.app/' target='_blank'>\n\
-        <font size='+2'>SQL INSERT TblDiccionari for SQLite Sudio IdIdioma='" + IdIdioma + "'</font></a></p>");
+        "'><p><a href='https://sqlitesudio.netlify.app/' target='_blank'> \n\
+        <font size='+2'>SQL INSERT TblDiccionari for SQLite Sudio IdIdioma='" + IdIdioma + "'</font></a></p> \n\
+        <p>DELETE FROM TblDiccionari WHERE IdIdioma='" + IdIdioma + "';</p>");
+    // window.alert(SqlDiccionari);
     Diccionari.forEach (function(Password) {
-        myWindow.document.write("<p>INSERT INTO TblDiccionari \n\
-            (Password, IdIdioma, MD5, SHA1, AES) <br>VALUES ( \n\
-            '" + Password + "', '" + IdIdioma + "', <br>&nbsp;&nbsp;&nbsp; \n\
-            '" + MD5(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
-            '" + SHA1(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
-            '" + CryptoJS.AES.encrypt(Password, Password) + "');</p>");
+        // if (!SqlDiccionari.includes(Password)) {
+            myWindow.document.write("<p>INSERT INTO TblDiccionari \n\
+                (Password, IdIdioma, MD5, SHA1, AES) <br>VALUES ( \n\
+                '" + Password + "', '" + IdIdioma + "', <br>&nbsp;&nbsp;&nbsp; \n\
+                '" + MD5(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
+                '" + SHA1(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
+                '" + CryptoJS.AES.encrypt(Password, Password) + "');</p>");
+        // }
     })
     myWindow.document.write("</body></html>");
     myWindow.document.close();            
