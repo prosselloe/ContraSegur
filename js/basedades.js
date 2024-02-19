@@ -108,7 +108,6 @@ var Idiomes = Idiomes_dft;
 var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
 var SqlTextosGUI = [];
 
-// Variables Globals.   
 // Canviam estructura de dades Array() per Set()
 // var Diccionari_dft = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
 var Diccionari_dft = new Set(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
@@ -117,6 +116,9 @@ var SqlDiccionari = [];
 
 // var patrons = ["/123/", "/abc/", "/qwerty/"];
 var patrons = [/123/, /abc/, /qwerty/];
+var SqlPatrons = [];
+
+// Variables Globals  
 var Base = 0;
 var Exponent = 0;
  
@@ -359,7 +361,7 @@ const fs = require('fs');
 const Diccionari = fs.readFileSync('diccionari.txt', 'utf8').split('\n');
 **/
 
-function esContrasenyaComuna(contrasenya) {
+function esComuna(contrasenya) {
     /**
     for (i = 1; i < Diccionari.length; i++)
         if (Diccionari[i] == contrasenya)
@@ -371,7 +373,7 @@ function esContrasenyaComuna(contrasenya) {
     return Diccionari.has(contrasenya);
 }
 
-function teRepeticionsMultiplesCaracters(contrasenya) {
+function teRepeticions(contrasenya) {
     const repeticionsMultiples = /(.)\1{2,}/; // Detecta tres o més repeticions consecutives
     return repeticionsMultiples.test(contrasenya);
 }
@@ -392,12 +394,12 @@ function tePatrons(contrasenya) {
 
 function comprovaRobustesaContrasenya(contrasenya) {
     const longitudMinima = 8;
-    const caractersEspecials = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\-=|"'+´`¨º!ª·¿¬€]/; // Afegides del teclat ES: /["'+´`¨º!ª·¿¬€]/
+    const especials = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\-=|"'+´`¨º!ª·¿¬€]/; // Afegides del teclat ES: /["'+´`¨º!ª·¿¬€]/
     const majuscules = /[A-Z]|Ñ|Ç/;
     const minuscules = /[a-z]|[ñç]/;
     const numeros = /[0-9]/;
 
-    if (esContrasenyaComuna(contrasenya)) {
+    if (esComuna(contrasenya)) {
         return Idioma.Massacomu;
     }
 
@@ -405,7 +407,7 @@ function comprovaRobustesaContrasenya(contrasenya) {
         return Idioma.Nopatrons;
     }
 
-    if (teRepeticionsMultiplesCaracters(contrasenya)) {
+    if (teRepeticions(contrasenya)) {
         return Idioma.Norepmult;
     }
 
@@ -413,7 +415,7 @@ function comprovaRobustesaContrasenya(contrasenya) {
         return Idioma.Majminnum;
     }
 
-    if (!caractersEspecials.test(contrasenya)) {
+    if (!especials.test(contrasenya)) {
         return Idioma.Almcaresp;
     }
 
@@ -476,12 +478,21 @@ function AlaWeb_SQLite(IdIdioma) {
     );
 
     // Recuperam de la base de dades el Diccionari del IdIdioma
-    // SELECT Password FROM TblDiccionari WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "ca";
+    // SELECT Password FROM TblDiccionari WHERE IdIdioma IS NULL OR IdIdioma = "" OR IdIdioma = "ca";
     alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
             SELECT Password FROM TblDiccionari \n\
-            WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "' + IdIdioma + '";',
+            WHERE IdIdioma IS NULL OR IdIdioma = "" OR IdIdioma = "' + IdIdioma + '";',
     //    [], function(diccionari) {Print_Data(TblDiccionari = diccionari.pop());}
         [], function(diccionari) {SQL_Diccionari(IdIdioma, diccionari.pop());}
+    );  
+    
+    // Recuperam de la base de dades els Patrons del IdIdioma
+    // SELECT Pattern FROM TblPatrons WHERE IdIdioma IS NULL OR IdIdioma = "" OR IdIdioma = "ca";
+    alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
+            SELECT Pattern FROM TblPatrons \n\
+            WHERE IdIdioma IS NULL OR IdIdioma = "" OR IdIdioma = "' + IdIdioma + '";',
+    //    [], function(diccionari) {Print_Data(TblPatrons = diccionari.pop());}
+        [], function(diccionari) {SQL_Patrons(IdIdioma, diccionari.pop());}
     );  
 }
 
@@ -497,12 +508,22 @@ function SQL_TextosGUI(IdIdioma, TblTextosGUI) {
     SqlTextosGUI = TblTextosGUI;
 }
 
+function SQL_Patrons(IdIdioma, TblPatrons) {
+    // window.alert("SQL_Patrons IdIdioma = '" + IdIdioma + "'");
+    for (i = 0; i < TblPatrons.length; i++) {
+        // console.log("TblPatrons[" + i + "].Pattern: " + TblPatrons[i].Pattern); 
+        patrons[i] = new RegExp(TblPatrons[i].Pattern.replaceAll("/", ""));
+        SqlPatrons[i] = TblPatrons[i].Pattern;
+    }  
+    // window.alert(TblPatrons[0].Pattern);
+}
 function SQL_Diccionari(IdIdioma, TblDiccionari) {
     // window.alert("SQL_Diccionari IdIdioma = '" + IdIdioma + "'");    
     Diccionari.clear();
     for (var i in TblDiccionari) {
         // console.log("TblDiccionari[" + i + "].Password: " + TblDiccionari[i].Password); 
         Diccionari.add(TblDiccionari[i].Password);  
+        SqlDiccionari[i] = TblDiccionari[i].Password; 
     } 
     // window.alert(Diccionari.size);  
     // if (Diccionari.length == 0) {
@@ -515,7 +536,6 @@ function SQL_Diccionari(IdIdioma, TblDiccionari) {
         // window.alert("Contrasenyes en idioma / Contraseñas en idioma / Language passwords = '" + IdIdioma + "'");
     }; 
     // window.alert(TblDiccionari[0].Password);
-    SqlDiccionari = TblDiccionari; 
 }
 
 function UPDATE_Diccionari(IdIdioma) {
@@ -529,13 +549,13 @@ function UPDATE_Diccionari(IdIdioma) {
         <font size='+2'>SQL UPDATE TblDiccionari for SQLite Sudio IdIdioma='" + IdIdioma + "'</font></a></p>");
     // window.alert(SqlDiccionari);
     Diccionari.forEach (function(Password) {
-        // if (SqlDiccionari.includes(Password)) {
+        if (SqlDiccionari.includes(Password)) {
             myWindow.document.write("<p>UPDATE TblDiccionari SET <br>&nbsp;&nbsp;&nbsp; \n\
                 MD5 = '" + MD5(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
                 SHA1 = '" + SHA1(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
                 AES = '" + CryptoJS.AES.encrypt(Password, Password) + 
                 "'<br> WHERE TblDiccionari.Password = '" + Password + "';</p>");
-        // }
+        }
     })
     myWindow.document.write("</body></html>");
     myWindow.document.close();            
@@ -553,14 +573,21 @@ function INSERT_Diccionari(IdIdioma) {
         <p>DELETE FROM TblDiccionari WHERE IdIdioma='" + IdIdioma + "';</p>");
     // window.alert(SqlDiccionari);
     Diccionari.forEach (function(Password) {
-        // if (!SqlDiccionari.includes(Password)) {
+        /*
+        console.log("Password:" + Password + ", \n\
+                    !SqlDiccionari:" + !SqlDiccionari.includes(Password) + ", \n\
+                    !tePatrons:" + !tePatrons(Password) + ", \n\
+                    !teRepeticions:" + !teRepeticions(Password));
+        */
+        if (!SqlDiccionari.includes(Password) && !tePatrons(Password) && 
+            !teRepeticions(Password)) {
             myWindow.document.write("<p>INSERT INTO TblDiccionari \n\
                 (Password, IdIdioma, MD5, SHA1, AES) <br>VALUES ( \n\
                 '" + Password + "', '" + IdIdioma + "', <br>&nbsp;&nbsp;&nbsp; \n\
                 '" + MD5(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
                 '" + SHA1(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
                 '" + CryptoJS.AES.encrypt(Password, Password) + "');</p>");
-        // }
+        }
     })
     myWindow.document.write("</body></html>");
     myWindow.document.close();            

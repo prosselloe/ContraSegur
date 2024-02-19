@@ -236,7 +236,7 @@ const fs = require('fs');
 const diccionari = fs.readFileSync('diccionari.txt', 'utf8').split('\n');
 **/
 
-function esContrasenyaComuna(contrasenya) {
+function esComuna(contrasenya) {
     /**
     for (i = 1; i < diccionari.length; i++)
         if (diccionari[i] == contrasenya)
@@ -248,7 +248,7 @@ function esContrasenyaComuna(contrasenya) {
     return diccionari.has(contrasenya);
 }
 
-function teRepeticionsMultiplesCaracters(contrasenya) {
+function teRepeticions(contrasenya) {
     const repeticionsMultiples = /(.)\1{2,}/; // Detecta tres o més repeticions consecutives
     return repeticionsMultiples.test(contrasenya);
 }
@@ -269,12 +269,12 @@ function tePatrons(contrasenya) {
 
 function comprovaRobustesaContrasenya(contrasenya) {
     const longitudMinima = 8;
-    const caractersEspecials = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\-=|"'+´`¨º!ª·¿¬€]/; // Afegides del teclat ES: /["'+´`¨º!ª·¿¬€]/
+    const especials = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\-=|"'+´`¨º!ª·¿¬€]/; // Afegides del teclat ES: /["'+´`¨º!ª·¿¬€]/
     const majuscules = /[A-Z]|Ñ|Ç/;
     const minuscules = /[a-z]|[ñç]/;
     const numeros = /[0-9]/;
 
-    if (esContrasenyaComuna(contrasenya)) {
+    if (esComuna(contrasenya)) {
         return "La contrasenya és massa comuna. Si us plau, tria una contrasenya més forta.";
     }
 
@@ -282,7 +282,7 @@ function comprovaRobustesaContrasenya(contrasenya) {
         return "La contrasenya no pot contenir patrons previsibles.";
     }
 
-    if (teRepeticionsMultiplesCaracters(contrasenya)) {
+    if (teRepeticions(contrasenya)) {
         return "La contrasenya no pot contenir repeticions múltiples de caràcters.";
     }
 
@@ -290,7 +290,7 @@ function comprovaRobustesaContrasenya(contrasenya) {
         return "La contrasenya ha de contenir almenys una lletra majúscula, una minúscula i un número.";
     }
 
-    if (!caractersEspecials.test(contrasenya)) {
+    if (!especials.test(contrasenya)) {
         return "La contrasenya ha de contenir almenys un caràcter especial.";
     }
 
