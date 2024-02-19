@@ -2,10 +2,11 @@
 Contrasenyes Segures - Contraseñas Seguras - Secure Passwords
 <h2><a href="https://contrasegur.netlify.app">Índex</a></h2>
 <ul>
-    <li>Versió Pre-alfa o Prototip HTML/JavaScript: <a href='https://contrasegur.netlify.app/prototip'>https://contrasegur.netlify.app/prototip.html</a></li>
-    <li>Versió α: Versió amb Nivell de Robustesa: <a href='https://contrasegur.netlify.app/robustesa'>https://contrasegur.netlify.app/robustesa.html</a></li>
-    <li>Versió β: Versió amb Diccionari i Patrons: <a href='https://contrasegur.netlify.app/diccionaris'>https://contrasegur.netlify.app/diccionaris.html</a></li>
-    <li>Versió γ: Versió amb Base de Dades: <a href='https://contrasegur.netlify.app/basedades'>https://contrasegur.netlify.app/basedades.html<a/></li>
+    <li><a href="prototip.html">Versió Pre-alfa o Prototip HTML/JavaScript</a></li>
+    <li><a href="robustesa.html">Versió α: Versió amb Nivell de Robustesa</a></li>
+    <li><a href="diccionaris.html">Versió β: Versió amb Diccionari i Patrons</a></li>
+    <li><a href="basedades.html">Versió γ: Versió amb Base de Dades<a/></li>
+    <li><a href="https://sqlitesudio.netlify.app">SQLite Sudio en JavaScript</a></li>
 </ul>
     <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;" 
          title="IES Guillem Sagrera"/><br>
