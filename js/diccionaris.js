@@ -153,7 +153,7 @@ function Iniciar()
     **/ 
    
     window.alert("Password: "                + document.getElementById("password").value + "\n\
-            - " + comprovaRobustesaContrasenya(document.getElementById("password").value) + "\n\
+            - " + comprovaRobustesa(document.getElementById("password").value) + "\n\
             - Tendria un Cost Computacional per Força Bruta de: " + CostComputacional.toExponential() + 
             " pel que una màquina a 1 MIPS podria arribar a necessitar " + AnysProcessament.toExponential() + 
             " anys de processament, es a dir, " + DiesProcessament.toExponential() +  " dies.\n\
@@ -267,7 +267,7 @@ function tePatrons(contrasenya) {
     */
 }
 
-function comprovaRobustesaContrasenya(contrasenya) {
+function comprovaRobustesa(contrasenya) {
     const longitudMinima = 8;
     const especials = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\-=|"'+´`¨º!ª·¿¬€]/; // Afegides del teclat ES: /["'+´`¨º!ª·¿¬€]/
     const majuscules = /[A-Z]|Ñ|Ç/;
@@ -303,7 +303,7 @@ function comprovaRobustesaContrasenya(contrasenya) {
 }
 /**
 const contrasenya = "Exxempl3!";
-const resultat = comprovaRobustesaContrasenya(contrasenya);
+const resultat = comprovaRobustesa(contrasenya);
 console.log(resultat);
 **/
 
