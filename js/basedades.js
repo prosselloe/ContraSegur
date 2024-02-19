@@ -325,7 +325,9 @@ function readSingleFile(evt) {
         stream2 = stream3.replaceAll("/", "");
         stream3 = stream2.split(",");
         for (i = 0; i < stream3.length; i++) {
-            patrons[i] = new RegExp(stream3[i]);
+            if (stream3[i] != "") {
+                patrons[i] = new RegExp(stream3[i]);
+            }
         }        
         // window.alert("Patrons:" + patrons); 
       } else {
@@ -337,7 +339,9 @@ function readSingleFile(evt) {
         stream3 = stream2.split(",");
         for (i = 0; i < stream3.length; i++) {
             // window.alert("Diccionari.add: " + stream3[i]);
-            Diccionari.add(stream3[i]);
+            if (stream3[i] != "") {
+                Diccionari.add(stream3[i]);
+            }
         }        
       }
     }
@@ -370,19 +374,19 @@ function esComuna(contrasenya) {
    
     // Canviam estructura de dades Array() per Set()
     // return Diccionari.includes(contrasenya);
-    return Diccionari.has(contrasenya);
+    return Diccionari.has(contrasenya.toLowerCase());
 }
 
 function teRepeticions(contrasenya) {
     const repeticionsMultiples = /(.)\1{2,}/; // Detecta tres o més repeticions consecutives
-    return repeticionsMultiples.test(contrasenya);
+    return repeticionsMultiples.test(contrasenya.toLowerCase());
 }
 
 function tePatrons(contrasenya) {
     // cosnt patrons = [/123/, /abc/, /qwerty/]; // Afegir altres patrons si cal
     for (i = 0; i < patrons.length; i++) {
         // window.alert(patrons[i]);
-        if (patrons[i].test(contrasenya)) { return true; }
+        if (patrons[i].test(contrasenya.toLowerCase())) { return true; }
     }
     return false;
     // return patrons.some(pat => pat.test(contrasenya));

@@ -245,19 +245,19 @@ function esComuna(contrasenya) {
    
     // Canviam estructura de dades Array() per Set()
     // return diccionari.includes(contrasenya);
-    return diccionari.has(contrasenya);
+    return diccionari.has(contrasenya.toLowerCase());
 }
 
 function teRepeticions(contrasenya) {
     const repeticionsMultiples = /(.)\1{2,}/; // Detecta tres o més repeticions consecutives
-    return repeticionsMultiples.test(contrasenya);
+    return repeticionsMultiples.test(contrasenya.toLowerCase());
 }
 
 function tePatrons(contrasenya) {
     // cosnt patrons = [/123/, /abc/, /qwerty/]; // Afegir altres patrons si cal
     for (i = 0; i < patrons.length; i++) {
         // alert(patrons[i]);
-        if (patrons[i].test(contrasenya)) { return true; }
+        if (patrons[i].test(contrasenya.toLowerCase())) { return true; }
     }
     return false;
     // return patrons.some(pat => pat.test(contrasenya));
