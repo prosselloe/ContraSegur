@@ -196,15 +196,20 @@ function Iniciar()
     CostComputacional = Math.pow(Base , Exponent) / 10e6; // Per una màquina a 1 MIPS 
     
     // Too guessable: risky password. (guesses < 10e3)
-    if (CostComputacional < 10e3)        Robustesa = 0; 
+    if (CostComputacional < 10e3)       {Robustesa = 0;} 
     // Very guessable: protection from throttled online attacks. (guesses < 10e6)
-    else if (CostComputacional < 10e6)   Robustesa = 1; 
+    else if (CostComputacional < 10e6)  {Robustesa = 1;} 
     // Somewhat guessable: protection from unthrottled online attacks. (guesses < 10e8)
-    else if (CostComputacional < 10e8)  Robustesa = 2;
+    else if (CostComputacional < 10e8)  {Robustesa = 2;}
     // Safely unguessable: moderate protection from offline slow-hash scenario. (guesses < 10e10)
-    else if (CostComputacional < 10e10)  Robustesa = 3; 
+    else if (CostComputacional < 10e10) {Robustesa = 3;}
     // Very unguessable: strong protection from offline slow-hash scenario. (guesses >= 10e10)
-    else                                Robustesa = 4; 
+    else                                {Robustesa = 4;} 
+    
+    if (SqlDiccionari.includes(document.getElementById("password").value) ||
+        tePatrons(document.getElementById("password").value) || 
+        teRepeticions(document.getElementById("password").value)) 
+        {Robustesa = 0;}
       
     // Reproduim els sons en funció del nivell de Robustesa
     // if (document.getElementById('off').hidden) {
@@ -555,7 +560,7 @@ function UPDATE_Diccionari(IdIdioma) {
     Diccionari.forEach (function(Password) {
         if (SqlDiccionari.includes(Password)) {
             myWindow.document.write("<p>UPDATE TblDiccionari SET <br>&nbsp;&nbsp;&nbsp; \n\
-                MD5 = '" + MD5(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
+                MD5 = '" + md5(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
                 SHA1 = '" + SHA1(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
                 AES = '" + CryptoJS.AES.encrypt(Password, Password) + 
                 "'<br> WHERE TblDiccionari.Password = '" + Password + "';</p>");
@@ -588,7 +593,7 @@ function INSERT_Diccionari(IdIdioma) {
             myWindow.document.write("<p>INSERT INTO TblDiccionari \n\
                 (Password, IdIdioma, MD5, SHA1, AES) <br>VALUES ( \n\
                 '" + Password + "', '" + IdIdioma + "', <br>&nbsp;&nbsp;&nbsp; \n\
-                '" + MD5(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
+                '" + md5(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
                 '" + SHA1(Password) + "', <br>&nbsp;&nbsp;&nbsp; \n\
                 '" + CryptoJS.AES.encrypt(Password, Password) + "');</p>");
         }
