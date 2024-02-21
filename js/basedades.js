@@ -106,7 +106,6 @@ const Idiomes_dft = [
 ];
 var Idiomes = Idiomes_dft;
 var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
-var SqlTextosGUI = [];
 
 // Canviam estructura de dades Array() per Set()
 // var Diccionari_dft = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
@@ -114,16 +113,17 @@ var Diccionari_dft = new Set(["password", "guest", "dragon", "baseball", "footba
     "shadow", "master", "mustang", "michael", "pussy", "superman", "fuckyou", "121212", "killer", "trustno1", "jordan", 
     "jennifer", "hunter", "buster", "soccer", "harley", "batman", "tigger", "sunshine", "iloveyou", "fuckme", "charlie", 
     "thomas", "hockey", "ranger", "daniel", "starwars", "klaster", "112233", "george", "asshole", "computer", "michelle", 
-    "jessica", "pepper", "131313", "freedom", "pass", "fuck", "maggie", "159753", "ginger", "princess", "joshua", 
-    "cheese", "amanda", "summer", "love", "ashley", "6969", "nicole", "chelsea", "biteme", "matthew", "access", "yankees", 
-    "dallas", "austin", "thunder", "taylor", "matrix", "minecraft", "william", "corvette", "hello", "martin", "heather", 
-    "secret", "fucker", "merlin", "diamond", "hammer", "silver", "anthony", "justin", "test", "bailey", "q1w2e3r4t5", 
-    "patrick", "internet", "scooter", "orange", "golfer", "cookie", "richard", "samantha", "bigdog", "guitar", "jackson", 
-    "whatever", "mickey", "chicken", "sparky", "snoopy", "maverick", "phoenix", "camaro", "sexy", "peanut", "morgan", 
-    "welcome", "falcon", "cowboy", "ferrari", "samsung", "andrea", "smokey", "steelers", "joseph", "mercedes", "dakota", 
-    "arsenal", "eagles", "melissa", "boomer", "booboo", "spider", "nascar", "monster", "tigers", "yellow", "gateway", 
-    "marina", "diablo", "bulldog", "compaq", "purple", "hardcore", "banana", "junior", "hannah", "porsche", "lakers", 
-    "iceman", "money", "cowboys", "london", "tennis", "ncc1701", "coffee", ]);
+    "jessica", "pepper", "131313", "freedom", "pass", "fuck", "maggie", "159753", "ginger", "princess", "joshua", "cheese", 
+    "amanda", "summer", "love", "ashley", "6969", "nicole", "chelsea", "biteme", "matthew", "access", "yankees", "dallas", 
+    "austin", "thunder", "taylor", "matrix", "minecraft", "william", "corvette", "hello", "martin", "heather", "secret", 
+    "fucker", "merlin", "diamond", "hammer", "silver", "anthony", "justin", "test", "bailey", "q1w2e3r4t5", "patrick", 
+    "internet", "scooter", "orange", "golfer", "cookie", "richard", "samantha", "bigdog", "guitar", "jackson", "whatever", 
+    "mickey", "chicken", "sparky", "snoopy", "maverick", "phoenix", "camaro", "sexy", "peanut", "morgan", "welcome", 
+    "falcon", "cowboy", "ferrari", "samsung", "andrea", "smokey", "steelers", "joseph", "mercedes", "dakota", "arsenal", 
+    "eagles", "melissa", "boomer", "booboo", "spider", "nascar", "monster", "tigers", "yellow", "gateway", "marina", 
+    "diablo", "bulldog", "compaq", "purple", "hardcore", "banana", "junior", "hannah", "porsche", "lakers", "iceman", 
+    "money", "cowboys", "london", "tennis", "ncc1701", "coffee", "scooby", "miller", "boston", "q1w2e3r4", "fuckoff", 
+    "brandon", "yamaha", "chester", "mother", "forever", "johnny", "edward", "oliver", "redsox", "player", "nikita"]);
 var Diccionari = Diccionari_dft;
 var SqlDiccionari = [];
 
@@ -537,11 +537,12 @@ function SQL_TextosGUI(IdIdioma, TblTextosGUI) {
         Idiomes = Idiomes_dft;
     };  
     // window.alert(Idiomes[0].Titol);
-    SqlTextosGUI = TblTextosGUI;
 }
 
 function SQL_Patrons(IdIdioma, TblPatrons) {
     // window.alert("SQL_Patrons IdIdioma = '" + IdIdioma + "'");
+    patrons = [];
+    SqlPatrons = [];
     for (i = 0; i < TblPatrons.length; i++) {
         // console.log("TblPatrons[" + i + "].Pattern: " + TblPatrons[i].Pattern); 
         patrons[i] = new RegExp(TblPatrons[i].Pattern.replaceAll("/", ""));
@@ -552,6 +553,7 @@ function SQL_Patrons(IdIdioma, TblPatrons) {
 function SQL_Diccionari(IdIdioma, TblDiccionari) {
     // window.alert("SQL_Diccionari IdIdioma = '" + IdIdioma + "'");    
     Diccionari.clear();
+    SqlDiccionari = [];
     for (var i in TblDiccionari) {
         // console.log("TblDiccionari[" + i + "].Password: " + TblDiccionari[i].Password); 
         Diccionari.add(TblDiccionari[i].Password);  
