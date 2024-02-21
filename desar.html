@@ -9,6 +9,16 @@ and open the template in the editor.
         <title>Vols desar l'inici de sessió a ContraSegur?</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--
+        Llibreries per a la càrrega de la bases de dades
+        -->
+        <script src="js/alasql.js"></script>
+        <!-- <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script> -->
+        <!-- <script src="js/xlsx.full.min.js"></script> -->
+        <!-- <script src='js/sql-wasm.js'></script> -->
+        <script src='js/sql.js'></script>   
+        
         <script>
             // Diferents idiomes per la GUI
             const Idiomes_dft = [
@@ -177,7 +187,7 @@ and open the template in the editor.
             
             // Canviam els diferents literals de la GUI segons l'idioma
             function CanviarIdioma(IdIdioma) {
-                // AlaWeb_SQLite(IdIdioma);
+                AlaWeb_SQLite(IdIdioma);
                 Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
                 // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Inicis);
                 
@@ -190,6 +200,38 @@ and open the template in the editor.
                 document.getElementById("Desar").innerHTML = Idioma.Desar;
                 document.getElementById("Nodesar").innerHTML = Idioma.Nodesar;
             }
+            
+            // Funció per carregar la base de dades ContraSegur.db
+            function AlaWeb_SQLite(IdIdioma) {
+                // window.alert("AlaWeb_SQLite IdIdioma = '" + IdIdioma + "'");
+                config = {
+                    locateFile: filename => `/dist/${filename}`
+                    // locateFile: file => `https://sql.js.org/dist/${file}`
+                    // locateFile: filename => `https://unpkg.com/sql.js@1.6.2/dist/${filename}`
+                };
+                // The `initSqlJs` function is globally provided by all of the main dist files if loaded in the browser.
+                // We must specify this locateFile function if we are loading a wasm file from anywhere other than the 
+                // current html page's folder.
+
+                // Recuperam de la base de dades els TextosGUI per tots els Idiomes
+                // SELECT * FROM TblTextosGUI;
+                alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
+                        SELECT * FROM TblTextosGUI;',
+                //    [], function(idiomes) {Print_Data(TblTextosGUI = idiomes.pop());}
+                    [], function(idiomes) {SQL_TextosGUI(IdIdioma, idiomes.pop());}
+                );
+            }
+            
+            function SQL_TextosGUI(IdIdioma, TblTextosGUI) {
+                // window.alert("SQL_TextosGUI IdIdioma = '" + IdIdioma + "'");
+                Idiomes = TblTextosGUI;
+                if (Idiomes.length == 0) {Idiomes = Idiomes_dft;};
+                if (Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma) == undefined) {
+                    window.alert("GUI: Idioma no trobat / Idioma no encontrado / Language not found!");
+                    Idiomes = Idiomes_dft;
+                };  
+                // window.alert(Idiomes[0].Titol);
+            }                        
         </script>
     </head>
     <body onload="Inici();" style="background-image: url('img/passwordCL.png'); 
