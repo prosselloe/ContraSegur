@@ -672,6 +672,48 @@ INSERT INTO TblTextosGUI VALUES (
    "Don't save"
 );
 
+INSERT INTO TblTextosGUI VALUES (
+    "fr",
+    "Version avec Base de Bonnées de Mots de Passe Sécurisée",
+    "Utilisateur ou email: ",
+    "Mot de passe: ",
+    "Montrer: ",
+    " Minimum 8 caractères",
+    " au moins une lettre majuscule,",
+    " au moins une lettre minuscule,",
+    " au moins un numéro",
+    " au moins un caractère spécial.",
+    "Faible - Passable - Bon - Fort",
+    "Commencer la session",
+    "Le mot de passe est trop courant. Veuillez choisir un mot de passe plus fort.",
+    "Le mot de passe ne peut pas contenir de modèles prévisibles.",
+    "Le mot de passe ne peut pas contenir plusieurs répétitions de caractères.",
+    "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un numéro.",
+    "Le mot de passe doit contenir au moins un caractère spécial.",
+    "Le mot de passe est trop court. Il doit comporter au moins 8 caractères.",
+    "Mot de passe fort!",
+    "
+         - Il aurait un Coût de Calcul par Force Brute de: ",
+    " alors, de quoi une machine 1 MIPS pourrait-elle avoir besoin: ",
+    " années de traitement, c'est-à-dire, ",
+    " jours.
+         - Il aurait un Niveau de Robustesse de: ",
+    "/4, et un score zxcvbn de: ",
+    "Voulez-vous enregistrer votre identifiant?",
+    "Dictionnaire: ",
+    "Modèles: ",
+    "Afficher le tableau ASCII-HTML",
+    "Masquer le tableau ASCII-HTML",
+    "Voulez-vous enregistrer votre identifiant dans ContraSegur?",
+    "Identifiant enregistrée!",
+    "Bienvenue à nouveau ",
+    "Voulez-vous changer votre mot de passe?",
+    "Identifiant supprimée!",
+    "Afficher les identifiants enregistrées",
+    "Enregistrer",
+    "Ne pas enregistrer"
+);
+
 SELECT * FROM TblTextosGUI;
 SELECT Password FROM TblDiccionari 
    WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "ca";
