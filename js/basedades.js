@@ -313,7 +313,7 @@ function Iniciar()
         localStorage.setItem("username", document.getElementById("username").value);
         localStorage.setItem("password", document.getElementById("password").value);
         localStorage.setItem("IdIdioma", Idioma.IdIdioma);
-        const myWindow = window.open("desar.html", "_blank", "width=460, height=600, left=0, top=0, \n\
+        const myWindow = window.open("desar.html", "_blank", "width=550, height=600, left=0, top=0, \n\
             location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
     }
 }
@@ -471,7 +471,7 @@ function CanviarIdioma(IdIdioma) {
     }
     AlaWeb_SQLite(IdIdioma);
     Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
-    // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Mostrartaula);
+    // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Titol);
     
     document.title = Idioma.Titol;
     document.getElementById("Username").innerHTML = Idioma.Username;
