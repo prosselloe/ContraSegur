@@ -187,9 +187,11 @@ and open the template in the editor.
             
             // Canviam els diferents literals de la GUI segons l'idioma
             function CanviarIdioma(IdIdioma) {
+                // Encara que ho tenim igual que a basedades.js, aquí no funciona perquè sembla que continua amb aquesta funció
+                // abans d'haver carregat la taula TblTextosGUI de la base de dades de forma asíncrona. Necessitaríem un Promise.
                 AlaWeb_SQLite(IdIdioma);
                 Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
-                // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Inicis);
+                // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Titol2);
                 
                 document.title = Idioma.Titol2;
                 document.getElementById("Titol").innerHTML = Idioma.Titol2;
@@ -230,13 +232,13 @@ and open the template in the editor.
                     window.alert("GUI: Idioma no trobat / Idioma no encontrado / Language not found!");
                     Idiomes = Idiomes_dft;
                 };  
-                // window.alert(Idiomes[0].Titol);
+                // window.alert(Idiomes[0].Titol2);
             }                        
         </script>
     </head>
     <body onload="Inici();" style="background-image: url('img/passwordCL.png'); 
           background-size: 427px 403px; background-repeat: no-repeat;">    
-        <div id="Titol"><font size="+2">Vols desar l'inici de sessió a ContraSegur?</font></div>
+        <font size="+2"><div id="Titol">Vols desar l'inici de sessió a ContraSegur?</div></font>
         <table>
         <tbody>
         <tr>
