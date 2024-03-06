@@ -208,8 +208,6 @@ function Comprovar()
     Nivell = Base * Exponent / 16;
     document.getElementById("nivell").value = Nivell.toString();
 }
-
-function Comprovar() {}
             
 function Retroces() {
     var temporal = document.getElementById('password').value;
