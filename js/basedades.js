@@ -209,6 +209,12 @@ function Comprovar()
     document.getElementById("nivell").value = Nivell.toString();
 }
 
+function Retroces() {
+    var temporal = document.getElementById('password').value;
+    temporal = temporal.substring(0, temporal.length - 1); 
+    document.getElementById('password').value = temporal;
+}
+            
 function Iniciar()
 {
     /** 
