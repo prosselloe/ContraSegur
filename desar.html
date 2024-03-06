@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            #Teclat { position:relative; top:15px; left:25px; }
+            #Teclat { position:relative; top:250px; left:25px; }
         </style>
         
         <!--
@@ -237,6 +237,14 @@ and open the template in the editor.
                 };  
                 // window.alert(Idiomes[0].Titol2);
             }   
+            
+            function Comprovar() { Desats(); }
+            
+            function Retroces() {
+                var temporal = document.getElementById('password').value;
+                temporal = temporal.substring(0, temporal.length - 1); 
+                document.getElementById('password').value = temporal;
+            }
             
             // HTML includes are done by JavaScript
             function includeHTML() {
