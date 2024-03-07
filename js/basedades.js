@@ -208,7 +208,8 @@ function Comprovar()
     Nivell = Base * Exponent / 16;
     document.getElementById("nivell").value = Nivell.toString();
 }
-            
+ 
+// Funció per tractar la tecla de retrocés, BACKSPACE, del teclat en pantalla
 function Retroces() {
     var temporal = document.getElementById('password').value;
     temporal = temporal.substring(0, temporal.length - 1); 
