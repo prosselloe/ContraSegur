@@ -1,13 +1,12 @@
 /* 
-Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades.js
+Versió β: Versió amb Estructures de Dades Joc del Penjat: estructures.html i estructures.js
 */
-
     // Diferents idiomes per la GUI
-    const Idiomes_dft = [
+    const Idiomes = [
         {
             "IdIdioma": "ca",
-            "Titol": "Versió amb Base de Dades Joc del Penjat",
-            "Versio": "Versió γ Joc del Penjat",
+            "Titol": "Versió amb Estructures de Dades Joc del Penjat",
+            "Versio": "Versió β Joc del Penjat",
             "Input": "Escriu una lletra minúscula",
             "Pregunta": "Anam a la quinta forca?",
             "Comprovar": "Comprovar",
@@ -40,8 +39,8 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
         },
         {
             "IdIdioma": "es",
-            "Titol": "Versión con Base de Datos Juego del Ahorcado",
-            "Versio": "Versión γ Juego del Ahorcado",
+            "Titol": "Versión con Estructuras de Datos Juego del Ahorcado",
+            "Versio": "Versión β Juego del Ahorcado",
             "Input": "Escribe una letra minúscula",
             "Pregunta": "Vamos al quinto pino?",
             "Comprovar": "Comprobar",
@@ -74,8 +73,8 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
         },
         {
             "IdIdioma": "en",
-            "Titol": "Hangman Game Database Version",
-            "Versio": "Hangman Game γ Versión",
+            "Titol": "Hangman Game Data Structures Version",
+            "Versio": "Hangman Game β Version",
             "Input": "Write a lowercase letter",
             "Pregunta": "Are we going to the boondocks?",
             "Comprovar": "Check it",
@@ -105,20 +104,50 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
             "Perdut": "and you have lost!",
             "Descansi": "Rest in peace - RIP!",
             "Puntuacio": "Score:"
+        },
+        {
+            "IdIdioma": "fr",
+            "Titol": "Version avec Base de Données Jeu du Pendu",
+            "Versio": "Version γ Jeu du Pendu",
+            "Input": "Ecrire une lettre minuscule",
+            "Pregunta": "Allons-nous aux banlieue?",
+            "Comprovar": "Vérifier",
+            "Paraula": "Mot:",
+            "Sopes": "Tu abandonnes?",
+            "Pista": "Indice",
+            "Vides": "Vies:",
+            "Moix": "Un chat en a sept?",
+            "Lletres": "Lettres:",
+            "Ets": "Êtes-vous dans les lettres?",
+            "URLpistes": "URLindices:",
+            "Dita": "Dit",
+            "Dita1": "Aux banlieue,",
+            "Dita2": "Chez un pendu, ne parle pas de cordes,",
+            "Dita3": "Seize juges d'un tribunal mangent le foie d'un pendu, …",
+            "Credits": "Crédits:",
+            "YouTube": "Jeu Pendu sur Scratch",
+            "Wikis": "Pendu",
+            "Idioma": "en Français",
+            "Diccionari": "Dictionnaire",
+            "Teclat": "Afficher ou Masquer",
+            "Incorrecte": "Caractère non valide!",
+            "Repetida": "Lettre répétée!",
+            "Encertat": "Vous as raison!",
+            "Guanyat": "et vous avez gagné!",
+            "Fallat": "Vous avez échoué!",
+            "Perdut": "et vous avez perdu!",
+            "Descansi": "Repose en paix - RIP!",
+            "Puntuacio": "Score:"
         }
     ]
-    var Idiomes = Idiomes_dft;
     var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
 
     // Variables Globals.
     var Paraula = [];
     var Lletres = ["_", "_", "_", "_", "_", "_", "_"];
-    
-    const Vides_dft = 7;
-    var Vides = Vides_dft;
-    
+    var Vides = 7;
     var Punts = 0;
-    var IdIdioma_ant = "ca";
+    var IdIdioma_ant = "";
 
     // Llista de paraules per al joc i les pistes associades
     var paraules = ["cordes", "fetge", "forca", "jutges", 
@@ -128,8 +157,8 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
         "Setze jutges d'un jutjat mengen fetge d'un penjat"];
     var paraulespistes = [1, 2, 0, 2, 2, 2, 1, 0, 2];
     
-    // Simulam una Taula de ParaulesPistes, similar a la consulta a la base de dades, amb un array d'objectes
-    const Taula_dft = [
+    // Simulam una taula de base de dades amb un array d'objectes
+    var taula = [
         {"Paraula": "cordes", "Pista": "A ca un penjat, no hi anomenis cordes"},
         {"Paraula": "fetge", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
         {"Paraula": "forca", "Pista": "A la quinta forca"},
@@ -160,7 +189,6 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
         {"Paraula": "wealthy", "Pista": "Early to bed, early to rise, makes the man healthy, wealthy and wise"},
         {"Paraula": "wise", "Pista": "Early to bed, early to rise, makes the man healthy, wealthy and wise"}   
     ];
-    var Taula = Taula_dft;
     
     // Escull una paraula aleatòriament
     var aleatori = Math.floor(Math.random() * paraules.length);
@@ -168,11 +196,16 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
     var pista = pistes[paraulespistes[aleatori]];
     
     // Alternativament, fent servir l'array d'objectes
-    // window.alert(Taula.length);
-    aleatori = Math.floor(Math.random() * Taula.length);
-    paraula = Taula[aleatori].Paraula;
-    pista = Taula[aleatori].Pista;
+    // window.alert(taula.length);
+    aleatori = Math.floor(Math.random() * taula.length);
+    paraula = taula[aleatori].Paraula;
+    pista = taula[aleatori].Pista;
     // window.alert("aleatori="  + aleatori + ", paraula=" + paraula + ", pista=" + pista);
+    
+    // Assignam la bandera de l'idioma de la paraula
+    if (aleatori <  9) { IdIdioma_ant = "ca"; } else 
+    if (aleatori < 18) { IdIdioma_ant = "es"; } else 
+                       { IdIdioma_ant = "gb"; }                               
     
     // Marcam cada lletra amb un "_"
     for (var i = 0; i < paraula.length; i++) {
@@ -185,7 +218,7 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
         temporal = temporal.substring(0, temporal.length - 1); 
         document.getElementById('lletra').value = temporal;
     } 
-
+    
     // Comprovam si la lletra es troba a la Paraula.
     function Comprovar() {
         // Variables Locals.
@@ -269,7 +302,7 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
             // Afegim lletra a Lletres i actualitzam la pantalla.
             // Lletres = Lletres + "<del>" + lletra + "<del>,";
             // Lletres.push(lletra);
-            Lletres[Vides_dft - Vides] = lletra;
+            Lletres[7 - Vides] = lletra;
             document.getElementById("lletres").innerHTML = Lletres;
             
             // Decrementam el comptador Vides.    
@@ -353,19 +386,23 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
         document.getElementById('teclat').disabled = true;
         document.getElementById('sons').disabled = true;
         document.getElementById("pista").disabled = true;
-        
-        document.getElementById("ca").disabled = true;
-        document.getElementById("es").disabled = true;
-        document.getElementById("en").disabled = true;
-        
         document.getElementById("Segons").hidden = true;    
     }
 
     // Amagam totes les imatges.
     function AmagaImg() {
-        AmagaForca();
+        document.getElementById("ahorcado_6").hidden = true;
+        document.getElementById("ahorcado_5").hidden = true;
+        document.getElementById("ahorcado_4").hidden = true;
+        document.getElementById("ahorcado_3").hidden = true;
+        document.getElementById("ahorcado_2").hidden = true;
+        document.getElementById("ahorcado_1").hidden = true;
+        document.getElementById("ahorcado_0").hidden = true;
         document.getElementById("ahorcado").hidden = true;
 
+        // document.getElementById("disfraz3").hidden = true;
+        document.getElementById("disfraz2").hidden = true;
+        document.getElementById("disfraz1").hidden = true;
         document.getElementById("caminar").hidden = true;
         document.getElementById("rotar").hidden = true;
 
@@ -373,9 +410,6 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
         document.getElementById('Teclat').hidden = true;
         
         document.getElementById("paraula").innerHTML = Paraula;
-        document.getElementById("vides").innerHTML = 
-                "&nbsp;&nbsp;&nbsp;\n\
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vides;
         document.body.style.display = "block";
 
         // Cream els options del Select pels Idiomes sense "ca" i "es"
@@ -389,30 +423,21 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
                 IdiomesSelect.add(opcion);
             }
         });
-    }
-
-    // Amagam totes les imatges.
-    function AmagaForca() {
-        document.getElementById("ahorcado_6").hidden = true;
-        document.getElementById("ahorcado_5").hidden = true;
-        document.getElementById("ahorcado_4").hidden = true;
-        document.getElementById("ahorcado_3").hidden = true;
-        document.getElementById("ahorcado_2").hidden = true;
-        document.getElementById("ahorcado_1").hidden = true;
-        document.getElementById("ahorcado_0").hidden = true;
         
-        // document.getElementById("disfraz3").hidden = true;
-        document.getElementById("disfraz2").hidden = true;
-        document.getElementById("disfraz1").hidden = true;
+        // Mostram la bandera de l'idioma de la paraula
+        document.getElementById("bandera").src = "img/" + IdIdioma_ant + ".png";
     }
 
-    // Canviam els diferents literals de la GUI segons l'idioma
+    // Canviam els diferents literals de la GUI segons IdIdioma
     function CanviarIdioma(IdIdioma) {
         if ((IdIdioma != "ca") && (IdIdioma != "es")) {
             document.getElementById("Idiomes").value = IdIdioma;
         }
-        AlaWeb_SQLite(IdIdioma);
-        Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
+        if (Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma) == undefined) {
+            window.alert("GUI: Idioma no trobat / Idioma no encontrado / Language not found!");
+        } else {
+            Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
+        }
         
         document.title = Idioma.Titol;
         document.getElementById("Versio").innerHTML = Idioma.Versio;
@@ -440,39 +465,6 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
             document.getElementById("Punts").innerHTML = Idioma.Puntuacio + " " + Punts;
         }
 
-        // Escull una nova paraula aleatòriament
-        // window.alert(Taula.length);
-        aleatori = Math.floor(Math.random() * Taula.length);
-        paraula = Taula[aleatori].Paraula;
-        pista = Taula[aleatori].Pista;
-        // window.alert("[" + paraula + "]=[" + pista + "]");
-        
-        // window.alert("Nova paraula aleatòria / Nueva palabra aleatoria / New random word! \n\
-        //               IdIdioma = '" + IdIdioma_ant + "'");
-        window.alert("Nova paraula aleatòria / Nueva palabra aleatoria / New random word!");
-        if (IdIdioma_ant == "en") { IdIdioma_ant = "gb"; }                                 
-        document.getElementById("bandera").src = "img/" + IdIdioma_ant + ".png";      
-        
-        Paraula = [];
-        // Marcam cada lletra amb un "_"
-        for (var i = 0; i < paraula.length; i++) {
-            Paraula[i] = "_";
-        }
-        document.getElementById("paraula").innerHTML = Paraula;
-        for (var i = 0; i < Vides_dft - Vides; i++) {
-            Lletres[i] = "_";
-        }
-        document.getElementById("lletres").innerHTML = Lletres;
-        Vides = Vides_dft;    
-        document.getElementById("vides").innerHTML = 
-                "&nbsp;&nbsp;&nbsp;\n\
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vides;
-        AmagaForca();
-        document.getElementById("disfraz3").hidden = false;
-                
-        IdIdioma_ant = IdIdioma;
-        // window.alert("IdIdioma_ant = '" + IdIdioma_ant + "'");
-        
         if ((IdIdioma != "ca") && (IdIdioma != "es")) {
             // Per a l'idioma "en = English" la bandera es la de "gb = Great Britain"  
             if (IdIdioma == "en") { IdIdioma = "gb"; }                                 
@@ -523,76 +515,6 @@ Versió γ: Versió amb Base de Dades Joc del Penjat: basedades.html i basedades
         }
     }
     
-    // Funció per carregar la base de dades penjat.db
-    function AlaWeb_SQLite(IdIdioma) {
-        // window.alert("AlaWeb_SQLite IdIdioma = '" + IdIdioma + "'");
-        config = {
-            locateFile: filename => `/dist/${filename}`
-            // locateFile: file => `https://sql.js.org/dist/${file}`
-            // locateFile: filename => `https://unpkg.com/sql.js@1.6.2/dist/${filename}`
-        };
-        // The `initSqlJs` function is globally provided by all of the main dist files if loaded in the browser.
-        // We must specify this locateFile function if we are loading a wasm file from anywhere other than the 
-        // current html page's folder.
-
-        // Recuperam de la base de dades els TextosGUI per tots els Idiomes
-        alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
-                SELECT * FROM TblTextosGUI;',
-        //    [], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
-            [], function(idiomes) {SQL_TblTextosGUI(IdIdioma, idiomes.pop());}
-        );
-
-        // Recuperam de la base de dades les paraules del IdIdioma
-        alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
-                SELECT Paraula, Pista \n\
-                FROM TblParaules INNER JOIN TblPistes \n\
-                  ON TblParaules.IdPista = TblPistes.IdPista \n\
-                WHERE TblParaules.IdIdioma = "' + IdIdioma + '";',
-        //    [], function(taula) {Print_Data(Taula = taula.pop());}
-            [], function(taula) {SQL_TblParaulesPistes(IdIdioma, taula.pop());}
-        );
-    }
-    
-    function SQL_TblTextosGUI(IdIdioma, TblTextosGUI) {
-        // window.alert("SQL_TextosGUI IdIdioma = '" + IdIdioma + "'");
-        Idiomes = TblTextosGUI;
-        if (Idiomes.length == 0) { Idiomes = Idiomes_dft; };
-        if (Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma) == undefined) {
-            window.alert("GUI: Idioma no trobat / Idioma no encontrado / Language not found!");
-            Idiomes = Idiomes_dft;
-        };        
-        // window.alert(Idiomes[0].Versio);
-    }
-    
-    function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {
-        // window.alert("SQL_TblParaulesPistes IdIdioma = '" + IdIdioma + "'");
-        Taula = TblParaulesPistes;
-        if (Taula.length == 0) {
-            window.alert("Idioma sense paraules / Idioma sin palabras / Language without words!");
-            Taula = Taula_dft;
-            IdIdioma = "ca";
-            IdIdioma_ant = "ca";
-        } else {
-            // window.alert("Paraules en idioma / Palabras en idioma / Language words = '" + IdIdioma + "'");
-        };        
-        // window.alert(Taula[0].Pista);
-    }
-    
-    // Print data   
-    function Print_Data(res) {
-        for (var i in res) 
-        {
-           // console.log("row " + i);
-           // document.getElementById("res").innerHTML += "<br>";
-           for (var j in res[i]) 
-             {
-              // console.log(" " + res[i][j]);
-              // document.getElementById("res").innerHTML += res[i][j] + ", ";
-              window.alert("res[" + i + "][" +j + "] = " + res[i][j]);
-             }
-        }
-    }
-
     // HTML includes are done by JavaScript
     function includeHTML() {
         var z, i, elmnt, file, xhttp;
