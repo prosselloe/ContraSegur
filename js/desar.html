@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang = "ca">
+    <head>
+        <title>Vols desar l'inici de sessió a ContraSegur?</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #Teclat { position:relative; top:210px; left:25px; }
+        </style>
+        
+        <!--
+        Llibreries per a la càrrega de la bases de dades
+        -->
+        <script src="js/alasql.js"></script>
+        <!-- <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script> -->
+        <!-- <script src="js/xlsx.full.min.js"></script> -->
+        <!-- <script src='js/sql-wasm.js'></script> -->
+        <script src='js/sql.js'></script>   
+        
+        <script>
+            // Diferents idiomes per la GUI
+            const Idiomes_dft = [
+                {
+                    "IdIdioma": "ca",
+                    "Titol2": "Vols desar l'inici de sessió a ContraSegur?",
+                    "Username": "Usuari o correu: ",
+                    "Password": "Contrasenya: ",
+                    "Mostrar": "Mostrar: ",
+                    "Guardat": "Inici de sessió guardat!",
+                    "Benvingut": "Benvingut de nou ",
+                    "Canviar": "Vol canviar la contrasenya?",
+                    "Esborrat": "Inici de sessió esborrat!",
+                    "Inicis": "Mostrar els inicis de sessió desats",
+                    "Desar": "Desar",
+                    "Nodesar": "No desar"
+                },
+                {
+                    "IdIdioma": "es",
+                    "Titol2": "¿Quieres guardar el inicio de sesión en ContraSegur?",
+                    "Username": "Usuario o correo: ",
+                    "Password": "Contraseña: ",
+                    "Mostrar": "Mostrar: ",
+                    "Guardat": "¡Inicio de sesión guardado!",
+                    "Benvingut": "Bienvenido de nuevo ",
+                    "Canviar": "¿Quiere cambiar la contraseña?",
+                    "Esborrat": "¡Inicio de sesión borrado!",
+                    "Inicis": "Mostrar los inicios de sesión guardados",
+                    "Desar": "Guardar",
+                    "Nodesar": "No guardar"
+                },
+                {
+                    "IdIdioma": "en",
+                    "Titol2": "Do you want to save your login at ContraSegur?",
+                    "Username": "User or email: ",
+                    "Password": "Password: ",
+                    "Mostrar": "Show: ",
+                    "Guardat": "Login saved!",
+                    "Benvingut": "Welcome back ",
+                    "Canviar": "Do you want to change your password?",
+                    "Esborrat": "Login deleted!",
+                    "Inicis": "Show saved logins",
+                    "Desar": "Save",
+                    "Nodesar": "Don't save"
+                }
+            ]
+            var Idiomes = Idiomes_dft;
+            var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
+            
+            // Wait 5 seconds before executing next line
+            // https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
+            const delay = ms => new Promise(res => setTimeout(res, ms));
+            
+            function Inici()
+            {   
+                // window.alert(localStorage.getItem('username') + "=" + localStorage.getItem('password'));
+                document.getElementById('username').value = localStorage.getItem('username');
+                document.getElementById('password').value = localStorage.getItem('password'); 
+                CanviarIdioma(localStorage.getItem('IdIdioma'));
+                
+                // Simulam les cookies amb una estructura de dades Map()
+                cookiesMap = new Map();
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    cookiesMap.set(ca[i].split('=')[0], ca[i].split('=')[1]);  
+                }         
+            }         
+            function Desar()
+            {
+                // document.cookie = document.getElementById('username').value + "=" + 
+                //     document.getElementById('password').value; 
+                let cname = document.getElementById('username').value;
+                checkCookie(cname);
+                // let cvalue = document.getElementById('password').value;
+                // setCookie(cname, cvalue, 365);
+            }
+            function Esborrar()
+            {
+                cname = document.getElementById('username').value;
+                document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                window.alert(Idioma.Esborrat);
+                
+                // Simulam les cookies amb una estructura de dades Map()
+                cookiesMap.delete(cname);
+            }
+            function Desats()
+            {
+                const myWindow = window.open("", "_blank", "width=350, height=350, left=15, top=235,\n\
+                    location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
+                myWindow.document.open();
+                myWindow.document.write("<html><head><title>" + Idioma.Inicis +
+                    "</title></head><body style='background-size: 320px 302px; " + 
+                    'background-image: url("img/password.png"); background-repeat: no-repeat;' +
+                    "'><table border='1' style='border-collapse: collapse'>\n\
+                    <tr><th>" + Idioma.Username + "</th><th>" + Idioma.Password + "</th></tr>");
+        
+                // Simulam les cookies amb una estructura de dades Map()
+                /** 
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    myWindow.document.write("<tr><td>" + ca[i].split('=')[0] + 
+                        "</td><td>" + ca[i].split('=')[1] + "</tr>");
+                }  
+                **/
+                cookiesMap.forEach(function(cvalue, cname) {
+                    myWindow.document.write("<tr><td>" + cname + "</td><td>" + cvalue + "</tr>");
+                })  
+                
+                myWindow.document.write("</table></body></html>");
+                myWindow.document.close();            
+            }
+
+            /*
+             * W3Schools JavaScript Cookies: https://www.w3schools.com/js/js_cookies.asp
+             */
+            // A Function to Set a Cookie
+            function setCookie(cname, cvalue, exdays) {
+                const d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                let expires = "expires="+ d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                window.alert(Idioma.Guardat);
+                
+                // Simulam les cookies amb una estructura de dades Map()
+                cookiesMap.set(cname, cvalue);
+            }
+            // A Function to Get a Cookie
+            function getCookie(cname) {
+                /**
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                  let c = ca[i];
+                  while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                  }
+                  if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                  }
+                }
+                return "";
+                **/  
+               
+                // Canviam les cookies per una estructura de dades Map()
+                cvalue = cookiesMap.get(cname);
+                if (cvalue === undefined) {cvalue = ""}
+                return cvalue;
+            }
+            // A Function to Check a Cookie
+            function checkCookie(cname) {
+                let cvalue = getCookie(cname);
+                // window.alert("cvalue: " + cvalue);
+                if (cvalue !== "") {
+                  window.alert(Idioma.Benvingut + cname);
+                  if (cvalue !== document.getElementById('password').value) {
+                     if (confirm(Idioma.Canviar) === true) {
+                        setCookie(cname, document.getElementById('password').value, 365);
+                     }
+                  }
+                } else {
+                  cvalue = document.getElementById('password').value;
+                  if (cvalue !== "" && cvalue !== null) {
+                    setCookie(cname, cvalue, 365);
+                  }
+                }
+            }
+            
+            // Canviam els diferents literals de la GUI segons l'idioma
+            // function CanviarIdioma(IdIdioma) {
+            async function CanviarIdioma(IdIdioma) {
+                // Encara que ho tenim igual que a basedades.js, aquí no funciona perquè sembla que continua amb aquesta funció
+                // abans d'haver carregat la taula TblTextosGUI de la base de dades de forma asíncrona. Necessitaríem un Promise.
+                AlaWeb_SQLite(IdIdioma);
+                
+                // How do I wait for a promise to finish before returning the variable of a function?
+                // https://stackoverflow.com/questions/27759593/how-do-i-wait-for-a-promise-to-finish-before-returning-the-variable-of-a-functio
+                // let result = await AlaWeb_SQLite(IdIdioma);
+                
+                // Wait 5 seconds before executing next line
+                // https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
+                await delay(100);
+            
+                Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
+                // window.alert("CanviarIdioma(" + IdIdioma + "). " + Idioma.Titol2);
+                
+                document.title = Idioma.Titol2;
+                document.getElementById("Titol").innerHTML = Idioma.Titol2;
+                document.getElementById("Username").innerHTML = Idioma.Username;
+                document.getElementById("Password").innerHTML = Idioma.Password;
+                document.getElementById("Mostrar").innerHTML = Idioma.Mostrar;
+                document.getElementById("Inicis").innerHTML = Idioma.Inicis;
+                document.getElementById("Desar").innerHTML = Idioma.Desar;
+                document.getElementById("Nodesar").innerHTML = Idioma.Nodesar;   
+            }
+            
+            // Funció per carregar la base de dades ContraSegur.db
+            function AlaWeb_SQLite(IdIdioma) {
+                // window.alert("AlaWeb_SQLite IdIdioma = '" + IdIdioma + "'");
+                config = {
+                    locateFile: filename => `/dist/${filename}`
+                    // locateFile: file => `https://sql.js.org/dist/${file}`
+                    // locateFile: filename => `https://unpkg.com/sql.js@1.6.2/dist/${filename}`
+                };
+                // The `initSqlJs` function is globally provided by all of the main dist files if loaded in the browser.
+                // We must specify this locateFile function if we are loading a wasm file from anywhere other than the 
+                // current html page's folder.
+
+                // Recuperam de la base de dades els TextosGUI per tots els Idiomes
+                // SELECT * FROM TblTextosGUI;
+                alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
+                        SELECT * FROM TblTextosGUI;',
+                //    [], function(idiomes) {Print_Data(TblTextosGUI = idiomes.pop());}
+                    [], function(idiomes) {SQL_TextosGUI(IdIdioma, idiomes.pop());}
+                );
+            }
+            
+            function SQL_TextosGUI(IdIdioma, TblTextosGUI) {
+                // window.alert("SQL_TextosGUI IdIdioma = '" + IdIdioma + "'");
+                Idiomes = TblTextosGUI;
+                if (Idiomes.length == 0) {Idiomes = Idiomes_dft;};
+                if (Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma) == undefined) {
+                    window.alert("GUI: Idioma no trobat / Idioma no encontrado / Language not found!");
+                    Idiomes = Idiomes_dft;
+                };  
+                // window.alert(Idiomes[3].Titol2);
+            }   
+            
+            function Comprovar() {}
+            
+            // Funció per tractar la tecla de retrocés, BACKSPACE, del teclat en pantalla
+            function Retroces() {
+                var temporal = document.getElementById('password').value;
+                temporal = temporal.substring(0, temporal.length - 1); 
+                document.getElementById('password').value = temporal;
+            }
+            
+            // HTML includes are done by JavaScript
+            function includeHTML() {
+                var z, i, elmnt, file, xhttp;
+                /* Loop through a collection of all HTML elements: */
+                z = document.getElementsByTagName("*");
+                for (i = 0; i < z.length; i++) {
+                    elmnt = z[i];
+                    /*search for elements with a certain atrribute:*/
+                    file = elmnt.getAttribute("w3-include-html");
+                    if (file) {
+                        /* Make an HTTP request using the attribute value as the file name: */
+                        xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function () {
+                            if (this.readyState == 4) {
+                                if (this.status == 200) {
+                                    elmnt.innerHTML = this.responseText;
+                                }
+                                if (this.status == 404) {
+                                    elmnt.innerHTML = "Page not found.";
+                                }
+                                /* Remove the attribute, and call this function once more: */
+                                elmnt.removeAttribute("w3-include-html");
+                                includeHTML();
+                            }
+                        }
+                        xhttp.open("GET", file, true);
+                        xhttp.send();
+                        /* Exit the function: */
+                        return;
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body onload="Inici();" style="background-image: url('img/passwordCL.png'); 
+          background-size: 427px 403px; background-repeat: no-repeat;">    
+        <font size="+2"><div id="Titol">Vols desar l'inici de sessió a ContraSegur?</div></font><hr>
+        <table>
+        <tbody>
+        <tr>
+            <td style="text-align: right">        
+                <div id="Username">Usuari o correu: </div>
+            </td>
+            <td>
+                <input type="text" id="username">&nbsp;
+                <button type="button" id="esborrar" onclick="Esborrar();">
+                    <img src="img/trash-can.png" alt="paperera" width=15 height=15></button><br>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right">        
+                <div id="Password">Contrasenya: </div>
+            </td>
+            <td>
+                <input type="password" id="password">&nbsp;
+                <button id="teclat" onclick="document.getElementById('Teclat').hidden = 
+                                            !document.getElementById('Teclat').hidden;" title="Mostra o Amaga">
+                    <img src="img/keyboard.png" alt="teclat" width=15 height=15></button><br>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right">        
+                <div id="Mostrar">Mostrar: </div>
+            </td>
+            <td>
+                <input type="checkbox" id="mostrar" onchange="
+                    if (document.getElementById('password').type === 'password') 
+                        document.getElementById('password').type = 'text'
+                    else
+                        document.getElementById('password').type = 'password';">
+            </td>
+        </tr>
+        </tbody>
+        </table>
+        <button type="button" id="Inicis" accesskey="M" onclick="Desats();">Mostrar els inicis de sessió desats</button>&nbsp;
+        <button type="button" id="Desar" accesskey="D" onclick="Desar();">Desar</button>&nbsp;
+        <button type="button" id="Nodesar" accesskey="N" onclick="window.close();">No desar</button>        
+        <!--
+        Including HTML is done by using a w3-include-html attribute
+        -->
+        <div w3-include-html="teclat.html"></div> 
+        <!--
+        Call includeHTML() at the bottom of the page
+        -->
+        <script>
+            includeHTML();
+        </script>         
+    </body>
+</html>
