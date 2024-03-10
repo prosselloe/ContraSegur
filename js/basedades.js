@@ -246,14 +246,20 @@ function Iniciar()
         switch (Robustesa) {
             case 0:
             case 1:
-                document.getElementById("boom_cloud").play();
+                if (document.getElementById('off').hidden) { 
+                    document.getElementById("boom_cloud").play();
+                }
                 break;
             case 2:            
             case 3:
-                document.getElementById("clock_ticking").play();
+                if (document.getElementById('off').hidden) { 
+                    document.getElementById("clock_ticking").play();
+                }
                 break;
             default:
-                document.getElementById("cheer").play();
+                if (document.getElementById('off').hidden) { 
+                    document.getElementById("cheer").play();
+                }
                 break;
         }
      // }
