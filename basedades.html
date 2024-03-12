@@ -7,11 +7,12 @@ Versió δ: Versió amb Base de Dades Contrasenyes Segures: basedades.html, desa
         <title>Contrasenyes segures</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/contrasegur.css">
         <style>
-            #taulaASCII { position:absolute; top: 600px; left:0px; }
-            #Idioma { position:relative; top:-550px; left:150px; }
-            #Sons { position:relative; top:-433px; left:354px; }
-            #Teclat { position:relative; top:-585px; left:150px; }
+            #taulaASCII { position:absolute; top: 595px; left:0px; }
+            #Idioma { position:relative; top:-545px; left:150px; }
+            #Sons { position:relative; top:-430px; left:354px; }
+            #Teclat { position:relative; top:-580px; left:150px; }
         </style>
         <script src="js/basedades.js" type="text/javascript"></script>
         
@@ -96,146 +97,145 @@ Versió δ: Versió amb Base de Dades Contrasenyes Segures: basedades.html, desa
         </script>      
         <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;" 
              title="IES Guillem Sagrera"/><br>
-        <table>
-        <tbody>
-        <tr>
-            <td style="background-color: Gainsboro; text-align: right">
-                <div id="Username">Usuari o correu: </div>
-            </td>
-            <td>
-                <input type="text" id="username" value="z9999999">&nbsp;&nbsp;
-                <a href="https://prosselloe.wordpress.com/?p=10809" target="_blank">
-                     <img src="img/info.jpg" alt="info" title="Crèdits" width=18 height=18>
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td style="background-color: Gainsboro; text-align: right">        
-                <div id="Password">Contrasenya: </div>
-            </td>
-            <td>
-                <input type="password" id="password" onchange="Comprovar()">
-                <button id="teclat" onclick="document.getElementById('Teclat').hidden = 
-                            !document.getElementById('Teclat').hidden;" title="Mostra o Amaga">
-                            <img src="img/keyboard.png" alt="teclat" width=15 height=15></button>
-            </td>
-        </tr>
-        <tr>
-            <td style="background-color: Gainsboro; text-align: right">
-                <div id="Mostrar">Mostrar: </div>
-            </td>
-            <td>
-                <input type="checkbox" id="mostrar" onchange="
-                    if (document.getElementById('password').type == 'password') 
-                        document.getElementById('password').type = 'text'
-                    else
-                        document.getElementById('password').type = 'password'"> 
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right">
-                <input type="checkbox" id="minimcar" disabled>
-            </td>
-            <td style="background-color: PaleGreen;">        
-                <div id="Minimcar"> Mínim 8 caràcters,</div>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right">                
-                <input type="checkbox" id="majuscula" disabled>
-            </td>
-            <td style="background-color: PaleGreen;">        
-                <div id="Majuscula"> almenys una lletra majúscula,</div>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right">                
-                <input type="checkbox" id="minuscula" disabled>
-            </td>
-            <td style="background-color: PaleGreen;">        
-                <div id="Minuscula"> almenys una lletra minúscula,</div>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right">                
-                <input type="checkbox" id="numero" disabled>
-            </td>
-            <td style="background-color: PaleGreen;">        
-                <div id="Numero"> almenys un número,</div>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right">                
-                <input type="checkbox" id="carespecial" disabled>
-            </td>
-            <td style="background-color: PaleGreen;">        
-                <div id="Carespecial"> almenys un carácter especial.</div>
-            </td>
-        </tr>
-        <tr>
+        <!-- <div class="container"> -->
+            <table>
+            <tbody>
+            <tr>
+                <td style="background-color: Gainsboro; text-align: right">
+                    <div id="Username">Usuari o correu: </div>
+                </td>
+                <td>
+                    <input type="text" id="username" value="z9999999">&nbsp;&nbsp;
+                    <a href="https://prosselloe.wordpress.com/?p=10809" target="_blank">
+                         <img src="img/info.jpg" alt="info" title="Crèdits" width=18 height=18>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: Gainsboro; text-align: right">        
+                    <div id="Password">Contrasenya: </div>
+                </td>
+                <td>
+                    <input type="password" id="password" onchange="Comprovar()">
+                    <button id="teclat" onclick="document.getElementById('Teclat').hidden = 
+                                !document.getElementById('Teclat').hidden;" title="Mostra o Amaga">
+                                <img src="img/keyboard.png" alt="teclat" width=15 height=15></button>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: Gainsboro; text-align: right">
+                    <div id="Mostrar">Mostrar: </div>
+                </td>
+                <td>
+                    <input type="checkbox" id="mostrar" onchange="
+                        if (document.getElementById('password').type == 'password') 
+                            document.getElementById('password').type = 'text'
+                        else
+                            document.getElementById('password').type = 'password'"> 
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right">
+                    <input type="checkbox" id="minimcar" disabled>
+                </td>
+                <td style="background-color: PaleGreen;">        
+                    <div id="Minimcar"> Mínim 8 caràcters,</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right">                
+                    <input type="checkbox" id="majuscula" disabled>
+                </td>
+                <td style="background-color: PaleGreen;">        
+                    <div id="Majuscula"> almenys una lletra majúscula,</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right">                
+                    <input type="checkbox" id="minuscula" disabled>
+                </td>
+                <td style="background-color: PaleGreen;">        
+                    <div id="Minuscula"> almenys una lletra minúscula,</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right">                
+                    <input type="checkbox" id="numero" disabled>
+                </td>
+                <td style="background-color: PaleGreen;">        
+                    <div id="Numero"> almenys un número,</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right">                
+                    <input type="checkbox" id="carespecial" disabled>
+                </td>
+                <td style="background-color: PaleGreen;">        
+                    <div id="Carespecial"> almenys un carácter especial.</div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td style="background-color: LightSalmon; text-align: center">        
+                    <div id="Robustesa">Dèbil - Regular - Bona - Forta</div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td style="background-color: LightSalmon; text-align: center">        
+                    <progress id="nivell" value="0" max="100"></progress>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td style="background-color: LightSalmon; text-align: center">        
+                    <div translate="no">Weak - Fair - Good - Strong</div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>        
+                    <button type="button" id="inisessio" onclick="Iniciar();" disabled
+                        style="padding: 6px; margin-top: 6px;">Iniciar sessió</button>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: Gainsboro; text-align: right">        
+                    <a href="https://en.wikipedia.org/wiki/List_of_the_most_common_passwords" target="_blank">
+                        <div id="Diccionari">Diccionari: </div> 
+                    </a>
+                </td>
+                <td>
+                    <input type="file" id="diccionari" />
+                    <button id="updare" onclick="UPDATE_Diccionari(document.getElementById('Idiomes').value);">
+                                <img src="img/update.png" alt="updare" width=15 height=15></button>
+                    <button id="insert" onclick="INSERT_Diccionari(document.getElementById('Idiomes').value);">
+                                <img src="img/insert.png" alt="insert" width=15 height=15></button>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: Gainsboro; text-align: right">        
+                    <a href="https://en.wikipedia.org/wiki/QWERTY" target="_blank">
+                        <div id="Patrons">Patrons: </div>
+                    </a>
+                </td>
+                <td>
+                    <input type="file" id="patrons" />
+                </td>
+                <script type="text/javascript">
+                    document.getElementById('diccionari').addEventListener('change', readSingleFile, false);
+                    document.getElementById('patrons').addEventListener('change', readSingleFile, false);
+                </script>
+            </tr>
+            <tr>
             <td>&nbsp;</td>
-            <td style="background-color: LightSalmon; text-align: center">        
-                <div id="Robustesa">Dèbil - Regular - Bona - Forta</div>
-            </td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td style="background-color: LightSalmon; text-align: center">        
-                <progress id="nivell" value="0" max="100"></progress>
-            </td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td style="background-color: LightSalmon; text-align: center">        
-                <div translate="no">Weak - Fair - Good - Strong</div>
-            </td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>        
-                <button type="button" id="inisessio" onclick="Iniciar();" disabled>Iniciar sessió</button>
-            </td>
-        </tr>
-        <tr>
-            <td style="background-color: Gainsboro; text-align: right">        
-                <a href="https://en.wikipedia.org/wiki/List_of_the_most_common_passwords" target="_blank">
-                    <div id="Diccionari">Diccionari: </div> 
-                </a>
-            </td>
-            <td>
-                <input type="file" id="diccionari" />
-                <button id="updare" onclick="UPDATE_Diccionari(document.getElementById('Idiomes').value);">
-                            <img src="img/update.png" alt="updare" width=15 height=15></button>
-                <button id="insert" onclick="INSERT_Diccionari(document.getElementById('Idiomes').value);">
-                            <img src="img/insert.png" alt="insert" width=15 height=15></button>
-            </td>
-        </tr>
-        <tr>
-            <td style="background-color: Gainsboro; text-align: right">        
-                <a href="https://en.wikipedia.org/wiki/QWERTY" target="_blank">
-                    <div id="Patrons">Patrons: </div>
-                </a>
-            </td>
-            <td>
-                <input type="file" id="patrons" />
-            </td>
-            <script type="text/javascript">
-                document.getElementById('diccionari').addEventListener('change', readSingleFile, false);
-                document.getElementById('patrons').addEventListener('change', readSingleFile, false);
-            </script>
-        </tr>
-        <tr>
-        <td>&nbsp;</td>
-            <td>        
-                <button type="button" id="Mostrartaula" onclick="Mostrar();">Mostrar taula ASCII-HTML</button>
-            </td>
-        </tr>
-        </tbody>
-        </table>
+                <td>        
+                    <button type="button" id="Mostrartaula" onclick="Mostrar();">Mostrar taula ASCII-HTML</button>
+                </td>
+            </tr>
+            </tbody>
+            </table>
+        <!-- </div> -->     
         <div id="Idioma" translate="no">
             <a href="https://contrasegur.netlify.app/index.html" 
                id="ca"> <img src="img/ca.png" alt="tra_ca" title="en Català"></a>

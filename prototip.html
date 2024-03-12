@@ -7,6 +7,7 @@ Versió Pre-alfa o Prototip HTML/JavaScript Contrasenyes Segures: prototip.html
         <title>Contrasenyes segures</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/contrasegur.css">
         <script>
             function Comprovar()
             {
@@ -73,18 +74,25 @@ Versió Pre-alfa o Prototip HTML/JavaScript Contrasenyes Segures: prototip.html
     <body>
         <img src="img/icono-centre.jpg" alt="Icono Centre" style="width:150px;height:150px;" 
              title="IES Guillem Sagrera"/><br>
-        Usuari o correu: <input type="text" id="user" value="Z999999"><br>
-        Contrasenya: <input type="password" id="password" onchange="Comprovar()"><br>
-        <input type="checkbox" id="minimcar"    disabled> Mínim 8 caràcters,<br>
-        <input type="checkbox" id="majuscula"   disabled> almenys una lletra majúscula,<br>
-        <input type="checkbox" id="minuscula"   disabled> almenys una lletra minúscula,<br>
-        <input type="checkbox" id="numero"      disabled> almenys un número,<br>
-        <input type="checkbox" id="carespecial" disabled> almenys un carácter especial.<br>
-        <br>
-        Dèbil - Regular - Bona - Forta<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<progress id="nivell" value="0" max="100"></progress><br>
-        Weak - So-so - Great! - Strong<br>
-        <br>
-        <button type="button" id="inisessio" onclick="Iniciar();" disabled>Iniciar sessió</button><br>
+        <div class="container">
+            <form>
+                <label for="user">Usuari o correu: </label>
+                <input type="text" id="user" value="Z999999" required><br>
+                <label for="password">Contrasenya: </label>
+                <input type="password" id="password" onchange="Comprovar()" required><br>
+                <input type="submit" id="inisessio" onclick="Iniciar();" value="Iniciar sessió" 
+                       style="padding: 6px; margin-top: 6px;" disabled><br>
+            </form>
+            <br>
+            <input type="checkbox" id="minimcar"    disabled> Mínim 8 caràcters,<br>
+            <input type="checkbox" id="majuscula"   disabled> almenys una lletra majúscula,<br>
+            <input type="checkbox" id="minuscula"   disabled> almenys una lletra minúscula,<br>
+            <input type="checkbox" id="numero"      disabled> almenys un número,<br>
+            <input type="checkbox" id="carespecial" disabled> almenys un carácter especial.<br>
+            <br>
+            Dèbil - Regular - Bona - Forta<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<progress id="nivell" value="0" max="100"></progress><br>
+            Weak - So-so - Great! - Strong<br>
+        </div>        
     </body>
 </html>
