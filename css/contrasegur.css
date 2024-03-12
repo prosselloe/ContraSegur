@@ -1,0 +1,19 @@
+/* Style all input fields */
+input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Style the container for inputs */
+.container {
+  width: 350px;
+  background-color: #f1f1f1;
+  padding: 8px;
+}
