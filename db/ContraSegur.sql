@@ -485,7 +485,7 @@ FOREIGN KEY (IdIdioma) REFERENCES TblIdiomes(IdIdioma)
 
 INSERT INTO TblDiccionari VALUES ("111111", "", "", "", "");
 INSERT INTO TblDiccionari VALUES ("12345", "", "", "", "");
-INSERT INTO TblDiccionari VALUES ("123456", "", "e10adc3949ba59abbe56e057f20f883e", "7c4a8d09ca3762af61e59520943dc26494f8941b", "U2FsdGVkX1/9ZprU3mhF+0iME50mVEVeUXziGTs3lIk=");
+INSERT INTO TblDiccionari VALUES ("123456", "", "", "", "");
 INSERT INTO TblDiccionari VALUES ("12345678", "", "", "", "");
 INSERT INTO TblDiccionari VALUES ("123456789", "", "25f9e794323b453885f5181f1b624d0b", "f7c3bc1d808e04732adf679965ccc34ca7ae3441", "U2FsdGVkX1/+4SEwiV/idGWjfLLfRuxYH/NlXrH/HpM=");
 INSERT INTO TblDiccionari VALUES ("guest", "en", "084e0343a0486ff05530df6c705c8bb4", "35675e68f4b5af7b995d9205ad0fc43842f16450", "U2FsdGVkX18htagc+PKSErSQi3Ax6YqO2mxsWrgRQAk=");
@@ -503,6 +503,7 @@ FOREIGN KEY (IdIdioma) REFERENCES TblIdiomes(IdIdioma)
 INSERT INTO TblPatrons VALUES ("/123/", "");
 INSERT INTO TblPatrons VALUES ("/abc/", "");
 INSERT INTO TblPatrons VALUES ("/qwerty/", "");
+INSERT INTO TblPatrons VALUES ("/azerty/", "fr");
 
 DROP TABLE TblTextosGUI;
 CREATE TABLE TblTextosGUI  (
@@ -704,7 +705,7 @@ INSERT INTO TblTextosGUI VALUES (
     "Modèles: ",
     "Afficher le tableau ASCII-HTML",
     "Masquer le tableau ASCII-HTML",
-    "Voulez-vous enregistrer votre identifiant dans ContraSegur?",
+    "Voulez-vous enregistrer votre ID dans ContraSegur?",
     "Identifiant enregistrée!",
     "Bienvenue à nouveau ",
     "Voulez-vous changer votre mot de passe?",
