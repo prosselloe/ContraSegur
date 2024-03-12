@@ -194,8 +194,12 @@ function Comprovar()
             document.getElementById("minimcar").checked) 
         {
             document.getElementById("inisessio").disabled = false;
+            document.getElementById("inisessio").style = "background-color: #04AA6D; color: white; \n\
+                                                          padding: 6px; margin-top: 6px;";            
         } else {
             document.getElementById("inisessio").disabled = false //true;
+            document.getElementById("inisessio").style = "background-color: #04AA6D; color: white; \n\
+                                                          padding: 6px; margin-top: 6px;";            
         }
     }
     
