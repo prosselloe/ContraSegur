@@ -227,18 +227,18 @@ function Iniciar()
      * En funció de les dades d’entrada, calcular el nombre d’intents són necessaris per trobar una contrasenya similar:
      * Per exemple, si només són dígits: 10X on x és el nombre de dígits de la contrasenya
     **/
-    CostComputacional = Math.pow(Base , Exponent) / 10e6; // Per una màquina a 1 MIPS 
+    CostComputacional = Math.pow(Base , Exponent) / 1e6; // Per una màquina a 1 MIPS 
     
-    // Too guessable: risky password. (guesses < 10e3)
-    if (CostComputacional < 10e3)       {Robustesa = 0;} 
-    // Very guessable: protection from throttled online attacks. (guesses < 10e6)
-    else if (CostComputacional < 10e6)  {Robustesa = 1;} 
-    // Somewhat guessable: protection from unthrottled online attacks. (guesses < 10e8)
-    else if (CostComputacional < 10e8)  {Robustesa = 2;}
-    // Safely unguessable: moderate protection from offline slow-hash scenario. (guesses < 10e10)
-    else if (CostComputacional < 10e10) {Robustesa = 3;}
-    // Very unguessable: strong protection from offline slow-hash scenario. (guesses >= 10e10)
-    else                                {Robustesa = 4;} 
+    // Too guessable: risky password. (guesses < 1e3)
+         if (CostComputacional < 1e3)  {Robustesa = 0;} 
+    // Very guessable: protection from throttled online attacks. (guesses < 1e6)
+    else if (CostComputacional < 1e6)  {Robustesa = 1;} 
+    // Somewhat guessable: protection from unthrottled online attacks. (guesses < 1e8)
+    else if (CostComputacional < 1e8)  {Robustesa = 2;}
+    // Safely unguessable: moderate protection from offline slow-hash scenario. (guesses < 1e10)
+    else if (CostComputacional < 1e10) {Robustesa = 3;}
+    // Very unguessable: strong protection from offline slow-hash scenario. (guesses >= 1e10)
+    else                               {Robustesa = 4;} 
     
     if (SqlDiccionari.includes(document.getElementById("password").value) ||
         tePatrons(document.getElementById("password").value) || 
@@ -252,6 +252,7 @@ function Iniciar()
             case 1:
                 if (document.getElementById('off').hidden) { 
                     document.getElementById("boom_cloud").play();
+                    document.getElementById("bell_toll_x3").play();
                 }
                 break;
             case 2:            
@@ -262,6 +263,7 @@ function Iniciar()
                 break;
             default:
                 if (document.getElementById('off').hidden) { 
+                    document.getElementById("miau").play();
                     document.getElementById("cheer").play();
                 }
                 break;
@@ -317,7 +319,7 @@ function Iniciar()
                    <br>SHA256: "   + CryptoJS.SHA256(document.getElementById("password").value));
     **/ 
 
-    window.alert("Password: "                + document.getElementById("password").value + 
+    window.alert("Password: "              + document.getElementById("password").value + 
             "\n\     - " + comprovaRobustesa(document.getElementById("password").value) + 
             Idioma.Computacional + CostComputacional.toExponential() + 
             Idioma.Maquina + AnysProcessament.toExponential() + 
