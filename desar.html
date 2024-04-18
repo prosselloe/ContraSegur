@@ -111,9 +111,10 @@ and open the template in the editor.
                 myWindow.document.open();
                 myWindow.document.write("<html><head><title>" + Idioma.Inicis +
                     "</title></head><body style='background-size: 320px 302px; " + 
-                    'background-image: url("img/password.png"); background-repeat: no-repeat;' +
-                    "'><table border='1' style='border-collapse: collapse'>\n\
-                    <tr><th>" + Idioma.Username + "</th><th>" + Idioma.Password + "</th></tr>");
+                    'background-image: url("img/password.png"); background-repeat: no-repeat;' + "'>" + 
+                    "<table border='1' style='border-collapse: collapse'>" +
+                    "<tr><th>" + Idioma.Username + "</th><th>" + Idioma.Password + 
+                    "<button onclick='window.close()'>X</button>" + "</th></tr>");
         
                 // Simulam les cookies amb una estructura de dades Map()
                 /** 
@@ -323,7 +324,7 @@ and open the template in the editor.
         </table>
         <button type="button" id="Inicis" accesskey="M" onclick="Desats();">Mostrar els inicis de sessió desats</button>&nbsp;
         <button type="button" id="Desar" accesskey="D" onclick="Desar();">Desar</button>&nbsp;
-        <button type="button" id="Nodesar" accesskey="N" onclick="window.close();">No desar</button>        
+        <button type="button" id="Nodesar" accesskey="N" onclick="window.close();">No desar</button>       
         <!--
         Including HTML is done by using a w3-include-html attribute
         -->
