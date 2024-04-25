@@ -1,0 +1,62 @@
+{
+  "name": "com.coolappz.contrasegurapp",
+  "displayName": "ContraSegurApp",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cordova-android": "^10.0.1",
+    "cordova-plugin-battery-status": "git+https://github.com/apache/cordova-plugin-battery-status.git",
+    "cordova-plugin-camera": "git+https://github.com/apache/cordova-plugin-camera.git",
+    "cordova-plugin-console": "git+https://github.com/apache/cordova-plugin-console.git",
+    "cordova-plugin-contacts": "git+https://github.com/apache/cordova-plugin-contacts.git",
+    "cordova-plugin-device": "git+https://github.com/apache/cordova-plugin-device.git",
+    "cordova-plugin-device-motion": "git+https://github.com/apache/cordova-plugin-device-motion.git",
+    "cordova-plugin-device-orientation": "git+https://github.com/apache/cordova-plugin-device-orientation.git",
+    "cordova-plugin-dialogs": "git+https://github.com/apache/cordova-plugin-dialogs.git",
+    "cordova-plugin-file": "git+https://github.com/apache/cordova-plugin-file.git",
+    "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git",
+    "cordova-plugin-geolocation": "git+https://github.com/apache/cordova-plugin-geolocation.git",
+    "cordova-plugin-globalization": "git+https://github.com/apache/cordova-plugin-globalization.git",
+    "cordova-plugin-media": "git+https://github.com/apache/cordova-plugin-media.git",
+    "cordova-plugin-media-capture": "git+https://github.com/apache/cordova-plugin-media-capture.git",
+    "cordova-plugin-network-information": "git+https://github.com/apache/cordova-plugin-network-information.git",
+    "cordova-plugin-splashscreen": "git+https://github.com/apache/cordova-plugin-splashscreen.git",
+    "cordova-plugin-vibration": "git+https://github.com/apache/cordova-plugin-vibration.git"
+  },
+  "devDependencies": {},
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-media": {},
+      "cordova-plugin-media-capture": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-battery-status": {},
+      "cordova-plugin-camera": {},
+      "cordova-plugin-globalization": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-device-orientation": {},
+      "cordova-plugin-contacts": {},
+      "cordova-plugin-device-motion": {},
+      "cordova-plugin-geolocation": {
+        "GPS_REQUIRED": "true"
+      },
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-console": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
+}
