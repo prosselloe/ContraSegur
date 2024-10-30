@@ -68,23 +68,24 @@ function Comprovar()
         if (!isNaN(lletra)) {
             document.getElementById("numero").checked = true;
             
+        // Comprovam que hi hagi un número
+        if (!isNaN(lletra)) {
+            document.getElementById("numero").checked = true;
+
         // Comprovam que hi hagi una lletra
         // if (((lletra.toLowerCase() >= "a") && (lletra.toLowerCase() <= "z")) || 
-        //             (lletra.toLowerCase() == "ñ") || (lletra.toLowerCase() == "ç")) {             
+        //      (lletra.toLowerCase() == "ñ") || (lletra.toLowerCase() == "ç")) {             
 
-            
         // Si no és un número ni una lletra, aleshores serà un caràcter especial
-        } else if (lletra == lletra.toUpperCase() && lletra == lletra.toLowerCase()) {
+        } else if (lletra.toUpperCase() === lletra.toLowerCase()) {
             document.getElementById("carespecial").checked = true;
-            // Comprovam que hi hagi una lletra majúscula    
-            } else {if (lletra == lletra.toUpperCase()) {
-                document.getElementById("majuscula").checked = true;
-            // Comprovam que hi hagi una lletra minúscula    
-            } else if (lletra == lletra.toLowerCase()) {
-                document.getElementById("minuscula").checked = true;
-            }
-
-        }
+        // Comprovam que hi hagi una lletra majúscula    
+        } else if (lletra === lletra.toUpperCase()) {
+            document.getElementById("majuscula").checked = true;
+        // Comprovam que hi hagi una lletra minúscula    
+        } else /* if (lletra === lletra.toLowerCase()) */ {
+            document.getElementById("minuscula").checked = true;
+        } 
 
         // Si es compleixen totes les condicions, activam el botó d'Iniciar Sessió
         if (document.getElementById("majuscula").checked &&
