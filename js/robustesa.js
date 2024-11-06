@@ -52,20 +52,21 @@ function Comprovar()
         } else /* if (lletra === lletra.toLowerCase()) */ {
             document.getElementById("minuscula").checked = true;
         } 
-
-        // Si es compleixen totes les condicions, activam el botó d'Iniciar Sessió
-        if (document.getElementById("majuscula").checked &&
-            document.getElementById("minuscula").checked &&
-            document.getElementById("numero").checked &&
-            document.getElementById("carespecial").checked &&
-            document.getElementById("minimcar").checked) 
-        {
-            document.getElementById("inisessio").disabled = false;
-        } else {
-            document.getElementById("inisessio").disabled = false //true;
         }
     }
     
+    // Si es compleixen totes les condicions, activam el botó d'Iniciar Sessió
+    if (document.getElementById("majuscula").checked &&
+        document.getElementById("minuscula").checked &&
+        document.getElementById("numero").checked &&
+        document.getElementById("carespecial").checked &&
+        document.getElementById("minimcar").checked) 
+    {
+        document.getElementById("inisessio").disabled = false;
+    } else {
+        document.getElementById("inisessio").disabled = false //true;
+    }
+       
     Base = 0;
     if (document.getElementById("numero").checked) {Base = Base + 10;} // Dígits 
     if (document.getElementById("minuscula").checked) {Base = Base + 40;} // Lletres minúscules mes vocals amb diacrítics  
