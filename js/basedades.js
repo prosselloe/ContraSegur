@@ -155,56 +155,53 @@ function Comprovar()
     document.getElementById("numero").checked = false;
     document.getElementById("carespecial").checked = false;
 
+    // Comprovam la mida mímina
+    if (password.length >= 8) {
+        document.getElementById("minimcar").checked = true;
+    } 
+        
     var lletra = "";
     for (i = 0; i < password.length; i++) {
         lletra = password.charAt(i);
         // window.alert(lletra);
 
-        // Comprovam la mida mímina
-        if (password.length >= 8) {
-            document.getElementById("minimcar").checked = true;
-        } 
-        
         // Comprovam que hi hagi un número
         if (!isNaN(lletra)) {
             document.getElementById("numero").checked = true;
             
-        // Comprovam que hi hagi un número
-        if (!isNaN(lletra)) {
-            document.getElementById("numero").checked = true;
-
         // Comprovam que hi hagi una lletra
         // if (((lletra.toLowerCase() >= "a") && (lletra.toLowerCase() <= "z")) || 
         //      (lletra.toLowerCase() == "ñ") || (lletra.toLowerCase() == "ç")) {             
-
+            
         // Si no és un número ni una lletra, aleshores serà un caràcter especial
         } else if (lletra.toUpperCase() === lletra.toLowerCase()) {
             document.getElementById("carespecial").checked = true;
-        // Comprovam que hi hagi una lletra majúscula    
-        } else if (lletra === lletra.toUpperCase()) {
-            document.getElementById("majuscula").checked = true;
-        // Comprovam que hi hagi una lletra minúscula    
-        } else /* if (lletra === lletra.toLowerCase()) */ {
-            document.getElementById("minuscula").checked = true;
-        } 
-
-        // Si es compleixen totes les condicions, activam el botó d'Iniciar Sessió
-        if (document.getElementById("majuscula").checked &&
-            document.getElementById("minuscula").checked &&
-            document.getElementById("numero").checked &&
-            document.getElementById("carespecial").checked &&
-            document.getElementById("minimcar").checked) 
-        {
-            document.getElementById("inisessio").disabled = false;
-            document.getElementById("inisessio").style = "background-color: #04AA6D; color: white; \n\
-                                                          padding: 6px; margin-top: 6px;";            
-        } else {
-            document.getElementById("inisessio").disabled = false //true;
-            document.getElementById("inisessio").style = "background-color: #04AA6D; color: white; \n\
-                                                          padding: 6px; margin-top: 6px;";            
+            // Comprovam que hi hagi una lletra majúscula    
+            } else {if (lletra === lletra.toUpperCase()) {
+                document.getElementById("majuscula").checked = true;
+            // Comprovam que hi hagi una lletra minúscula    
+            } else /* if (lletra === lletra.toLowerCase()) */ {
+                document.getElementById("minuscula").checked = true;
+            }
         }
     }
     
+    // Si es compleixen totes les condicions, activam el botó d'Iniciar Sessió
+    if (document.getElementById("majuscula").checked &&
+        document.getElementById("minuscula").checked &&
+        document.getElementById("numero").checked &&
+        document.getElementById("carespecial").checked &&
+        document.getElementById("minimcar").checked) 
+    {
+        document.getElementById("inisessio").disabled = false;
+        document.getElementById("inisessio").style = "background-color: #04AA6D; color: white; \n\
+                                                      padding: 6px; margin-top: 6px;";            
+    } else {
+        document.getElementById("inisessio").disabled = false //true;
+        document.getElementById("inisessio").style = "background-color: #04AA6D; color: white; \n\
+                                                      padding: 6px; margin-top: 6px;";            
+    }
+
     Base = 0;
     if (document.getElementById("numero").checked) {Base = Base + 10;} // Dígits 
     if (document.getElementById("minuscula").checked) {Base = Base + 40;} // Lletres minúscules mes vocals amb diacrítics  
