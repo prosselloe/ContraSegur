@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Trying to send an email</title>
         <meta charset="UTF-8"/>
         <script src="https://smtpjs.com/v3/smtp.js"></script>
         <!--
@@ -23,19 +24,18 @@
                   message => alert(message)
                 );
                 */
-                alert("Trying to send an email.")
+                alert("Trying to send an email.");
                 Email.send({
-                SecureToken : "9b2e9944-bbc3-45f3-859d-4632af255e80",
-                // Host : "smtp.elasticemail.com:2525",
-                /*
-                Host : "smtp25.elasticemail.com",
-                Username : "prosselloe@gmail.com",
-                Password : "491EA576BCF6BE5B13AB3CD21BDAA7BA401B",
-                */
-                To : "prosselloe@gmail.com",
-                From : "pererossello@iesbendinat.org",
-                Subject : "emailSubject",
-                Body : "emailBody",
+                    // SecureToken : "9b2e9944-bbc3-45f3-859d-4632af255e80",
+                    // Host : "smtp.elasticemail.com:2525",
+                    Host : "smtp.elasticemail.com",
+                    Username : "prosselloe@gmail.com",
+                    Password : "491EA576BCF6BE5B13AB3CD21BDAA7BA401B",
+                    
+                    To : "prosselloe@gmail.com",
+                    From : "prosselloe@gmail.com",
+                    Subject : emailSubject,
+                    Body : emailBody
                 }).then(
                     message => alert("Sent successfully.")
                 );
@@ -44,9 +44,10 @@
     </head>
     <body>
         <form method="post">
-            <input type="text" id="emailSubject" placeholder="Type your subject... "/><br>
-            <input type="text" id="emailBody" placeholder="Type something... "/><br>
+            <input type="text" id="emailSubject" placeholder="Type your subject..."/><br>
+            <input type="text" id="emailBody" placeholder="Type something..."/><br>
             <input type="button" value="Send Email" onclick="send()"/><br>
+            <a href="mailto:prosselloe@gmail.com?subject=Type your subject...&body=Type something...">Send MailTo</a>
         </form>
     </body>
 </html>
