@@ -1,5 +1,5 @@
 /* 
- * Versió β: Versió amb Diccionari i Patrons Contrasenyes Segures: diccionaris.html i diccionaris.js
+ * Versió γ: Versió amb Estructures de Dades Contrasenyes Segures: estructures.html, desar.html i estructures.js
  */
 
 /**
@@ -8,8 +8,9 @@
  * https://es.statista.com/grafico/23636/contrasenas-mas-usadas-en-el-mundo/
 **/
 
-// var diccionari = ["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"];
-var diccionari = ["password", "guest", "dragon", "baseball", "football", "monkey", "letmein", "696969", 
+// Canviam estructura de dades Array() per Set()
+// var diccionari = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
+var diccionari =  new Set(["password", "guest", "dragon", "baseball", "football", "monkey", "letmein", "696969", 
     "shadow", "master", "mustang", "michael", "pussy", "superman", "fuckyou", "121212", "killer", "trustno1", "jordan", 
     "jennifer", "hunter", "buster", "soccer", "harley", "batman", "tigger", "sunshine", "iloveyou", "fuckme", "charlie", 
     "thomas", "hockey", "ranger", "daniel", "starwars", "klaster", "112233", "george", "asshole", "computer", "michelle", 
@@ -23,7 +24,7 @@ var diccionari = ["password", "guest", "dragon", "baseball", "football", "monkey
     "eagles", "melissa", "boomer", "booboo", "spider", "nascar", "monster", "tigers", "yellow", "gateway", "marina", 
     "diablo", "bulldog", "compaq", "purple", "hardcore", "banana", "junior", "hannah", "porsche", "lakers", "iceman", 
     "money", "cowboys", "london", "tennis", "ncc1701", "coffee", "scooby", "miller", "boston", "q1w2e3r4", "fuckoff", 
-    "brandon", "yamaha", "chester", "mother", "forever", "johnny", "edward", "oliver", "redsox", "player", "nikita"];
+    "brandon", "yamaha", "chester", "mother", "forever", "johnny", "edward", "oliver", "redsox", "player", "nikita"]);
 
 // var patrons = ["/123/", "/abc/", "/qwerty/"];
 var patrons = [/098/, /0pm/, /0pñ/, /123/, /1aq/, /1qa/, /234/, /2ws/, /2zs/, /321/, /345/, /3ed/, /432/, /456/, 
@@ -180,6 +181,14 @@ function Iniciar()
             " pel que una màquina a 1 MIPS podria arribar a necessitar " + AnysProcessament.toExponential() + 
             " anys de processament, es a dir, " + DiesProcessament.toExponential() +  " dies.\n\
             - Tendria un Nivell de Robustesa de: " + Robustesa + "/4, i un zxcvbn Score de: " + result.score + "/4."); 
+    
+    // Demanam a l'usuari si vol desar l'inici de sessió
+    if (confirm("Vol desar l'inici de sessió?") == true) {
+        localStorage.setItem("username", document.getElementById("username").value);
+        localStorage.setItem("password", document.getElementById("password").value);
+        const myWindow = window.open("desar.html", "_blank", "width=460, height=600, left=0, top=0, \n\
+            location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
+    }
 }
 
 function Mostrar()
@@ -220,8 +229,14 @@ function readSingleFile(evt) {
         }        
         // alert("Patrons:" + patrons); 
       } else {
-        diccionari = contents.replaceAll("\r\n", ",");
+        // Canviam estructura de dades Array() per Set()
+        // diccionari = contents.replaceAll("\r\n", ",");
         // alert("Diccionari:" + diccionari); 
+        stream1 = contents.replaceAll("\r\n", ",");
+        stream3 = stream1.split(",");
+        for (i = 0; i < stream3.length; i++) {
+            diccionari.add(stream3[i]);
+        }        
       }
     }
     r.readAsText(f);
@@ -250,7 +265,10 @@ function esComuna(contrasenya) {
         if (diccionari[i] == contrasenya)
             return true;
     **/
-    return diccionari.includes(contrasenya);
+   
+    // Canviam estructura de dades Array() per Set()
+    // return diccionari.includes(contrasenya);
+    return diccionari.has(contrasenya.toLowerCase());
 }
 
 function teRepeticions(contrasenya) {
