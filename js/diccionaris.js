@@ -220,7 +220,9 @@ function readSingleFile(evt) {
         }        
         // alert("Patrons:" + patrons); 
       } else {
-        diccionari = contents.replaceAll("\r\n", ",");
+        // stream1 = contents.replaceAll("\r\n", ",");
+        stream1 = contents.replaceAll("\n", ",");
+        diccionari = stream1.split(",");
         // alert("Diccionari:" + diccionari); 
       }
     }
