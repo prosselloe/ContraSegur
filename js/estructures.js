@@ -229,14 +229,16 @@ function readSingleFile(evt) {
         }        
         // alert("Patrons:" + patrons); 
       } else {
+        // stream1 = contents.replaceAll("\r\n", ",");
         // Canviam estructura de dades Array() per Set()
-        // diccionari = contents.replaceAll("\r\n", ",");
-        // alert("Diccionari:" + diccionari); 
-        stream1 = contents.replaceAll("\r\n", ",");
+        // stream1 = contents.replaceAll("\n", ",");
+        // diccionari = stream1.split(",");
+        stream1 = contents.replaceAll("\n", ",");
         stream3 = stream1.split(",");
         for (i = 0; i < stream3.length; i++) {
             diccionari.add(stream3[i]);
         }        
+        // alert("Diccionari:" + diccionari); 
       }
     }
     r.readAsText(f);
