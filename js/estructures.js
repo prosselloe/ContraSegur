@@ -189,7 +189,7 @@ function Iniciar()
         const myWindow = window.open("desar.html", "_blank", "width=460, height=600, left=0, top=0, \n\
             location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
     }
-}
+} 
 
 function Mostrar()
 {
