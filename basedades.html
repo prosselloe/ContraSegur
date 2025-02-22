@@ -67,6 +67,37 @@ Versió δ: Versió amb Base de Dades Contrasenyes Segures: basedades.html, desa
             <script src="components/enc-utf16-min.js"></script>
             -->
             
+        <!-- EASIEST ONLINE FORM BUILDER
+            Powerful forms get it done.
+            https://eu.jotform.com/ 
+        -->
+        <script src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js'></script>
+        <script>
+          window.addEventListener("DOMContentLoaded", function() {
+            window.AgentInitializer.init({
+              agentRenderURL: "https://eu.jotform.com/agent/01952e21566578dd867d900b82eae1da47db",
+              rootId: "JotformAgent-01952e21566578dd867d900b82eae1da47db",
+              formID: "01952e21566578dd867d900b82eae1da47db",
+              queryParams: ["skipWelcome=1", "maximizable=1"],
+              domain: "https://eu.jotform.com",
+              isDraggable: false,
+              background: "linear-gradient(180deg, #F0E4D7 0%, #FCF5EC 100%)",
+              buttonBackgroundColor: "#0A1551",
+              buttonIconColor: "#FFF",
+              variant: false,
+              customizations: {
+                "greeting": "Yes",
+                "greetingMessage": "Hola, com et puc ajudar?",
+                "openByDefault": "No",
+                "pulse": "Yes",
+                "position": "right",
+                "autoOpenChatIn": "0"
+              },
+              isVoice: undefined
+            });
+          });
+        </script>
+
         <!--
         Llibreries per a la càrrega de la bases de dades
         -->
