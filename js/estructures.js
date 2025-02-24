@@ -201,6 +201,21 @@ function Mostrar()
 }
 
 /**
+* Crear Contraseña Automáticamente en Javascript
+* https://compubinario.com/crear-contrasena-automaticamente-en-javascript/
+**/
+function autoCreate(plength){
+  var chars = "abcdefghijklmnopqrstubwsyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  chars += "ñçÑÇáéíóúàèïòüÁÉÍÓÚÀÈÏÒÜ!" + '"' + "#$%&'()*+,-./:;<=>?@[\]^_`{|}~¡¨ª¬´·º¿€"
+  var password = '';    
+    for (i = 0; i < plength; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+  // window.alert(password);
+  return password;
+}
+
+/**
 * Llegir un fitxer des del sistema d'arxius del client.
 * Read Text Files Using the JavaScript FileReader | HTML Goodies:
 * https://www.htmlgoodies.com/javascript/read-text-files-using-the-javascript-filereader/ 
@@ -295,8 +310,8 @@ function tePatrons(contrasenya) {
 function comprovaRobustesa(contrasenya) {
     const longitudMinima = 8;
     const especials = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\-=|"'+´`¨º!ª·¿¬€]/; // Afegides del teclat ES: /["'+´`¨º!ª·¿¬€]/
-    const majuscules = /[A-Z]|Ñ|Ç/;
-    const minuscules = /[a-z]|[ñç]/;
+    const majuscules = /[A-Z]|Ñ|Ç|[ÁÉÍÓÚÀÈÏÒÜ]/; // Afegides Ñ, Ç i les vocals majúscules accentuades/dieresi
+    const minuscules = /[a-z]|ñ|ç|[áéíóúàèïòü]/; // Afegides ñ, ç i les vocals minúscules accentuades/dieresi
     const numeros = /[0-9]/;
 
     if (esComuna(contrasenya)) {

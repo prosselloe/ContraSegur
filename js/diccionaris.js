@@ -277,8 +277,8 @@ function tePatrons(contrasenya) {
 function comprovaRobustesa(contrasenya) {
     const longitudMinima = 8;
     const especials = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\-=|"'+´`¨º!ª·¿¬€]/; // Afegides del teclat ES: /["'+´`¨º!ª·¿¬€]/
-    const majuscules = /[A-Z]|Ñ|Ç/;
-    const minuscules = /[a-z]|[ñç]/;
+    const majuscules = /[A-Z]|Ñ|Ç|[ÁÉÍÓÚÀÈÏÒÜ]/; // Afegides Ñ, Ç i les vocals majúscules accentuades/dieresi
+    const minuscules = /[a-z]|ñ|ç|[áéíóúàèïòü]/; // Afegides ñ, ç i les vocals minúscules accentuades/dieresi
     const numeros = /[0-9]/;
 
     if (esComuna(contrasenya)) {
