@@ -98,7 +98,12 @@ Versió γ: Versió amb Estructures de Dades Contrasenyes Segures: diccionaris.h
                     else
                         document.getElementById('password').type = 'password'"> Mostrar<br>
                 <input type="submit" id="inisessio" onclick="Iniciar();" value="Iniciar sessió" 
-                       style="padding: 6px; margin-top: 6px;" disabled><br>
+                       style="padding: 6px; margin-top: 6px;" disabled>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="random" onclick="document.getElementById('password').value = autoCreate(8);" title="Generar">
+                    <img src="img/random.png" alt="teclat" width=15 height=15></button><br>       
             </form>
             <br>
             <input type="checkbox" id="minimcar"    disabled> Mínim 8 caràcters,<br>
