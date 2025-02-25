@@ -205,14 +205,23 @@ function Mostrar()
 * https://compubinario.com/crear-contrasena-automaticamente-en-javascript/
 **/
 function autoCreate(plength){
-  var chars = "abcdefghijklmnopqrstubwsyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-  chars += "ñçÑÇáéíóúàèïòüÁÉÍÓÚÀÈÏÒÜ!" + '"' + "#$%&'()*+,-./:;<=>?@[\]^_`{|}~¡¨ª¬´·º¿€"
-  var password = '';    
-    for (i = 0; i < plength; i++) {
-      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    const majuscules = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑÇÁÉÍÓÚÀÈÏÒÜ"; // Afegides Ñ, Ç i les vocals majúscules accentuades/dieresi
+    const minuscules = "abcdefghijklmnopqrstubwsyzñçáéíóúàèïòü"; // Afegides ñ, ç i les vocals minúscules accentuades/dieresi
+    const numeros = "1234567890";
+    const especials = "!" + '"' + "#$%&'()*+,-./:;<=>?@[\]^_`{|}~¡¨ª¬´·º¿€"; // Afegides del teclat ES: "'+´`¨º!ª·¿¬€
+    const chars = majuscules + minuscules + numeros + especials;
+
+    var password = '';
+    password += majuscules.charAt(Math.floor(Math.random() * majuscules.length))  
+    password += minuscules.charAt(Math.floor(Math.random() * minuscules.length))  
+    password += numeros.charAt(Math.floor(Math.random() * numeros.length))  
+    password += especials.charAt(Math.floor(Math.random() * especials.length))  
+    
+    for (i = password.length--; i < plength; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-  // window.alert(password);
-  return password;
+    // window.alert(password);
+    return password;
 }
 
 /**
