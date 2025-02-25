@@ -346,6 +346,30 @@ function Mostrar()
 }
 
 /**
+* Crear Contraseña Automáticamente en Javascript
+* https://compubinario.com/crear-contrasena-automaticamente-en-javascript/
+**/
+function autoCreate(plength){
+    const majuscules = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑÇÁÉÍÓÚÀÈÏÒÜ"; // Afegides Ñ, Ç i les vocals majúscules accentuades/dieresi
+    const minuscules = "abcdefghijklmnopqrstubwsyzñçáéíóúàèïòü"; // Afegides ñ, ç i les vocals minúscules accentuades/dieresi
+    const numeros = "1234567890";
+    const especials = "!" + '"' + "#$%&'()*+,-./:;<=>?@[\]^_`{|}~¡¨ª¬´·º¿€"; // Afegides del teclat ES: "'+´`¨º!ª·¿¬€
+    const chars = majuscules + minuscules + numeros + especials;
+
+    var password = '';
+    password += majuscules.charAt(Math.floor(Math.random() * majuscules.length))  
+    password += minuscules.charAt(Math.floor(Math.random() * minuscules.length))  
+    password += numeros.charAt(Math.floor(Math.random() * numeros.length))  
+    password += especials.charAt(Math.floor(Math.random() * especials.length))  
+    
+    for (i = password.length--; i < plength; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    // window.alert(password);
+    return password;
+}
+
+/**
 * Llegir un fitxer des del sistema d'arxius del client.
 * Read Text Files Using the JavaScript FileReader | HTML Goodies:
 * https://www.htmlgoodies.com/javascript/read-text-files-using-the-javascript-filereader/ 
