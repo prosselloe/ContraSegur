@@ -10,17 +10,30 @@ and open the template in the editor.
         <link rel="icon" type="image/png" href="img/favicon.png">        
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>    
+            // Carregam les diferents versions en una finestra independent
+            function Finestra(URL) {
+                var amplada = 560;
+                var alçada = 620;
+                var x = parseInt((window.screen.width / 2) - (amplada / 2));
+                var y = parseInt((window.screen.height / 2) - (alçada / 2));
+                var DIM = "location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0, \n\
+                           top=" + y +  ", left=" + x + ", width=" + amplada + ", height=" + alçada + 
+                          ", copyhistory=0, directories=0";
+                WIN = window.open(URL, "", DIM);
+            }
+        </script> 
     </head>
     <body onload="document.getElementById('mystery').play();"
           style="background-image: url('img/password.png'); 
           background-size: 427px 403px; background-repeat: no-repeat;">
         <h2><a href="https://prosselloe.wordpress.com/about">Contrasenyes Segures</a></h2>
         <ul>
-            <li><a href="prototip.html">Versió Pre-alfa o Prototip HTML/JavaScript</a></li>
-            <li><a href="robustesa.html">Versió α: Versió amb Nivell de Robustesa</a></li>
-            <li><a href="diccionaris.html">Versió β: Versió amb Diccionari i Patrons</a></li>
-            <li><a href="estructures.html">Versió γ: Versió amb Estructures de Dades</a></li>
-            <li><a href="basedades.html">Versió δ: Versió amb Base de Dades<a/></li>
+            <li><a href="javascript:Finestra('prototip.html')">Versió Pre-alfa o Prototip HTML/JavaScript</a></li>
+            <li><a href="javascript:Finestra('robustesa.html')">Versió α: Versió amb Nivell de Robustesa</a></li>
+            <li><a href="javascript:Finestra('diccionaris.html')">Versió β: Versió amb Diccionari i Patrons</a></li>
+            <li><a href="javascript:Finestra('estructures.html')">Versió γ: Versió amb Estructures de Dades</a></li>
+            <li><a href="javascript:Finestra('basedades.html')">Versió δ: Versió amb Base de Dades<a/></li>
             <li><a href="https://sqlitesudio.netlify.app">SQLite Sudio en JavaScript</a></li>
 
         </ul>
