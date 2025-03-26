@@ -659,7 +659,7 @@ VALUES ( 'asshole', '',
     '819d7c152e96a452a67e155576002b9d91db6364',
     'U2FsdGVkX1+Mq+d4s7sGlg7QldbPK1uJb7w3idBeqcY=');
 INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
-ALUES ( 'computer', '',
+VALUES ( 'computer', '',
     'df53ca268240ca76670c8566ee54568a',
     'c60266a8adad2f8ee67d793b4fd3fd0ffd73cc61',
     'U2FsdGVkX18d/vRF7P78hb3pKN/4R5jpVtlMqRnd6eM=');
@@ -807,10 +807,176 @@ PRIMARY KEY (Pattern),
 FOREIGN KEY (IdIdioma) REFERENCES TblIdiomes(IdIdioma)
 );
 
-INSERT INTO TblPatrons VALUES ("/123/", "");
-INSERT INTO TblPatrons VALUES ("/abc/", "");
-INSERT INTO TblPatrons VALUES ("/qwerty/", "");
-INSERT INTO TblPatrons VALUES ("/azerty/", "fr");
+INSERT INTO TblPatrons (Pattern) VALUES ("/098/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/0pm/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/0pñ/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/123/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/1aq/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/1qa/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/234/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/2ws/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/2zs/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/321/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/345/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/3ed/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/432/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/456/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/4rf/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/543/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/567/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/5tg/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/654/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/678/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/6yh/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/765/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/789/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/7uj/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/876/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/890/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/8ik/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/987/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/9ol/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/abc/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/aq1/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/aqw/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/asd/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/aze/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/bcç/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/bcd/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/bgt/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/bnm/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/bvc/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/cba/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/çcb/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/cçd/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/cde/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/çde/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/cvb/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/cxw/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/cxz/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/dcb/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/dçc/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/de3/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/def/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/dfg/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/dsa/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/dsq/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/edc/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/edç/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/efg/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ert/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ewq/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/eza/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/fds/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/fed/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/fgh/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/fr4/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/gfd/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/gfe/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ghi/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ghj/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/gt5/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/hgf/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/hij/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/hjk/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/hy6/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ihg/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ijk/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/iop/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/iuy/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/jhg/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/jih/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/jkl/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ju7/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ki8/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/kjh/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/kji/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/klm/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/klñ/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/lkj/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/lmn/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/lo9/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/mju/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/mlk/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/mnb/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/mnñ/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/mno/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/mp0/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/nbv/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/nhy/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/nml/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/nño/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/nop/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ñlk/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ñnm/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ñop/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ñp0/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/oiu/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/onm/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/oñn/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/opq/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/poi/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/pon/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/poñ/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/pqr/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/qa1/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/qaz/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/qpo/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/qrs/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/qsd/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/qwe/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/rew/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/rez/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/rfv/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/rqp/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/rst/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/rty/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/sdf/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/srq/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/stu/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/sw2/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/sz2/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/tgb/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/tre/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/tsr/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/tuv/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/tyu/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/uio/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ujm/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/uts/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/uvw/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/uyt/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/vbn/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/vcx/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/vfr/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/vut/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/vwx/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/wer/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/wqa/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/wsx/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/wvu/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/wxc/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/wxy/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/xcv/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/xsw/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/xsz/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/xwv/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/xyz/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/yhn/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/ytr/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/yui/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/yxw/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/zaq/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/zer/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/zsx/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/zxc/");
+INSERT INTO TblPatrons (Pattern) VALUES ("/zyx/");
+
+UPDATE TblPatrons SET IdIdioma = "ca"
+WHERE TblPatrons.Pattern Like "%ç%";
+
+UPDATE TblPatrons SET IdIdioma = "es"
+WHERE TblPatrons.Pattern Like "%ñ%";
 
 DROP TABLE IF EXISTS TblTextosGUI;
 CREATE TABLE TblTextosGUI  (
@@ -1022,6 +1188,15 @@ INSERT INTO TblTextosGUI VALUES (
     "Ne pas enregistrer"
 );
 
-SELECT * FROM TblTextosGUI;
+SELECT * FROM TblTextosGUI
+WHERE TblTextosGUI.IdIdioma = "ca";
+
 SELECT * FROM TblDiccionari 
-   WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "ca";
+WHERE TblDiccionari.IdIdioma IS Null OR 
+      TblDiccionari.IdIdioma = "" OR 
+      TblDiccionari.IdIdioma = "ca";
+
+SELECT * FROM TblPatrons
+WHERE TblPatrons.IdIdioma IS Null OR 
+      TblPatrons.IdIdioma = "" OR 
+      TblPatrons.IdIdioma = "ca";
