@@ -1,4 +1,4 @@
-DROP TABLE TblIdiomes;
+DROP TABLE IF EXISTS TblIdiomes;
 CREATE TABLE TblIdiomes (
    IdIdioma VARCHAR(2),
    Idioma VARCHAR(40),
@@ -190,7 +190,7 @@ INSERT INTO TblIdiomes VALUES ("za", "chuan (o chuang, o zhuang)");
 INSERT INTO TblIdiomes VALUES ("zh", "chino");
 INSERT INTO TblIdiomes VALUES ("zu", "zulú");
 
-DROP TABLE TblPaisos;
+DROP TABLE IF EXISTS TblPaisos;
 CREATE TABLE TblPaisos (
    IdPais2T VARCHAR(2),
    NomOficial VARCHAR(55),
@@ -450,7 +450,7 @@ INSERT INTO TblPaisos VALUES ("ZA", "Sudáfrica", "ZAF", "710", "Códigos obteni
 INSERT INTO TblPaisos VALUES ("ZM", "Zambia", "ZMB", "894", "");
 INSERT INTO TblPaisos VALUES ("ZW", "Zimbabue", "ZWE", "716", "");
 
-DROP TABLE TblIdiomesPaisos;
+DROP TABLE IF EXISTS TblIdiomesPaisos;
 CREATE TABLE TblIdiomesPaisos (
    IdIdioma VARCHAR(2),
    IdPais2T VARCHAR(2),
@@ -472,7 +472,7 @@ INSERT INTO TblIdiomesPaisos VALUES ("es", "ES");
 INSERT INTO TblIdiomesPaisos VALUES ("eu", "ES");
 INSERT INTO TblIdiomesPaisos VALUES ("gl", "ES");
 
-DROP TABLE TblDiccionari;
+DROP TABLE IF EXISTS TblDiccionari;
 CREATE TABLE TblDiccionari (
    Password VARCHAR(128),
    IdIdioma VARCHAR(2),
@@ -483,16 +483,323 @@ PRIMARY KEY (Password),
 FOREIGN KEY (IdIdioma) REFERENCES TblIdiomes(IdIdioma)
 );
 
-INSERT INTO TblDiccionari VALUES ("111111", "", "", "", "");
-INSERT INTO TblDiccionari VALUES ("12345", "", "", "", "");
-INSERT INTO TblDiccionari VALUES ("123456", "", "", "", "");
-INSERT INTO TblDiccionari VALUES ("12345678", "", "", "", "");
-INSERT INTO TblDiccionari VALUES ("123456789", "", "25f9e794323b453885f5181f1b624d0b", "f7c3bc1d808e04732adf679965ccc34ca7ae3441", "U2FsdGVkX1/+4SEwiV/idGWjfLLfRuxYH/NlXrH/HpM=");
-INSERT INTO TblDiccionari VALUES ("guest", "en", "084e0343a0486ff05530df6c705c8bb4", "35675e68f4b5af7b995d9205ad0fc43842f16450", "U2FsdGVkX18htagc+PKSErSQi3Ax6YqO2mxsWrgRQAk=");
-INSERT INTO TblDiccionari VALUES ("password", "en", "5f4dcc3b5aa765d61d8327deb882cf99", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", "U2FsdGVkX1+ZLcwue9yU4Ul60DiyvboP9WHeIQvVG+s=");
-INSERT INTO TblDiccionari VALUES ("qwerty", "", "d8578edf8458ce06fbc5bb76a58c5ca4", "b1b3773a05c0ed0176787a4f1574ff0075f7521e", "U2FsdGVkX1+0SV/Q0z7x4Neq8dknjOvTw+ksMJIDky0=");
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'password', '',
+    '5f4dcc3b5aa765d61d8327deb882cf99',
+    '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8',
+    'U2FsdGVkX19zxQ8fjuWwhoAGdAaleZpr0pR43+nQLvs=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'dragon', '',
+    '8621ffdbc5698829397d97767ac13db3',
+    'af8978b1797b72acfff9595a5a2a373ec3d9106d',
+    'U2FsdGVkX1/JgohpQdRsDa7721tiLRNCMPQbFJpHRW8=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'baseball', '',
+    '276f8db0b86edaa7fc805516c852c889',
+    'a2c901c8c6dea98958c219f6f2d038c44dc5d362',
+    'U2FsdGVkX1+X7cQ/8J3qTQOq1tUdbuhouqZbjf32MKo=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'football', '',
+    '37b4e2d82900d5e94b8da524fbeb33c0',
+    '2d27b62c597ec858f6e7b54e7e58525e6a95e6d8',
+    'U2FsdGVkX19pVdAcdAhD2zC66utyf7xQyDy51YpvTQY=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'monkey', '',
+    'd0763edaa9d9bd2a9516280e9044d885',
+    'ab87d24bdc7452e55738deb5f868e1f16dea5ace',
+    'U2FsdGVkX19VVfCQmq05dy83wXv4ecFonbG9aUOLic4=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'letmein', '',
+    '0d107d09f5bbe40cade3de5c71e9e9b7',
+    'b7a875fc1ea228b9061041b7cec4bd3c52ab3ce3',
+    'U2FsdGVkX19WRvEzkhd8vaz+DIcUdDmZ9YG/koR8OF0=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'shadow', '',
+    '3bf1114a986ba87ed28fc1b5884fc2f8',
+    'ed9d3d832af899035363a69fd53cd3be8f71501c',
+    'U2FsdGVkX19bvK0/ig+gh0eV8tYfWq3HSvud2kWq99w=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'master', '',
+    'eb0a191797624dd3a48fa681d3061212',
+    '4f26aeafdb2367620a393c973eddbe8f8b846ebd',
+    'U2FsdGVkX1+x01bABqGGendksNARUhalKBYkY5jTS1U=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'mustang', '',
+    'bee783ee2974595487357e195ef38ca2',
+    '40123e9c6273385ea69892c48c80aa6cb25b9113',
+    'U2FsdGVkX181VSUE7Co/v5qz2pCzZLzz18TWk4NFRF0=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'michael', '',
+    '0acf4539a14b3aa27deeb4cbdf6e989f',
+    '17b9e1c64588c7fa6419b4d29dc1f4426279ba01',
+    'U2FsdGVkX19NEdUo0KNg4xTTFq2RCCsNRpBv4LlRZqY=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'pussy', '',
+    'acc6f2779b808637d04c71e3d8360eeb',
+    '35ed5406781ebfdf7161bbbb18e16cb9ad1f3be4',
+    'U2FsdGVkX18hQSd5FkVFzzFdA9FuISsbUAvZu/YlFII=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'superman', '',
+    '84d961568a65073a3bcf0eb216b2a576',
+    '18c28604dd31094a8d69dae60f1bcd347f1afc5a',
+    'U2FsdGVkX1+qJvs65XL8sjS5m2uYE0FTFXjkBl32AN8=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'fuckyou', '',
+    '596a96cc7bf9108cd896f33c44aedc8a',
+    'dd2edb87ea9eb7a32fd4057276d3a1fab861c1d5',
+    'U2FsdGVkX1/HGucQRKdkzeVWhCEOCDRhmxTPgKCw8K4=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'killer', '',
+    'b36d331451a61eb2d76860e00c347396',
+    '59033478180d07080d5e4f3baa0099996c364162',
+    'U2FsdGVkX18v28NYw1ONUKY9bE3Rhaxkg+Df2AIAEIc=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'trustno1', '',
+    '5fcfd41e547a12215b173ff47fdd3739',
+    'e68e11be8b70e435c65aef8ba9798ff7775c361e',
+    'U2FsdGVkX1+Rpsj6x+ZnKtCbVCOeUjnnpJRTjiBDjdM=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'jordan', '',
+    'd16d377af76c99d27093abc22244b342',
+    '1cb5bd5a9e45420321f44c72da5d90d7f0432ffb',
+    'U2FsdGVkX1/QfYMMN7TkQA8WzJQTme3rADhh+w+xoPg=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'jennifer', '',
+    '1660fe5c81c4ce64a2611494c439e1ba',
+    'e3cd9f6469fc3e1acfb9f2bdbfc5a3d2bbb8e2ad',
+    'U2FsdGVkX19wK20vSVvaHT+URW0OtQon+uq6hSeSNig=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'hunter', '',
+    '6b1b36cbb04b41490bfc0ab2bfa26f86',
+    '6e2f9e6111e77edd0c446ea7a84e25323d137a61',
+    'U2FsdGVkX1/Iz7/jS0L3ldC4UqLE0gdTYbjzHpA+hvc=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'buster', '',
+    'd9b23ebbf9b431d009a20df52e515db5',
+    '1999e4893f732ba38b948dbe8d34ed48cd54f058',
+    'U2FsdGVkX18PTbkZjLAbkeOF8WsIN82BOD3b9OES+7U=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'soccer', '',
+    'da443a0ad979d5530df38ca1a74e4f80',
+    '5c17fa03e6d5fc247565e1cd8ffa70e1bfe5b8d9',
+    'U2FsdGVkX1/lJ7LNGxRm5b3zifRSaFPQA17N9N8OYR0=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'harley', '',
+    'ef4cdd3117793b9fd593d7488409626d',
+    'f32157a45887e4fe5adc0b5198f7ec4920a526d7',
+    'U2FsdGVkX1+WJsDQqCFKSimiTg9taTGqBg8A71tn4Yk=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'batman', '',
+    'ec0e2603172c73a8b644bb9456c1ff6e',
+    '5c6d9edc3a951cda763f650235cfc41a3fc23fe8',
+    'U2FsdGVkX1+onhEt5m6zzTbrzY+NkBKg0TMJne+4nX8=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'tigger', '',
+    'f78f2477e949bee2d12a2c540fb6084f',
+    '6c616f7c2d2fde9018a09f06eaefcfc7582bc7ba',
+    'U2FsdGVkX1+rWhfL/ASXYkumOQxzSy0zPedJH6zTCj0=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'sunshine', '',
+    '0571749e2ac330a7455809c6b0e7af90',
+    '8d6e34f987851aa599257d3831a1af040886842f',
+    'U2FsdGVkX19O8HAz2WMw1zIARahclDtPw7fUi8/UDDY=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'iloveyou', '',
+    'f25a2fc72690b780b2a14e140ef6a9e0',
+    'ee8d8728f435fd550f83852aabab5234ce1da528',
+    'U2FsdGVkX1+QLb4PGChwovFbtFER2OOXMXwUuInV3Qg=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'fuckme', '',
+    '79cfdd0e92b120faadd7eb253eb800d0',
+    '4d27eae655e7272b21c5b0a539656a8ae869d75f',
+    'U2FsdGVkX18P7cEPCfzAPDCItmKoVDWjNqEfSH/inCo=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'charlie', '',
+    'bf779e0933a882808585d19455cd7937',
+    'd8cd10b920dcbdb5163ca0185e402357bc27c265',
+    'U2FsdGVkX1/ZgqW/8/YmR8IPQ/20E4YLDmvmuvgz6/M=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'thomas', '',
+    'ef6e65efc188e7dffd7335b646a85a21',
+    '5f50a84c1fa3bcff146405017f36aec1a10a9e38',
+    'U2FsdGVkX1/E1OHdAfHSbTbMladcdvXyjryhidHS1dw=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'hockey', '',
+    'df0349ce110b69f03b4def8012ae4970',
+    'f2847b1bd9624f927e979c1846d9fe17dd65f518',
+    'U2FsdGVkX1+OkpqX7v70uR7OroD3rhnWTqfqdpI44Lg=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'ranger', '',
+    'ad92694923612da0600d7be498cc2e08',
+    'e8126c64c3486e84081fffad6a0ab22d4267bb41',
+    'U2FsdGVkX19V0koQoJb4N2gESkhh4tnkc8iN/Nc3pmg=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'daniel', '',
+    'aa47f8215c6f30a0dcdb2a36a9f4168e',
+    '3d0f3b9ddcacec30c4008c5e030e6c13a478cb4f',
+    'U2FsdGVkX19FlE9hQpkhTzlHnwcSenCeyNP0myGGLp8=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'starwars', '',
+    '5badcaf789d3d1d09794d8f021f40f0e',
+    '327156ab287c6aa52c8670e13163fc1bf660add4',
+    'U2FsdGVkX199tgT13Ro7xA4B2OM8NNu8KKiEZNiw7N4=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'klaster', '',
+    'ee89f7a7a0565ba56f8fb5794c0bd9fe',
+    'a6f375a196cd4c89c41dbb4500553ebf3bab0a41',
+    'U2FsdGVkX1/k91SIzMYD6mIe1Yo4ng+c5mVTiM8DkPY=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'george', '',
+    '9b306ab04ef5e25f9fb89c998a6aedab',
+    '9fd8de5fc2a7c2c0d469b2fff1afde4e5def37ba',
+    'U2FsdGVkX19E0JrZdE/t+NIpaUGq+ziZu2jlbQbqddM=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'asshole', '',
+    '0b9a54438fba2dc0d39be8f7c6c71a58',
+    '819d7c152e96a452a67e155576002b9d91db6364',
+    'U2FsdGVkX1+Mq+d4s7sGlg7QldbPK1uJb7w3idBeqcY=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+ALUES ( 'computer', '',
+    'df53ca268240ca76670c8566ee54568a',
+    'c60266a8adad2f8ee67d793b4fd3fd0ffd73cc61',
+    'U2FsdGVkX18d/vRF7P78hb3pKN/4R5jpVtlMqRnd6eM=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'michelle', '',
+    '2345f10bb948c5665ef91f6773b3e455',
+    '7212a9e01329ea93a57f574bd9bf77695d5fdca4',
+    'U2FsdGVkX1/PNKJ8133b6ShGuWc/Fs5mii/9ogL7OWw=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'jessica', '',
+    'aae039d6aa239cfc121357a825210fa3',
+    '99996b911567c83cce17cdf194f314975c57ddf1',
+    'U2FsdGVkX1+IJikglbnBlTBk9pSy6nrL1CTEue7LW9I=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'pepper', '',
+    'b3f952d5d9adea6f63bee9d4c6fceeaa',
+    '64356bcfae350c970263c1ce575185b289f7b836',
+    'U2FsdGVkX1/gbAn7l8VvxMTwjmehULmGFe7ceFFMLmA=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'freedom', '',
+    'd5aa1729c8c253e5d917a5264855eab8',
+    '7ecfd8f97b4729c6ff0799b0b4d40f870083b461',
+    'U2FsdGVkX1/RzLFMf020cjYyI6lSv5E4PkuqmjaskcI=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'pass', '',
+    '1a1dc91c907325c69271ddf0c944bc72',
+    '9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684',
+    'U2FsdGVkX19aSRnp5+zdhTgYM3xpIslrJ1Jx9Nj1tFI=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'fuck', '',
+    '99754106633f94d350db34d548d6091a',
+    '38d0f91a99c57d189416439ce377ccdcd92639d0',
+    'U2FsdGVkX19J0QnoQzoL2hTWX0TrYS75oQgKlh/6iTI=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'maggie', '',
+    '1d3d37667a8d7eb02054c6afdf9e2e1c',
+    '019db0bfd5f85951cb46e4452e9642858c004155',
+    'U2FsdGVkX18D84gSaoj+VLFUoddRcdH7b+JTkHQsSTE=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'ginger', '',
+    '6f4ec514eee84cc58c8e610a0c87d7a2',
+    '92119e2c63e9366acfefe818b50537a85577e2db',
+    'U2FsdGVkX1+Uc7f6SVDVbxQaVcEMie3/z7+/eaGuziw=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'princess', '',
+    '8afa847f50a716e64932d995c8e7435a',
+    '775bb961b81da1ca49217a48e533c832c337154a',
+    'U2FsdGVkX18TbwWc43iNctwNFUO0gnC0LzkucE03o4A=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'joshua', '',
+    'd1133275ee2118be63a577af759fc052',
+    'd6955d9721560531274cb8f50ff595a9bd39d66f',
+    'U2FsdGVkX19nhK8vkCaUKQ6iRU5nexubxW3FGBvFA/o=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'cheese', '',
+    'fea0f1f6fede90bd0a925b4194deac11',
+    'bcef7a046258082993759bade995b3ae8bee26c7',
+    'U2FsdGVkX19LWEV5h/W6uXrpuGbFf9pgOLP00OUq9RM=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'amanda', '',
+    '6209804952225ab3d14348307b5a4a27',
+    '2394eeac9fc3db56189a894e221220b6089e78d3',
+    'U2FsdGVkX1+h68Dah4EfQwv6SQNLXdETitdS4UCEiLA=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'summer', '',
+    '6b1628b016dff46e6fa35684be6acc96',
+    '6420ed4d831b436d1e92d25605d18297296374e3',
+    'U2FsdGVkX1+HEmNC0tKzpN/bzdst+0baB+KdA7gxfAU=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'love', '',
+    'b5c0b187fe309af0f4d35982fd961d7e',
+    '9f2feb0f1ef425b292f2f94bc8482494df430413',
+    'U2FsdGVkX18gwgDqi2Ts8vgZhcg3c3GOF5KTCJfbff8=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'ashley', '',
+    'adff44c5102fca279fce7559abf66fee',
+    '782f9b10621e362d5bd0def3a279b5e0908c9ebb',
+    'U2FsdGVkX1+PcEJJvmrddLnfRjb5bG2kwEjCrNxNEj4=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'nicole', '',
+    'fc63f87c08d505264caba37514cd0cfd',
+    '5fee00239940f883d4c2854e41c7f989e75278a3',
+    'U2FsdGVkX1/757GVjVO5kVRaxPTpcoRONRYdsv6fOcM=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'chelsea', '',
+    '91cb315a6405bfcc30e2c4571ccfb8ce',
+    'ac137c6ae0947718332991e7cb2f50eb20b62aaa',
+    'U2FsdGVkX18xOxqPaNVJqX6wCE14GDNXzN4v96AkdS8=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'biteme', '',
+    '5ef64bad8f9d7e0c85f821580e4d6629',
+    '8c258085654083b891cb5125cb6dcb740c8a73f8',
+    'U2FsdGVkX1/1wblY5I3q8+LGAHDG+FCe9UtODQKd48o=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'matthew', '',
+    'e6a5ba0842a531163425d66839569a68',
+    'f80d0ca101e967b50b730ddf8e8aca0de85e8df6',
+    'U2FsdGVkX1+7MrlUXMDIBmFHGZNgJkkDoLw6wviEDpw=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'access', '',
+    '9df3b01c60df20d13843841ff0d4482c',
+    '0f12541afcce175fb34bb05a79c95b76e765488b',
+    'U2FsdGVkX1+nkmKAsEgOluNmoQ9bF7zuoqWG1mlhl6E=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'yankees', '',
+    '1d10ca7f8fe2615bf72a249a7d34d6b9',
+    'dd08b58e1d30dad48d37a35a8760cffe8d756cfa',
+    'U2FsdGVkX185+ypcmB+WI4jvvM4T4p/f/UVvKy6helY=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'dallas', '',
+    '09f8316e29649a7f795f414ba3860fc0',
+    '23f2916e01209d6282f226be9677affaec44a8d6',
+    'U2FsdGVkX18hh88Aj1kQba881DmplH/mLJWxeDtuZJw=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'austin', '',
+    '229979fce5174c17d4645bf8752dae1e',
+    '7ea35d812706d9213868749011af1ed4fa2f6aa0',
+    'U2FsdGVkX1+Sw5R4REeOswow98FmJt1eTNM0DC2V6oc=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'thunder', '',
+    '5c7686c0284e0875b26de99c1008e998',
+    'badcfa3c62742b3bcc1dcd893e78713bd36aa430',
+    'U2FsdGVkX1/vxX5ycPOPtpiCQSNS1Dd13bW4SdCOl08=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'taylor', '',
+    '7d8bc5f1a8d3787d06ef11c97d4655df',
+    '5d74ae093a16a00e5af127763f2dc7e13988f162',
+    'U2FsdGVkX1+WAToSyvJIOaHaFRw6sjhj4BkavPk78QA=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'matrix', '',
+    '21b72c0b7adc5c7b4a50ffcb90d92dd6',
+    'bf2f749e80c970f50552e9d5f3e8434e78b88d35',
+    'U2FsdGVkX191dibELR2hJawOz6MG2q9/TaOxSnaqAdY=');
+INSERT INTO TblDiccionari (Password, IdIdioma, MD5, SHA1, AES)
+VALUES ( 'minecraft', '',
+    '98eb470b2b60482e259d28648895d9e1',
+    '624c22a8c8f8c93f18fe5ecd4713100c8d754507',
+    'U2FsdGVkX18INvagPoASN1p7kcljx6h1qWcI1KTOl9Q=');
 
-DROP TABLE TblPatrons;
+DROP TABLE IF EXISTS TblPatrons;
 CREATE TABLE TblPatrons (
    Pattern VARCHAR(128),
    IdIdioma VARCHAR(2),
@@ -505,7 +812,7 @@ INSERT INTO TblPatrons VALUES ("/abc/", "");
 INSERT INTO TblPatrons VALUES ("/qwerty/", "");
 INSERT INTO TblPatrons VALUES ("/azerty/", "fr");
 
-DROP TABLE TblTextosGUI;
+DROP TABLE IF EXISTS TblTextosGUI;
 CREATE TABLE TblTextosGUI  (
    IdIdioma VARCHAR(2),
    Titol VARCHAR(45),
@@ -716,5 +1023,5 @@ INSERT INTO TblTextosGUI VALUES (
 );
 
 SELECT * FROM TblTextosGUI;
-SELECT Password FROM TblDiccionari 
+SELECT * FROM TblDiccionari 
    WHERE TblDiccionari.IdIdioma = "" OR TblDiccionari.IdIdioma = "ca";
