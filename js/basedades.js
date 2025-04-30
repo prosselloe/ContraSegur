@@ -565,8 +565,8 @@ function AlaWeb_SQLite(IdIdioma) {
     alasql('ATTACH SQLITE DATABASE contrasegur("db/ContraSegur.db"); USE contrasegur; \n\
             SELECT Pattern FROM TblPatrons \n\
             WHERE IdIdioma IS NULL OR IdIdioma = "" OR IdIdioma = "' + IdIdioma + '";',
-    //    [], function(diccionari) {Print_Data(TblPatrons = diccionari.pop());}
-        [], function(diccionari) {SQL_Patrons(IdIdioma, diccionari.pop());}
+    //    [], function(patrons) {Print_Data(TblPatrons = patrons.pop());}
+        [], function(patrons) {SQL_Patrons(IdIdioma, patrons.pop());}
     );  
 }
 
